@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{32fce74c-1689-c95e-755b-9fe2d869057b}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeapMotion.LeapCSharp", "LeapMotion.LeapCSharp.csproj", "{c1901d8d-6cbe-40b4-a542-bbc4aedbfcc4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{764558cd-418c-863e-cefa-1f69f5b6ceb0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32fce74c-1689-c95e-755b-9fe2d869057b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32fce74c-1689-c95e-755b-9fe2d869057b}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{c1901d8d-6cbe-40b4-a542-bbc4aedbfcc4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{c1901d8d-6cbe-40b4-a542-bbc4aedbfcc4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764558cd-418c-863e-cefa-1f69f5b6ceb0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764558cd-418c-863e-cefa-1f69f5b6ceb0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
