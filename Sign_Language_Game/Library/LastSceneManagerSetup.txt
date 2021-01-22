@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/Plugins/LeapMotion/Core/Examples/Capsule Hands (Desktop).unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
