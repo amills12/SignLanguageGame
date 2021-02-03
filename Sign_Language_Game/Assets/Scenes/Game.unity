@@ -2983,7 +2983,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 332252413}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1459801303}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ea79be653ce14db8969d7225d95ec6c, type: 3}
@@ -6801,6 +6801,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1444550182}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1459801303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 196280, guid: 23f2cce114628a448bfeaae171b4c0c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 332252413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1459801305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459801303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0a381acc1362549be341715539417d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1459801306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459801303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98e641d160144e87a3d33fcdb893a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1459801305}
+        m_MethodName: PrintActivateMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeactivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1459801305}
+        m_MethodName: PrintDeactivateMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Period: 0.1
+  HandModel: {fileID: 332252414}
+  Thumb: 1
+  Index: 0
+  Middle: 1
+  Ring: 1
+  Pinky: 1
+  MinimumExtendedCount: 1
+  MaximumExtendedCount: 1
+  ShowGizmos: 1
 --- !u!1001 &1491138724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7089,18 +7157,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 179691411}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1529651749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529651748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef7dd581689d59e42b7f5d38f58f9d31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1529651750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7129,18 +7185,7 @@ MonoBehaviour:
         m_CallState: 2
   OnDeactivate:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 166188, guid: c8515ebee271c0649b9db1321f3026a4, type: 3}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   Period: 0.1
   HandModel: {fileID: 179691412}
   Thumb: 1
@@ -7151,6 +7196,18 @@ MonoBehaviour:
   MinimumExtendedCount: 1
   MaximumExtendedCount: 1
   ShowGizmos: 1
+--- !u!114 &1529651751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529651748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0a381acc1362549be341715539417d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1534297510
 GameObject:
   m_ObjectHideFlags: 0
