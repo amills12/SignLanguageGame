@@ -7246,7 +7246,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1459801303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e98e641d160144e87a3d33fcdb893a02, type: 3}
+  m_Script: {fileID: 11500000, guid: 1338bc0433690504ba23d32467269c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnActivate:
@@ -7284,6 +7284,11 @@ MonoBehaviour:
   Middle: 1
   Ring: 1
   Pinky: 1
+  PointingType: 0
+  PointingDirection: {x: 0, y: 0, z: 1}
+  TargetObject: {fileID: 0}
+  OnAngle: 45
+  OffAngle: 65
   MinimumExtendedCount: 1
   MaximumExtendedCount: 1
   ShowGizmos: 1
