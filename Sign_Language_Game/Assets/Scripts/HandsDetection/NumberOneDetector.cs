@@ -13,102 +13,55 @@ using Leap.Unity.Attributes;
 
 namespace Leap.Unity {
 
-  /**
-   * Detects when specified fingers are in an extended or non-extended state.
-   * 
-   * You can specify whether each finger is extended, not extended, or in either state.
-   * This detector activates when every finger on the observed hand meets these conditions.
-   * 
-   * If added to a HandModelBase instance or one of its children, this detector checks the
-   * finger state at the interval specified by the Period variable. You can also specify
-   * which hand model to observe explicitly by setting handModel in the Unity editor or 
-   * in code.
-   * 
-   * @since 4.1.2
-   */
   public class NumberOneDetector : Detector {
 
-private bool extendedFingerWatcherState = false;
-private bool palmWatcherState = false;
+    public static GameObject Number1;
+    public static Number1ScriptNew Number1Script;
+    public static GameObject CharacterObjects;
 
-    /**
-     * The interval at which to check finger state.
-     * @since 4.1.2
-     */
+    private bool extendedFingerWatcherState = false;
+    private bool palmWatcherState = false;
+
+
     [Tooltip("The interval in seconds at which to check this detector's conditions.")]
     [Units("seconds")]
     [MinValue(0)]
     public float Period = .1f; //seconds
 
-    /**
-     * The HandModelBase instance to observe. 
-     * Set automatically if not explicitly set in the editor.
-     * @since 4.1.2
-     */
     [Tooltip("The hand model to watch. Set automatically if detector is on a hand.")]
     public HandModelBase HandModel = null;
   
     /** The required thumb state. */
     [Header("Finger States")]
     [Tooltip("Required state of the thumb.")]
-    public PointingState Thumb = PointingState.Either;
+    public PointingState Thumb = Number1Script.Thumb;
     /** The required index finger state. */
     [Tooltip("Required state of the index finger.")]
-    public PointingState Index = PointingState.Either;
+    public PointingState Index = Number1Script.Index;
     /** The required middle finger state. */
     [Tooltip("Required state of the middle finger.")]
-    public PointingState Middle = PointingState.Either;
+    public PointingState Middle = Number1Script.Middle;
     /** The required ring finger state. */
     [Tooltip("Required state of the ring finger.")]
-    public PointingState Ring = PointingState.Either;
+    public PointingState Ring = Number1Script.Ring;
     /** The required pinky finger state. */
     [Tooltip("Required state of the little finger.")]
-    public PointingState Pinky = PointingState.Either;
+    public PointingState Pinky = Number1Script.Pinky;
 
-    /**
-     * Specifies how to interprete the direction specified by PointingDirection.
-     * 
-     * - RelativeToCamera -- the target direction is defined relative to the camera's forward vector, i.e. (0, 0, 1) is the cmaera's 
-     *                       local forward direction.
-     * - RelativeToHorizon -- the target direction is defined relative to the camera's forward vector, 
-     *                        except that it does not change with pitch.
-     * - RelativeToWorld -- the target direction is defined as a global direction that does not change with camera movement. For example,
-     *                      (0, 1, 0) is always world up, no matter which way the camera is pointing.
-     * - AtTarget -- a target object is used as the pointing direction (The specified PointingDirection is ignored).
-     * 
-     * In VR scenes, RelativeToHorizon with a direction of (0, 0, 1) for camera forward and RelativeToWorld with a direction
-     * of (0, 1, 0) for absolute up, are often the most useful settings.
-     * @since 4.1.2
-     */
+
     [Header("Direction Settings")]
     [Tooltip("How to treat the target direction.")]
     public PointingType PointingType = PointingType.RelativeToHorizon;
 
-    /**
-    * The target direction as interpreted by the PointingType setting.
-    * Ignored when Pointingtype is "AtTarget."
-    * @since 4.1.2
-    */
+
     [Tooltip("The target direction.")]
-    [DisableIf("PointingType", isEqualTo: PointingType.AtTarget)]
     public Vector3 PointingDirection = Vector3.forward;
 
-    /**
-     * The object to point at when the PointingType is "AtTarget." Ignored otherwise.
-     */
-    [Tooltip("A target object(optional). Use PointingType.AtTarget")]
-    [DisableIf("PointingType", isNotEqualTo: PointingType.AtTarget)]
-    public Transform TargetObject = null;
 
     [Tooltip("The angle in degrees from the target direction at which to turn on.")]
     [Range(0, 180)]
     public float OnAngle = 45; // degrees
 
-    /**
-    * The turn-off angle. The detector deactivates when the palm points more than this
-    * many degrees away from the target direction. The off angle must be larger than the on angle.
-    * @since 4.1.2
-    */
     [Tooltip("The angle in degrees from the target direction at which to turn off.")]
     [Range(0, 180)]
     public float OffAngle = 65; //degrees
@@ -129,7 +82,8 @@ private bool palmWatcherState = false;
     [Tooltip("Draw this detector's Gizmos, if any. (Gizmos must be on in Unity edtor, too.)")]
     public bool ShowGizmos = true;
 
-    private IEnumerator watcherCoroutine;
+    private IEnumerator watcherCoroutineExtendedFingerWatcher;
+    private IEnumerator watcherCoroutinePalmWatcher;
 
     void OnValidate() {
 
@@ -163,15 +117,18 @@ private bool palmWatcherState = false;
     }
 
     void Awake () {
-      watcherCoroutine = extendedFingerWatcher();
+      watcherCoroutineExtendedFingerWatcher = extendedFingerWatcher();
+      watcherCoroutinePalmWatcher = palmWatcher();
     }
   
     void OnEnable () {
-      StartCoroutine(watcherCoroutine);
+      StartCoroutine(watcherCoroutineExtendedFingerWatcher);
+      StartCoroutine(watcherCoroutinePalmWatcher);
     }
   
     void OnDisable () {
-      StopCoroutine(watcherCoroutine);
+      StopCoroutine(watcherCoroutineExtendedFingerWatcher);
+      StopCoroutine(watcherCoroutinePalmWatcher);
       extendedFingerWatcherState = false;
       palmWatcherState = false;
     }
@@ -200,6 +157,8 @@ private bool palmWatcherState = false;
                          (extendedCount >= MinimumExtendedCount);
             if(HandModel.IsTracked && fingerState){
               extendedFingerWatcherState = true;
+              Debug.Log("in efd watcher state true");
+
             } else if(!HandModel.IsTracked || !fingerState) {
               extendedFingerWatcherState = false;
             }
@@ -228,6 +187,7 @@ private bool palmWatcherState = false;
             float angleTo = Vector3.Angle(normal, selectedDirection(hand.PalmPosition.ToVector3()));
             if(angleTo <= OnAngle){
               palmWatcherState = true;
+              Debug.Log("in palm watcher state true");
             } else if(angleTo > OffAngle) {
               palmWatcherState = false;
             }
@@ -248,10 +208,6 @@ private bool palmWatcherState = false;
           return Camera.main.transform.TransformDirection(PointingDirection);
         case PointingType.RelativeToWorld:
           return PointingDirection;
-        case PointingType.AtTarget:
-          if (TargetObject != null)
-            return TargetObject.position - tipPosition;
-          else return Vector3.zero;
         default:
           return PointingDirection;
       }
@@ -281,25 +237,6 @@ private bool palmWatcherState = false;
     }
     #endif
 
-    public virtual void Activate(){
-      if (!IsActive) {
-        _isActive = true;
-        OnActivate.Invoke();
-      }
-    }
-
-    /**
-    * Invoked when this detector deactivates.
-    * Subclasses must call this function when the detector's conditions change from true to false.
-    * @since 4.1.2
-    */
-    public virtual void Deactivate(){
-      if (IsActive) {
-        _isActive = false;
-        OnDeactivate.Invoke();
-      }
-    }
-
     public void Update ()
     {
       if (extendedFingerWatcherState && palmWatcherState){
@@ -309,8 +246,10 @@ private bool palmWatcherState = false;
       }
     }
 
+        void Start()
+    {
+        Number1Script = Number1.GetComponent<Number1ScriptNew>();
+    }
+
   }
-  
-  /** Defines the settings for comparing extended finger states */
-  public enum PointingState{Extended, NotExtended, Either}
 }
