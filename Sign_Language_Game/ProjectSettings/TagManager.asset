@@ -10,6 +10,8 @@ TagManager:
   - MissedExplosion
   - Number1
   - CharacterObjects
+  - Number2
+  - Numbers
   layers:
   - Default
   - TransparentFX

@@ -8,19 +8,21 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 using Leap.Unity.Attributes;
 
 namespace Leap.Unity {
 
   public class NumberOneDetector : Detector {
+    GameObject Numbers;
+    NumberScript numberScript;
 
-    public static GameObject Number1;
-    public static Number1ScriptNew Number1Script;
-    public static GameObject CharacterObjects;
+    public string currentKey;
+    public Number currentNumber;  
 
-    private bool extendedFingerWatcherState = false;
-    private bool palmWatcherState = false;
+    public bool extendedFingerWatcherState = false;
+    public bool palmWatcherState = false;
 
 
     [Tooltip("The interval in seconds at which to check this detector's conditions.")]
@@ -31,31 +33,16 @@ namespace Leap.Unity {
     [Tooltip("The hand model to watch. Set automatically if detector is on a hand.")]
     public HandModelBase HandModel = null;
   
-    /** The required thumb state. */
-    [Header("Finger States")]
-    [Tooltip("Required state of the thumb.")]
-    public PointingState Thumb = Number1Script.Thumb;
-    /** The required index finger state. */
-    [Tooltip("Required state of the index finger.")]
-    public PointingState Index = Number1Script.Index;
-    /** The required middle finger state. */
-    [Tooltip("Required state of the middle finger.")]
-    public PointingState Middle = Number1Script.Middle;
-    /** The required ring finger state. */
-    [Tooltip("Required state of the ring finger.")]
-    public PointingState Ring = Number1Script.Ring;
-    /** The required pinky finger state. */
-    [Tooltip("Required state of the little finger.")]
-    public PointingState Pinky = Number1Script.Pinky;
+    /** The extended finger states. */
+    public PointingState Thumb;
+    public PointingState Index;
+    public PointingState Middle;
+    public PointingState Ring;
+    public PointingState Pinky;
 
-
-    [Header("Direction Settings")]
-    [Tooltip("How to treat the target direction.")]
-    public PointingType PointingType = PointingType.RelativeToHorizon;
-
-
-    [Tooltip("The target direction.")]
-    public Vector3 PointingDirection = Vector3.forward;
+    /** The palm direction state. */
+    private PointingType PointingType;
+    private Vector3 PointingDirection;
 
 
     [Tooltip("The angle in degrees from the target direction at which to turn on.")]
@@ -88,7 +75,6 @@ namespace Leap.Unity {
     void OnValidate() {
 
       // Extended Finger
-
       int required = 0, forbidden = 0;
       PointingState[] stateArray = { Thumb, Index, Middle, Ring, Pinky };
       for(int i=0; i<stateArray.Length; i++) {
@@ -103,22 +89,46 @@ namespace Leap.Unity {
           default:
             break;
         }
-        MinimumExtendedCount = Math.Max(required, MinimumExtendedCount);
-        MaximumExtendedCount = Math.Min(5 - forbidden, MaximumExtendedCount);
-        MaximumExtendedCount = Math.Max(required, MaximumExtendedCount);
+        MinimumExtendedCount = 0;
+        MaximumExtendedCount = 5;
       }
 
       // Palm Direction
-
       if( OffAngle < OnAngle){
         OffAngle = OnAngle;
       }
     
     }
 
+    void SetNumber(Number num){
+      Thumb = num.getThumbExtension();
+      Index = num.getIndexExtension();
+      Middle = num.getMiddleExtension();
+      Ring = num.getRingExtension();
+      Pinky = num.getPinkyExtension();
+
+      PointingType = num.getPointingType();
+      PointingDirection = num.getPointingDirection();
+
+      Debug.Log(PointingType);
+      Debug.Log(PointingDirection);
+    }
+
+      char getNiceNumKey(KeyCode keycode){
+        if (keycode.ToString().Contains("Alpha")){
+          return keycode.ToString().Substring(5)[0];
+        }else{
+          return '0';
+        }
+      }
+
     void Awake () {
       watcherCoroutineExtendedFingerWatcher = extendedFingerWatcher();
       watcherCoroutinePalmWatcher = palmWatcher();
+
+      List<GameObject> characters = new List<GameObject>();
+      Numbers = GameObject.FindGameObjectWithTag("Numbers");
+      numberScript = Numbers.GetComponent<NumberScript>();
     }
   
     void OnEnable () {
@@ -157,7 +167,6 @@ namespace Leap.Unity {
                          (extendedCount >= MinimumExtendedCount);
             if(HandModel.IsTracked && fingerState){
               extendedFingerWatcherState = true;
-              Debug.Log("in efd watcher state true");
 
             } else if(!HandModel.IsTracked || !fingerState) {
               extendedFingerWatcherState = false;
@@ -187,7 +196,6 @@ namespace Leap.Unity {
             float angleTo = Vector3.Angle(normal, selectedDirection(hand.PalmPosition.ToVector3()));
             if(angleTo <= OnAngle){
               palmWatcherState = true;
-              Debug.Log("in palm watcher state true");
             } else if(angleTo > OffAngle) {
               palmWatcherState = false;
             }
@@ -240,16 +248,20 @@ namespace Leap.Unity {
     public void Update ()
     {
       if (extendedFingerWatcherState && palmWatcherState){
+        Debug.Log("Activated");
         Activate();
       }else{
         Deactivate();
       }
+      foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+      {
+        if (Input.GetKeyDown(kcode)){
+          currentKey = kcode.ToString();
+          currentNumber = numberScript.GetNumber(getNiceNumKey(kcode));
+          Debug.Log(getNiceNumKey(kcode));
+          SetNumber(currentNumber);
+        }
+      }
     }
-
-        void Start()
-    {
-        Number1Script = Number1.GetComponent<Number1ScriptNew>();
-    }
-
   }
 }

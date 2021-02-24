@@ -4,29 +4,24 @@ using UnityEngine;
 
 public class Number1Script : MonoBehaviour
 {
-    /** The required thumb state. */
-    [Header("Finger States")]
-    [Tooltip("Required state of the thumb.")]
-    public Leap.Unity.PointingState Thumb = Leap.Unity.PointingState.NotExtended;
-    /** The required index finger state. */
-    [Tooltip("Required state of the index finger.")]
-    public Leap.Unity.PointingState Index = Leap.Unity.PointingState.Extended;
-    /** The required middle finger state. */
-    [Tooltip("Required state of the middle finger.")]
-    public Leap.Unity.PointingState Middle = Leap.Unity.PointingState.NotExtended;
-    /** The required ring finger state. */
-    [Tooltip("Required state of the ring finger.")]
-    public Leap.Unity.PointingState Ring = Leap.Unity.PointingState.NotExtended;
-    /** The required pinky finger state. */
-    [Tooltip("Required state of the little finger.")]
-    public Leap.Unity.PointingState Pinky = Leap.Unity.PointingState.NotExtended;
+    public Leap.Unity.PointingState ThumbExtension = Leap.Unity.PointingState.NotExtended;
+    public Leap.Unity.PointingState IndexExtension = Leap.Unity.PointingState.Extended;
+    public Leap.Unity.PointingState MiddleExtension = Leap.Unity.PointingState.NotExtended;
+    public Leap.Unity.PointingState RingExtension = Leap.Unity.PointingState.NotExtended;
+    public Leap.Unity.PointingState PinkyExtension = Leap.Unity.PointingState.NotExtended;
 
-    // Start is called before the first frame update
+    public Leap.Unity.PointingType PointingType = Leap.Unity.PointingType.RelativeToHorizon;
+    public Vector3 PointingDirection = Vector3.up;
+}
 
+public class Number2Script : MonoBehaviour
+{
+    public Leap.Unity.PointingState ThumbExtension = Leap.Unity.PointingState.NotExtended;
+    public Leap.Unity.PointingState IndexExtension = Leap.Unity.PointingState.Extended;
+    public Leap.Unity.PointingState MiddleExtension = Leap.Unity.PointingState.NotExtended;
+    public Leap.Unity.PointingState RingExtension = Leap.Unity.PointingState.NotExtended;
+    public Leap.Unity.PointingState PinkyExtension = Leap.Unity.PointingState.NotExtended;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Leap.Unity.PointingType PointingType = Leap.Unity.PointingType.RelativeToHorizon;
+    public Vector3 PointingDirection = Vector3.up;
 }
