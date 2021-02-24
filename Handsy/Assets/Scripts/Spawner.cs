@@ -17,11 +17,12 @@ public class Spawner : MonoBehaviour
     }
 
     void Spawn(){
+        //Generate a random character
         prefab_num = Random.Range(0,9);
-        //spawn_num = Random.Range(0,7);
+        //Get a random radius and rotation for the spawn location
         spawn_location = RandomRadius(center, spawn_distance);
         rotation = Quaternion.FromToRotation(Vector3.up, center-spawn_location);
-        Instantiate(prefab[prefab_num], spawn_location/*spawns[spawn_num].position*/, transform.rotation/*spawns[spawn_num].rotation*/);
+        Instantiate(prefab[prefab_num], spawn_location, transform.rotation);
     }
 
     Vector3 RandomRadius(Vector3 vector, float radius){

@@ -18,6 +18,7 @@ public class ActivatorSphere : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set the scores integer value to 000 as default
         PlayerPrefs.SetInt("Score", 000);
         old = meshRenderer.material.color;   
     }
@@ -25,8 +26,11 @@ public class ActivatorSphere : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Capture the key of the next character
         DetermineKey();
+        //Check if pressed
         if(Input.GetKeyDown(key)){
+            //If the letter was pressed within the sphere, success, destroy. increment score
             if(letter.active){
                 letter.active = false;
                 Destroy(letter.gameObject);
@@ -34,10 +38,12 @@ public class ActivatorSphere : MonoBehaviour
                 IncScore();
             }
             else{
+            //If the letter was outside of the sphere, black color indicator for not within
                 StartCoroutine(Missed());
             }
         }
         
+        //If letter is within the sphere and hits the center, destroy for a missed character
         if(letter.hit && letter.active){
             letter.active = false;
             Destroy(letter.gameObject);
@@ -85,6 +91,9 @@ public class ActivatorSphere : MonoBehaviour
     //     meshRenderer.material.color = old;
     // }
 
+    /*  ExplodeSuccess and ExplodeMissed will be called when appropriate to indicate a miss or 
+        successful capture of the letter, two particle systems with different tags will be accessed
+    */
     void ExplodeSuccess() {
         GameObject go = GameObject.FindGameObjectWithTag("SuccessExplosion");
         ParticleSystem exp = go.GetComponent<ParticleSystem>();
@@ -108,15 +117,15 @@ public class ActivatorSphere : MonoBehaviour
         Transform bestOption = null;
         Vector3 activatorPosition = transform.position;
         Vector3 targetPosition;
-        float closest = Mathf.Infinity;
+        float closest = Mathf.Infinity; //set as infinity to have a begining value
         float targetDistance;
 
         /*  iterate through all nearby transforms and compare distance to currently
             recorded distance */
         foreach(Transform target in characters){
-            targetPosition = target.position - activatorPosition;
-            targetDistance = targetPosition.sqrMagnitude;
-            if(targetDistance < closest){
+            targetPosition = target.position - activatorPosition;   //get the different of the letter and activator
+            targetDistance = targetPosition.sqrMagnitude;   //capture vector distance
+            if(targetDistance < closest){   //check if its the closest
                 closest = targetDistance;
                 bestOption = target;
             }
@@ -125,6 +134,9 @@ public class ActivatorSphere : MonoBehaviour
         return bestOption;
     }
 
+    /*  DetermineKey will detect the closest character and assign the letter and the key that needs
+        to be accessed for funcitonality in Update
+    */
     void DetermineKey(){
         currentLetter = GetClosestLetter();
         letter = currentLetter.GetComponent<Letter>();

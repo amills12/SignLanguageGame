@@ -37,8 +37,12 @@ public class Letter : MonoBehaviour
     void Update()
     {
         if(!hit){
+            /*  Color.Lerp is a function that allows for colors to smoothly transistion, the time that this
+                occurs over is dictated by the lerpTime variable, changable within the Inspector of the letters.    
+            */
             rend.material.color = Color.Lerp(rend.material.color, colors[colorIndex], lerpTime*Time.deltaTime);
             time = Mathf.Lerp(time, 1f, lerpTime*Time.deltaTime);
+            //Check the timeframe and if greater than 0.9, increment the colorIndex as long as the array isn't finished
             if(time > 0.9f){
                 time = 0f;
                 colorIndex++;
@@ -47,14 +51,16 @@ public class Letter : MonoBehaviour
 
             float step = speed * Time.deltaTime;    //calculate the distance to move
             transform.position = Vector3.MoveTowards(transform.position, target_vector, step);    //move towards activator
-            // if(Vector3.Distance(transform.position, target.position) > 1.0f)
-            //     rb.velocity = new Vector3(curve, 0, 0);  //add some curve for funzies
 
+            /*  This is attempt at adding curvature the character movements, might bring back in future.
+                if(Vector3.Distance(transform.position, target.position) > 1.0f)
+                    rb.velocity = new Vector3(curve, 0, 0);  //add some curve for funzies
+            */
         }
 
         //check if the distance between the letter and activator is approximately equal
         if(Vector3.Distance(transform.position, target_vector) == 0){
-            //swap the position
+            //swap the position to stay centered.
             hit = true;
             target_vector *= -1.0f;
         }
