@@ -98,13 +98,11 @@ MonoBehaviour:
   curve: 0
   hit: 0
   active: 0
-  lerpTime: 1
+  lerpTime: 0.55
   colors:
-  - {r: 1, g: 0, b: 0.80166054, a: 1}
-  - {r: 0, g: 0.08972359, b: 1, a: 1}
-  - {r: 0.14438558, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.8535939, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.8535939, b: 0, a: 1}
+  - {r: 0.14438558, g: 1, b: 0, a: 1}
 --- !u!135 &8836370908421645837
 SphereCollider:
   m_ObjectHideFlags: 0
