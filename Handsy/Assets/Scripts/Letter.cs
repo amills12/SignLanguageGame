@@ -7,6 +7,7 @@ public class Letter : MonoBehaviour
     Rigidbody rb;
     public float speed, curve;
     Transform target;
+    Vector3 target_vector;
     public bool hit = false, active = false;
 
     //RGB variables
@@ -19,6 +20,9 @@ public class Letter : MonoBehaviour
     private void Awake() {
         rb = GetComponent<Rigidbody>();  //capture rigidbody to maybe use later
         target = GameObject.FindWithTag("Activator").transform; //find the activator to move towards
+        target_vector.x = target.position.x - 0.2f;
+        target_vector.y = target.position.y - 0.35f;
+        target_vector.z = target.position.z;
     }
 
     // Start is called before the first frame update
@@ -33,8 +37,12 @@ public class Letter : MonoBehaviour
     void Update()
     {
         if(!hit){
+            /*  Color.Lerp is a function that allows for colors to smoothly transistion, the time that this
+                occurs over is dictated by the lerpTime variable, changable within the Inspector of the letters.    
+            */
             rend.material.color = Color.Lerp(rend.material.color, colors[colorIndex], lerpTime*Time.deltaTime);
             time = Mathf.Lerp(time, 1f, lerpTime*Time.deltaTime);
+            //Check the timeframe and if greater than 0.9, increment the colorIndex as long as the array isn't finished
             if(time > 0.9f){
                 time = 0f;
                 colorIndex++;
@@ -42,17 +50,19 @@ public class Letter : MonoBehaviour
             }
 
             float step = speed * Time.deltaTime;    //calculate the distance to move
-            transform.position = Vector3.MoveTowards(transform.position, target.position, step);    //move towards activator
-            // if(Vector3.Distance(transform.position, target.position) > 1.0f)
-            //     rb.velocity = new Vector3(curve, 0, 0);  //add some curve for funzies
+            transform.position = Vector3.MoveTowards(transform.position, target_vector, step);    //move towards activator
 
+            /*  This is attempt at adding curvature the character movements, might bring back in future.
+                if(Vector3.Distance(transform.position, target.position) > 1.0f)
+                    rb.velocity = new Vector3(curve, 0, 0);  //add some curve for funzies
+            */
         }
 
         //check if the distance between the letter and activator is approximately equal
-        if(Vector3.Distance(transform.position, target.position) == 0){
-            //swap the position
+        if(Vector3.Distance(transform.position, target_vector) == 0){
+            //swap the position to stay centered.
             hit = true;
-            target.position *= -1.0f;
+            target_vector *= -1.0f;
         }
     }
 }
