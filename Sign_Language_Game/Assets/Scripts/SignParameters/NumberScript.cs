@@ -6,21 +6,23 @@ namespace Leap.Unity
 {
     public class NumberScript : MonoBehaviour
     {
-        // public List<Number> allNumbers;
-        public SortedDictionary<char, Number> allNumbers;
+        public SortedDictionary<char, HandsyNumber> allNumbers;
 
-        public Number GetNumber(char num){
+        public HandsyNumber GetNumber(char num){
             if (allNumbers.ContainsKey(num)) {
+                Debug.Log("FOUND");
                 return allNumbers[num];
             }
             return null;
         }
 
-        void Awake(){
-            allNumbers = new SortedDictionary<char, Number>();
+        // Number data initialization 
+        public void Awake(){
+            allNumbers = new SortedDictionary<char, HandsyNumber>();
 
             // Number 1
-            allNumbers['1'] = new Number(
+            allNumbers['1'] = new HandsyNumber(
+                '1',
                 PointingState.NotExtended, 
                 PointingState.Extended, 
                 PointingState.NotExtended, 
@@ -31,7 +33,8 @@ namespace Leap.Unity
             );
 
             // Number 2
-            allNumbers['2'] = new Number(
+            allNumbers['2'] = new HandsyNumber(
+                '2',
                 PointingState.NotExtended, 
                 PointingState.Extended, 
                 PointingState.Extended, 
@@ -42,7 +45,8 @@ namespace Leap.Unity
             );
 
             // Number 3
-            allNumbers['3'] = new Number(
+            allNumbers['3'] = new HandsyNumber(
+                '3',
                 PointingState.Extended, 
                 PointingState.Extended, 
                 PointingState.Extended, 
@@ -53,7 +57,8 @@ namespace Leap.Unity
             );
 
             // Number 4
-            allNumbers['4'] = new Number(
+            allNumbers['4'] = new HandsyNumber(
+                '4',
                 PointingState.NotExtended, 
                 PointingState.Extended, 
                 PointingState.Extended, 
@@ -64,7 +69,8 @@ namespace Leap.Unity
             );
 
             // Number 5
-            allNumbers['5'] = new Number(
+            allNumbers['5'] = new HandsyNumber(
+                '5',
                 PointingState.Extended, 
                 PointingState.Extended, 
                 PointingState.Extended, 
@@ -75,7 +81,8 @@ namespace Leap.Unity
             );
 
             // Number 6
-            allNumbers['6'] = new Number(
+            allNumbers['6'] = new HandsyNumber(
+                '6',
                 PointingState.NotExtended, 
                 PointingState.Extended, 
                 PointingState.Extended, 
@@ -86,7 +93,8 @@ namespace Leap.Unity
             );
             
             // Number 7
-            allNumbers['7'] = new Number(
+            allNumbers['7'] = new HandsyNumber(
+                '7',
                 PointingState.NotExtended, 
                 PointingState.Extended, 
                 PointingState.Extended, 
@@ -97,7 +105,8 @@ namespace Leap.Unity
             );
 
             // Number 8
-            allNumbers['8'] = new Number(
+            allNumbers['8'] = new HandsyNumber(
+                '8',
                 PointingState.NotExtended, 
                 PointingState.Extended, 
                 PointingState.NotExtended, 
@@ -108,7 +117,8 @@ namespace Leap.Unity
             );
 
             // Number 9
-            allNumbers['9'] = new Number(
+            allNumbers['9'] = new HandsyNumber(
+                '9',
                 PointingState.NotExtended, 
                 PointingState.NotExtended, 
                 PointingState.Extended, 
@@ -120,71 +130,3 @@ namespace Leap.Unity
         }
     }
 }
-    public class Number
-    {
-        // Constructor
-        public Number(
-            Leap.Unity.PointingState Thumb, 
-            Leap.Unity.PointingState Index, 
-            Leap.Unity.PointingState Middle, 
-            Leap.Unity.PointingState Ring, 
-            Leap.Unity.PointingState Pinky,
-            Leap.Unity.PointingType PointingType,
-            Vector3 PointingDirection)
-        {
-            this.ThumbExtension = Thumb;
-            this.IndexExtension = Index;
-            this.MiddleExtension = Middle;
-            this.RingExtension = Ring;
-            this.PinkyExtension = Pinky;
-
-            this.PointingType = PointingType;
-            this.PointingDirection = PointingDirection;
-        }
-
-        public int id;
-
-        // Main parameters
-        private Leap.Unity.PointingState ThumbExtension = Leap.Unity.PointingState.Either;
-        private Leap.Unity.PointingState IndexExtension = Leap.Unity.PointingState.Either;
-        private Leap.Unity.PointingState MiddleExtension = Leap.Unity.PointingState.Either;
-        private Leap.Unity.PointingState RingExtension = Leap.Unity.PointingState.Either;
-        private Leap.Unity.PointingState PinkyExtension = Leap.Unity.PointingState.Either;
-
-        private Leap.Unity.PointingType PointingType = Leap.Unity.PointingType.RelativeToHorizon;
-        private Vector3 PointingDirection = Vector3.forward;
-
-        // Getters
-        public Leap.Unity.PointingState getThumbExtension() { return ThumbExtension; }
-        public Leap.Unity.PointingState getIndexExtension() { return IndexExtension; }
-        public Leap.Unity.PointingState getMiddleExtension() { return MiddleExtension; }
-        public Leap.Unity.PointingState getRingExtension() { return RingExtension; }
-        public Leap.Unity.PointingState getPinkyExtension() { return PinkyExtension; }
-
-        public Leap.Unity.PointingType getPointingType() { return PointingType; }
-        public Vector3 getPointingDirection() { return PointingDirection; }
-        
-        //Setters
-        public void setThumbExtension(Leap.Unity.PointingState newThumbExtension) { 
-            ThumbExtension = newThumbExtension;
-        }
-        public void setIndexExtension(Leap.Unity.PointingState newIndexExtension) { 
-            IndexExtension = newIndexExtension;
-        }
-        public void setMiddleExtension(Leap.Unity.PointingState newMiddleExtension) { 
-            MiddleExtension = newMiddleExtension;
-        }
-        public void setRingExtension(Leap.Unity.PointingState newRingExtension) { 
-            RingExtension = newRingExtension;
-        }
-        public void setPinkyExtension(Leap.Unity.PointingState newPinkyExtension) { 
-            PinkyExtension = newPinkyExtension;
-        }
-
-        public void setPointingType(Leap.Unity.PointingType newPointingType) { 
-            PointingType = newPointingType;
-        }
-        public void setPointingDirection(Vector3 newPointingDirection) { 
-            PointingDirection = newPointingDirection;
-        }
-    }

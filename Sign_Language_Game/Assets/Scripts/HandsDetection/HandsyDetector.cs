@@ -14,12 +14,14 @@ using Leap.Unity.Attributes;
 
 namespace Leap.Unity {
 
-  public class NumberOneDetector : Detector {
+  public class HandsyDetector : Detector {
+
     GameObject Numbers;
     NumberScript numberScript;
+    GameObject Letters;
+    LetterScript letterScript;
 
-    public string currentKey;
-    public Number currentNumber;  
+    public HandsyCharacter currentCharacter;
 
     public bool extendedFingerWatcherState = false;
     public bool palmWatcherState = false;
@@ -45,23 +47,12 @@ namespace Leap.Unity {
     private Vector3 PointingDirection;
 
 
-    [Tooltip("The angle in degrees from the target direction at which to turn on.")]
-    [Range(0, 180)]
     public float OnAngle = 45; // degrees
-
-    [Tooltip("The angle in degrees from the target direction at which to turn off.")]
-    [Range(0, 180)]
     public float OffAngle = 65; //degrees
 
-    /** How many fingers must be extended for the detector to activate. */
-    [Header("Min and Max Finger Counts")]
-    [Range(0,5)]
-    [Tooltip("The minimum number of fingers extended.")]
     public int MinimumExtendedCount = 0;
-    /** The most fingers allowed to be extended for the detector to activate. */
-    [Range(0, 5)]
-    [Tooltip("The maximum number of fingers extended.")]
     public int MaximumExtendedCount = 5;
+    
     /** Whether to draw the detector's Gizmos for debugging. (Not every detector provides gizmos.)
      * @since 4.1.2 
      */
@@ -100,35 +91,56 @@ namespace Leap.Unity {
     
     }
 
-    void SetNumber(Number num){
-      Thumb = num.getThumbExtension();
-      Index = num.getIndexExtension();
-      Middle = num.getMiddleExtension();
-      Ring = num.getRingExtension();
-      Pinky = num.getPinkyExtension();
+    void SetCurrentCharacter(char curChar){
+      HandsyCharacter newCurentCharacter;
 
-      PointingType = num.getPointingType();
-      PointingDirection = num.getPointingDirection();
+      if (Char.IsDigit(curChar)){
+        Debug.Log(curChar);
+        newCurentCharacter = numberScript.GetNumber(curChar);
+        Debug.Log("Number SET");
+      } else if (Char.IsLetter(curChar)) {
+        Debug.Log(curChar);
+        newCurentCharacter = letterScript.GetLetter(curChar);
+        Debug.Log("Letter SET");
+      } else{
+        Debug.Log("Nullified");
+        newCurentCharacter = null;
+      }
+      
 
-      Debug.Log(PointingType);
-      Debug.Log(PointingDirection);
+      Thumb = newCurentCharacter.getThumbExtension();
+      Index = newCurentCharacter.getIndexExtension();
+      Middle = newCurentCharacter.getMiddleExtension();
+      Ring = newCurentCharacter.getRingExtension();
+      Pinky = newCurentCharacter.getPinkyExtension();
+
+      PointingType = newCurentCharacter.getPointingType();
+      PointingDirection = newCurentCharacter.getPointingDirection();
+
+      currentCharacter = newCurentCharacter;
     }
 
-      char getNiceNumKey(KeyCode keycode){
-        if (keycode.ToString().Contains("Alpha")){
-          return keycode.ToString().Substring(5)[0];
-        }else{
-          return '0';
-        }
+    char getNiceNumKey(KeyCode keycode){
+      if (keycode.ToString().Contains("Alpha")){
+        return keycode.ToString().Substring(5)[0];
+      }else{
+        return '0';
       }
+    }
 
     void Awake () {
       watcherCoroutineExtendedFingerWatcher = extendedFingerWatcher();
       watcherCoroutinePalmWatcher = palmWatcher();
 
-      List<GameObject> characters = new List<GameObject>();
       Numbers = GameObject.FindGameObjectWithTag("Numbers");
       numberScript = Numbers.GetComponent<NumberScript>();
+      numberScript.Awake();
+
+      Letters = GameObject.FindGameObjectWithTag("Letters");
+      letterScript = Letters.GetComponent<LetterScript>();
+      letterScript.Awake();
+
+      SetCurrentCharacter('1');
     }
   
     void OnEnable () {
@@ -248,7 +260,6 @@ namespace Leap.Unity {
     public void Update ()
     {
       if (extendedFingerWatcherState && palmWatcherState){
-        Debug.Log("Activated");
         Activate();
       }else{
         Deactivate();
@@ -256,10 +267,15 @@ namespace Leap.Unity {
       foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
       {
         if (Input.GetKeyDown(kcode)){
-          currentKey = kcode.ToString();
-          currentNumber = numberScript.GetNumber(getNiceNumKey(kcode));
-          Debug.Log(getNiceNumKey(kcode));
-          SetNumber(currentNumber);
+          if (kcode.ToString().Contains("Alpha")){
+            Debug.Log("Number");
+            SetCurrentCharacter(getNiceNumKey(kcode));
+          }else if(kcode.ToString().Length == 1){
+            Debug.Log("Letter");
+            Debug.Log(kcode.ToString().ToLower()[0]);
+            SetCurrentCharacter(kcode.ToString().ToLower()[0]);
+          }
+          Debug.Log(currentCharacter.id);
         }
       }
     }
