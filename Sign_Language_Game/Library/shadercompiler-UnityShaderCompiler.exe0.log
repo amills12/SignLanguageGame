@@ -1,0 +1,24 @@
+Couldn't connect to port 51047
+
+Quitting shader compiler process
+
+Crashed!
+=======================================
+0x00007FF7AE48F6EC (UnityShaderCompiler) 
+0x00007FF7AE4937DA (UnityShaderCompiler) 
+0x00007FF7AE47CF3C (UnityShaderCompiler) 
+0x00007FF7AE474D54 (UnityShaderCompiler) 
+0x00007FFBB0BAC247 (KERNELBASE) UnhandledExceptionFilter
+0x00007FFBB30F5070 (ntdll) memset
+0x00007FFBB30DC776 (ntdll) _C_specific_handler
+0x00007FFBB30F1F6F (ntdll) _chkstk
+0x00007FFBB30A1454 (ntdll) RtlRaiseException
+0x00007FFBB30F0A9E (ntdll) KiUserExceptionDispatcher
+0x00007FF7AE47EEB6 (UnityShaderCompiler) 
+0x00007FF7AE45C838 (UnityShaderCompiler) 
+0x00007FF7AE47A251 (UnityShaderCompiler) 
+0x00007FF7AE5186FC (UnityShaderCompiler) 
+0x00007FFBB1D57034 (KERNEL32) BaseThreadInitThunk
+0x00007FFBB30A2651 (ntdll) RtlUserThreadStart
+
+=======================================
