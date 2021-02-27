@@ -8,6 +8,9 @@ TagManager:
   - Activator
   - SuccessExplosion
   - MissedExplosion
+  - CharacterObjects
+  - Numbers
+  - Letters
   layers:
   - Default
   - TransparentFX

@@ -94,9 +94,8 @@ namespace Leap.Unity {
           default:
             break;
         }
-        MinimumExtendedCount = Math.Max(required, MinimumExtendedCount);
-        MaximumExtendedCount = Math.Min(5 - forbidden, MaximumExtendedCount);
-        MaximumExtendedCount = Math.Max(required, MaximumExtendedCount);
+        MinimumExtendedCount = 0;
+        MaximumExtendedCount = 5;
       }
     
     }
