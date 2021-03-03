@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class ActivatorSphere : MonoBehaviour
 {
+    GameObject hands;
+    Leap.Unity.HandsyDetector leftHand, rightHand;
     MeshRenderer meshRenderer;
-    string key;
+    public string key;
     Letter letter;
     Color old;
     Transform currentLetter;
     GameObject closestLetter;
 
     private void Awake() {
+        Debug.Log("Awake.");
         meshRenderer = GetComponent<MeshRenderer>();
+        hands = GameObject.FindGameObjectWithTag("Player");
+
+        // Capture RigidRoundHand_L and RigidRoundHand_R
+        leftHand = hands.transform.GetChild(2).GetComponent<Leap.Unity.HandsyDetector>();
+        Debug.Log(leftHand);
+        rightHand = hands.transform.GetChild(3).GetComponent<Leap.Unity.HandsyDetector>();
+        Debug.Log(rightHand);
+        Debug.Log("End of Awake.");
     }
 
     // Start is called before the first frame update
@@ -29,7 +40,7 @@ public class ActivatorSphere : MonoBehaviour
         //Capture the key of the next character
         DetermineKey();
         //Check if pressed
-        if(Input.GetKeyDown(key)){
+        if(Input.GetKeyDown(key) || leftHand.activated || rightHand.activated){
             //If the letter was pressed within the sphere, success, destroy. increment score
             if(letter.active){
                 letter.active = false;
