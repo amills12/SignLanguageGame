@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.3807401, b: 0.358727, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -375,6 +375,36 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 30b92673b9b7ef44c9c11a474d9910c9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec15f5ae191975f4d8de236356aaec36, type: 3}
+--- !u!1 &100667760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100667761}
+  m_Layer: 0
+  m_Name: SpawnLoc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &100667761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100667760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1482971808}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &127988832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3677,6 +3707,7 @@ Transform:
   m_LocalScale: {x: 11.15294, y: 2.32, z: 0.004}
   m_Children:
   - {fileID: 984086057}
+  - {fileID: 964961076}
   m_Father: {fileID: 62761836}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4744,6 +4775,36 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 30b92673b9b7ef44c9c11a474d9910c9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec15f5ae191975f4d8de236356aaec36, type: 3}
+--- !u!1 &964961075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 964961076}
+  m_Layer: 0
+  m_Name: LetterSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &964961076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964961075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.1, z: -11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 528388617}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &984086056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8439,49 +8500,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1338bc0433690504ba23d32467269c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnActivate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1459801305}
-        m_MethodName: PrintActivateMessage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDeactivate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1459801305}
-        m_MethodName: PrintDeactivateMessage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Period: 0.1
-  HandModel: {fileID: 332252414}
-  Thumb: 1
-  Index: 0
-  Middle: 1
-  Ring: 1
-  Pinky: 1
-  PointingType: 0
-  PointingDirection: {x: 0, y: 0, z: 1}
-  TargetObject: {fileID: 0}
-  OnAngle: 45
-  OffAngle: 65
-  MinimumExtendedCount: 1
-  MaximumExtendedCount: 1
-  ShowGizmos: 1
+--- !u!1 &1482971806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1482971808}
+  - component: {fileID: 1482971807}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1482971807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482971806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901169828cea581458f8d143f8fbce42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnLocation: {fileID: 100667761}
+  prefab:
+  - {fileID: 8392882078583036475, guid: 3701a87c192875d45abc21ceff7d4415, type: 3}
+  - {fileID: 3644658500366400625, guid: e874def5655b78b47ab39572d5064892, type: 3}
+  - {fileID: 7708269801028018968, guid: b7b41bbf0591d604ca1324c2fdbbd378, type: 3}
+  clonePrefab:
+  - {fileID: 8392882078583036475, guid: 3701a87c192875d45abc21ceff7d4415, type: 3}
+  - {fileID: 3644658500366400625, guid: e874def5655b78b47ab39572d5064892, type: 3}
+  - {fileID: 7708269801028018968, guid: b7b41bbf0591d604ca1324c2fdbbd378, type: 3}
+  location: {x: 0, y: 0, z: 0}
+--- !u!4 &1482971808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482971806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.45, y: 0.5, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 100667761}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1491138724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8806,8 +8878,8 @@ MonoBehaviour:
   Middle: 1
   Ring: 1
   Pinky: 1
-  MinimumExtendedCount: 1
-  MaximumExtendedCount: 1
+  MinimumExtendedCount: 0
+  MaximumExtendedCount: 5
   ShowGizmos: 1
 --- !u!114 &1529651751
 MonoBehaviour:

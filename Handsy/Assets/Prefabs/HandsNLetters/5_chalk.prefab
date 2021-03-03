@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2110932250038111241}
   - component: {fileID: 2239029770193368744}
+  - component: {fileID: -820006713840828939}
   m_Layer: 0
   m_Name: 5_chalk
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3321883092543656670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.2936487, y: -2.3259983, z: 1.1874099}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4240206978442678029}
   m_Father: {fileID: 0}
@@ -82,6 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-820006713840828939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321883092543656670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355dbd4f5d7be464dbc5fdcefed9cc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  key: 53
 --- !u!1 &5485798585814295926
 GameObject:
   m_ObjectHideFlags: 0
