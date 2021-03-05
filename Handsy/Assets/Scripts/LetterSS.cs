@@ -7,7 +7,6 @@ using UnityEngine.Events;
 public class LetterSS : MonoBehaviour
 {
     public bool isActivated = true;//bool to determine if the letter is activated
-    Rigidbody rb; //control the rigid body not sure that this is needed?
     public KeyCode key; //assign keycode to specific letter
     
     // Start is called before the first frame update
