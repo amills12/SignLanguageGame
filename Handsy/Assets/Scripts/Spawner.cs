@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     public GameObject[] prefab;
     //public Transform[] spawns;
     public float repeatTime, spawn_distance;
-    int /*spawn_num,*/ prefab_num;
+    int prefab_num;
     Vector3 spawn_location, center;
     Quaternion rotation;
 
@@ -27,12 +27,18 @@ public class Spawner : MonoBehaviour
 
     Vector3 RandomRadius(Vector3 vector, float radius){
         Vector3 temp;
-        /*  get a random 360 degree angle and convert to radians    */
-        float angle = (Random.value * 360) * Mathf.Deg2Rad;   
-        /*  create a vector using sine and cosine from a random angle and the radius, leave z alone */
-        temp.x = vector.x + radius * Mathf.Sin(angle);
-        temp.y = vector.y + radius * Mathf.Cos(angle);
-        temp.z = vector.z;
+        // /*  get a random 360 degree angle and convert to radians    */
+        // float angle = (Random.value * 360) * Mathf.Deg2Rad;   
+        // /*  create a vector using sine and cosine from a random angle and the radius, leave z alone */
+        // temp.x = vector.x + radius * Mathf.Sin(angle);
+        // temp.y = vector.y + radius * Mathf.Cos(angle);
+        // temp.z = vector.z;
+        var x = Random.Range(-1 * spawn_distance, spawn_distance);
+        var y = Random.Range(-1 * spawn_distance, spawn_distance);
+        var z = Random.Range(-1 * spawn_distance, spawn_distance);
+
+        temp = new Vector3(x,y,z).normalized * radius;
+
         return temp;
     }
 
