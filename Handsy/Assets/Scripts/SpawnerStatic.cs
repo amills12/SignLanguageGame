@@ -8,27 +8,35 @@ public class SpawnerStatic : MonoBehaviour
     public GameObject[] prefab;
     public GameObject[] clonePrefab;
     public Vector3 location;
-    LetterSS currLetter;
-    int letterIndex = 0; //keep track of the current letter.
+
+    public int size = 36;
+    public int letIndex = 0; //keep track of the current letter.
+    
     void Start()
     {
-        Spawn(letterIndex);
+        letIndex = Random.Range(0,size);
+        Spawn();
     }
 
     void Update()
     {
-        
+        if(!clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
+        {
+            Destroy(clonePrefab[letIndex]);
+            clonePrefab[letIndex].GetComponent<LetterSS>().isActivated = true;
+            letIndex = Random.Range(0,size);
+            Spawn();
+        }  
     }
 
-    void Spawn(int i)
+    void Spawn()
     {
-        location = spawnLocation.transform.position;
-        clonePrefab[i] = Instantiate(prefab[i], location, Quaternion.Euler(0,0,0)) as GameObject;
+        
+        location = spawnLocation.transform.position;       
+        clonePrefab[letIndex] = Instantiate(prefab[letIndex], location, Quaternion.Euler(0,0,0)) as GameObject;
+        
         // //Generate a random character
         // prefab_num = Random.Range(0,9);
-        // //Get a random radius and rotation for the spawn location
-        // spawn_location = RandomRadius(center, spawn_distance);
-        // Instantiate(prefab[prefab_num], spawn_location, transform.rotation);
     }
 
 

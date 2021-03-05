@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class LetterSS : MonoBehaviour
 {
-    public bool active = true;//bool to determine if the letter is activated
+    public bool isActivated = true;//bool to determine if the letter is activated
     Rigidbody rb; //control the rigid body not sure that this is needed?
     public KeyCode key; //assign keycode to specific letter
     
@@ -23,7 +23,7 @@ public class LetterSS : MonoBehaviour
         {
             GetComponentInChildren<MeshRenderer>().enabled = false; //remove font visibility
             GetComponent<SpriteRenderer>().enabled = false; //remove hand model visibility
-            active = false; //deactivate letter
+            isActivated = false; //deactivate letter
         }
     }
 
