@@ -266,7 +266,6 @@ namespace Leap.Unity {
       //What does this do?
       if (extendedFingerWatcherState && palmWatcherState){
         Activate();
-        Debug.Log("Activated.");
         activated = true;
       }else{
         Deactivate();
