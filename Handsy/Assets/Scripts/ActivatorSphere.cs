@@ -14,7 +14,6 @@ public class ActivatorSphere : MonoBehaviour
     GameObject closestLetter;
 
     private void Awake() {
-        Debug.Log("Awake.");
         meshRenderer = GetComponent<MeshRenderer>();
         hands = GameObject.FindGameObjectWithTag("Player");
 
