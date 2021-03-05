@@ -269,7 +269,6 @@ namespace Leap.Unity {
         activated = true;
       }else{
         Deactivate();
-        Debug.Log("Deactivated.");
         activated = false;
       }
       // foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
