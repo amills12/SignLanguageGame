@@ -2279,20 +2279,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  extendedFingerWatcherState: 0
-  palmWatcherState: 0
-  Period: 0.1
   HandModel: {fileID: 795409495}
-  Thumb: 0
-  Index: 0
-  Middle: 0
-  Ring: 0
-  Pinky: 0
-  OnAngle: 45
-  OffAngle: 65
-  MinimumExtendedCount: 0
-  MaximumExtendedCount: 5
-  ShowGizmos: 1
 --- !u!114 &1374868599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2305,32 +2292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0a381acc1362549be341715539417d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1374868600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374868597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c057ae8396c1146c98a146b81dcc5870, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnActivate:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
-  Period: 0.1
-  HandModel: {fileID: 0}
-  PointingType: 3
-  PointingDirection: {x: 0, y: 0, z: 1}
-  TargetObject: {fileID: 0}
-  OnAngle: 45
-  OffAngle: 65
-  ShowGizmos: 1
 --- !u!1001 &1476619789
 PrefabInstance:
   m_ObjectHideFlags: 0
