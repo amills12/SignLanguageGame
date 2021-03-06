@@ -10,7 +10,6 @@ namespace Leap.Unity
 
         public HandsyNumber GetNumber(char num){
             if (allNumbers.ContainsKey(num)) {
-                Debug.Log("FOUND");
                 return allNumbers[num];
             }
             return null;
@@ -19,6 +18,18 @@ namespace Leap.Unity
         // Number data initialization 
         public void Awake(){
             allNumbers = new SortedDictionary<char, HandsyNumber>();
+
+            // Number 0 - FAKE 0
+            allNumbers['0'] = new HandsyNumber(
+                '0',
+                PointingState.NotExtended, 
+                PointingState.NotExtended, 
+                PointingState.NotExtended, 
+                PointingState.NotExtended, 
+                PointingState.NotExtended,
+                PointingType.RelativeToHorizon,
+                Vector3.up
+            );
 
             // Number 1
             allNumbers['1'] = new HandsyNumber(
