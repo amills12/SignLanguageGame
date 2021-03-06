@@ -18,6 +18,8 @@ namespace Leap.Unity
         // Number data initialization 
         public void Awake(){
             allLetters = new SortedDictionary<char, HandsyLetter>();
+            GameObject target = GameObject.FindGameObjectWithTag("LMC");
+            Transform targetTransform = target.GetComponent<Transform>();
 
             // Letter 1
             allLetters['a'] = new HandsyLetter(
@@ -27,7 +29,8 @@ namespace Leap.Unity
                 PointingState.NotExtended, 
                 PointingState.NotExtended, 
                 PointingState.NotExtended,
-                PointingType.RelativeToHorizon,
+                PointingType.AtTarget,
+                targetTransform,
                 Vector3.up
             );
         }

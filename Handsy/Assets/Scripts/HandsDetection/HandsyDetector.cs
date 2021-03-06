@@ -44,7 +44,8 @@ namespace Leap.Unity {
 
     /** The palm direction state. */
     private PointingType PointingType;
-    private Vector3 PointingDirection;
+    private Transform TargetObject;
+    public Vector3 PointingDirection;
 
 
     public float OnAngle = 45; // degrees
@@ -115,6 +116,7 @@ namespace Leap.Unity {
       Pinky = newCurentCharacter.getPinkyExtension();
 
       PointingType = newCurentCharacter.getPointingType();
+      TargetObject = newCurentCharacter.getTargetTransform();
       PointingDirection = newCurentCharacter.getPointingDirection();
 
       currentCharacter = newCurentCharacter;
@@ -228,6 +230,10 @@ namespace Leap.Unity {
           return Camera.main.transform.TransformDirection(PointingDirection);
         case PointingType.RelativeToWorld:
           return PointingDirection;
+        case PointingType.AtTarget:
+          if (TargetObject != null)
+            return TargetObject.position - tipPosition;
+          else return Vector3.zero;
         default:
           return PointingDirection;
       }

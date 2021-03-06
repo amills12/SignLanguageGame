@@ -14,6 +14,7 @@ public class HandsyCharacter
             this.PinkyExtension = Leap.Unity.PointingState.Either;
 
             this.PointingType = Leap.Unity.PointingType.RelativeToHorizon;
+            this.TargetTransform = null;
             this.PointingDirection = Vector3.forward;
         }
 
@@ -27,6 +28,7 @@ public class HandsyCharacter
         protected Leap.Unity.PointingState PinkyExtension = Leap.Unity.PointingState.Either;
 
         protected Leap.Unity.PointingType PointingType = Leap.Unity.PointingType.RelativeToHorizon;
+        protected Transform TargetTransform = null;
         protected Vector3 PointingDirection = Vector3.forward;
 
         // Getters
@@ -37,6 +39,7 @@ public class HandsyCharacter
         public Leap.Unity.PointingState getPinkyExtension() { return PinkyExtension; }
 
         public Leap.Unity.PointingType getPointingType() { return PointingType; }
+        public Transform getTargetTransform() { return TargetTransform; }
         public Vector3 getPointingDirection() { return PointingDirection; }
         
         //Setters
@@ -58,6 +61,9 @@ public class HandsyCharacter
 
         public void setPointingType(Leap.Unity.PointingType newPointingType) { 
             PointingType = newPointingType;
+        }
+        public void setTargetTransform(Transform newTargetTransform) { 
+            TargetTransform = newTargetTransform;
         }
         public void setPointingDirection(Vector3 newPointingDirection) { 
             PointingDirection = newPointingDirection;

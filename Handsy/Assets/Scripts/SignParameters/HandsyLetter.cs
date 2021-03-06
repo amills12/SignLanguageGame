@@ -15,7 +15,7 @@ public class HandsyLetter : HandsyCharacter
         Leap.Unity.PointingState Ring, 
         Leap.Unity.PointingState Pinky,
         Leap.Unity.PointingType PointingType,
-        Transform TargetObject;
+        Transform TargetTransform,
         Vector3 PointingDirection)
     {
         this.id = id;
@@ -25,8 +25,8 @@ public class HandsyLetter : HandsyCharacter
         this.RingExtension = Ring;
         this.PinkyExtension = Pinky;
 
-        this.TargetObject = TargetObject;
         this.PointingType = PointingType;
+        this.TargetTransform = TargetTransform;
         this.PointingDirection = PointingDirection;
     }
 }
