@@ -7,9 +7,11 @@ public class SpawnerStatic : MonoBehaviour
 {
     public Transform spawnLocation;
     public GameObject[] prefab;
+
     public GameObject[] clonePrefab;
     public Vector3 location;
-  
+    public Animator animated; //for fade in animation
+    public GameObject sprMask;
     //number of letters/numbers in the prefab array
     public int size = 36;
 
@@ -19,8 +21,9 @@ public class SpawnerStatic : MonoBehaviour
     void Start()
     {
         //spawn the first randomized object
+        animated = sprMask.GetComponent<Animator>();
+        StartCoroutine(waitToStart(0.1f));
         letIndex = Random.Range(0,size);
-        Spawn();
     }
 
     void Update()
@@ -34,17 +37,25 @@ public class SpawnerStatic : MonoBehaviour
             Destroy(clonePrefab[letIndex]);
             prefab[letIndex].GetComponent<LetterSS>().isActivated = true;
             letIndex = Random.Range(0,size);
-            Spawn();
+            StartCoroutine(waitToStart(0.1f));
         }  
     }
 
     void Spawn()
     {
+
         //get the location of the desired letter spawn   
         location = spawnLocation.transform.position;
-
         //clone the desired prefab object to spawn at the desired location
         clonePrefab[letIndex] = Instantiate(prefab[letIndex], location, Quaternion.Euler(0,0,0)) as GameObject;
+    }
+
+    IEnumerator waitToStart(float n){
+
+        yield return new WaitForSeconds(n);
+        animated.Play("AnPractice");
+        Spawn();
+
     }
 
 

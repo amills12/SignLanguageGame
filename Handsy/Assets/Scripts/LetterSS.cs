@@ -20,7 +20,7 @@ public class LetterSS : MonoBehaviour
     {
         if(Input.GetKeyDown(key))
         {
-            GetComponentInChildren<MeshRenderer>().enabled = false; //remove font visibility
+            GetComponentInChildren<SpriteRenderer>().enabled = false; //remove font visibility
             GetComponent<SpriteRenderer>().enabled = false; //remove hand model visibility
             isActivated = false; //deactivate letter
         }

@@ -1,0 +1,968 @@
+fileFormatVersion: 2
+guid: eb994c88a2d26b44cbc57c2b2b316aa7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2555614554885003487
+    second: ALPHAwh_0
+  - first:
+      213: -1600255157101277950
+    second: ALPHAwh_1
+  - first:
+      213: -6708458945306740476
+    second: ALPHAwh_2
+  - first:
+      213: 8530117422373515963
+    second: ALPHAwh_28
+  - first:
+      213: -4268590454491821636
+    second: ALPHAwh_29
+  - first:
+      213: 4076900180918502531
+    second: ALPHAwh_30
+  - first:
+      213: 5940381953389017062
+    second: ALPHAwh_31
+  - first:
+      213: 1229248666503378502
+    second: ALPHAwh_32
+  - first:
+      213: 5158012542855406881
+    second: ALPHAwh_33
+  - first:
+      213: 1912277756970626620
+    second: ALPHAwh_34
+  - first:
+      213: -2631862095438413833
+    second: ALPHAwh_35
+  - first:
+      213: 3877329710944094446
+    second: ALPHAwh_3
+  - first:
+      213: -903290436465368966
+    second: ALPHAwh_4
+  - first:
+      213: -1915331997578981719
+    second: ALPHAwh_5
+  - first:
+      213: 4323614577926372061
+    second: ALPHAwh_6
+  - first:
+      213: 7398187930824453794
+    second: ALPHAwh_7
+  - first:
+      213: 5217521545140868929
+    second: ALPHAwh_8
+  - first:
+      213: 496055626089021209
+    second: ALPHAwh_9
+  - first:
+      213: 3106929453556018899
+    second: ALPHAwh_10
+  - first:
+      213: -9073511227087015147
+    second: ALPHAwh_11
+  - first:
+      213: 997219007258069363
+    second: ALPHAwh_12
+  - first:
+      213: 3075009235120822723
+    second: ALPHAwh_13
+  - first:
+      213: 6625828602368236976
+    second: ALPHAwh_14
+  - first:
+      213: 6374930963006745625
+    second: ALPHAwh_15
+  - first:
+      213: -1451474810188558713
+    second: ALPHAwh_16
+  - first:
+      213: 2820435997723475808
+    second: ALPHAwh_17
+  - first:
+      213: 2716110569249484391
+    second: ALPHAwh_18
+  - first:
+      213: -8553967790111876616
+    second: ALPHAwh_19
+  - first:
+      213: 4596824525093794874
+    second: ALPHAwh_20
+  - first:
+      213: 1590987302819688982
+    second: ALPHAwh_21
+  - first:
+      213: -3245416914628966200
+    second: ALPHAwh_22
+  - first:
+      213: 3270924177004246410
+    second: ALPHAwh_23
+  - first:
+      213: 6374367594986803576
+    second: ALPHAwh_24
+  - first:
+      213: -3144074224670765545
+    second: ALPHAwh_25
+  - first:
+      213: -6082864460494740759
+    second: ALPHAwh_26
+  - first:
+      213: 1176477858175463181
+    second: ALPHAwh_27
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ALPHAwh_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 989
+        width: 99
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd81dbeb5ed577320800000000000000
+      internalID: 2555614554885003487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_1
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 989
+        width: 89
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20dcdf2c960cac9e0800000000000000
+      internalID: -1600255157101277950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_2
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 990
+        width: 84
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40933b6d124c6e2a0800000000000000
+      internalID: -6708458945306740476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_3
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 988
+        width: 83
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee804e144da0fc530800000000000000
+      internalID: 3877329710944094446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_4
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 988
+        width: 79
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a706975422ed673f0800000000000000
+      internalID: -903290436465368966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_5
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 991
+        width: 74
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ae8d5132bf5b65e0800000000000000
+      internalID: -1915331997578981719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_6
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 986
+        width: 96
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda70071d80900c30800000000000000
+      internalID: 4323614577926372061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_7
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 990
+        width: 85
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aeaf5ec9b4aba660800000000000000
+      internalID: 7398187930824453794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_8
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 991
+        width: 57
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1479112a33c586840800000000000000
+      internalID: 5217521545140868929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 808
+        width: 93
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91fbed5b6f752e600800000000000000
+      internalID: 496055626089021209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_10
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 808
+        width: 90
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dea76570e70e1b20800000000000000
+      internalID: 3106929453556018899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_11
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 808
+        width: 73
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 513b5fbcc99641280800000000000000
+      internalID: -9073511227087015147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_12
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 808
+        width: 125
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37982e25765d6dd00800000000000000
+      internalID: 997219007258069363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_13
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 810
+        width: 84
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c91c647b90acaa20800000000000000
+      internalID: 3075009235120822723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_14
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 807
+        width: 99
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bd18ca320ca3fb50800000000000000
+      internalID: 6625828602368236976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_15
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 807
+        width: 83
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ce7ad5fed487850800000000000000
+      internalID: 6374930963006745625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_16
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 797
+        width: 97
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78e8842b9535bdbe0800000000000000
+      internalID: -1451474810188558713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_17
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 807
+        width: 94
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f380cb893342720800000000000000
+      internalID: 2820435997723475808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_18
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 625
+        width: 84
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76eacc21c2091b520800000000000000
+      internalID: 2716110569249484391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_19
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 630
+        width: 100
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f99f32ad933a4980800000000000000
+      internalID: -8553967790111876616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_20
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 628
+        width: 90
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a34f401fc833bcf30800000000000000
+      internalID: 4596824525093794874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_21
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 626
+        width: 95
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61279b2c582541610800000000000000
+      internalID: 1590987302819688982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_22
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 629
+        width: 157
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c80f77d286f5f2d0800000000000000
+      internalID: -3245416914628966200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_23
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 632
+        width: 87
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8533997538a46d20800000000000000
+      internalID: 3270924177004246410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_24
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 631
+        width: 102
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87113f60e8d467850800000000000000
+      internalID: 6374367594986803576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_25
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 630
+        width: 94
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71e890396210e54d0800000000000000
+      internalID: -3144074224670765545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_26
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 448
+        width: 100
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e2ec576003559ba0800000000000000
+      internalID: -6082864460494740759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_27
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 453
+        width: 37
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0f29a6f060b35010800000000000000
+      internalID: 1176477858175463181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_28
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 449
+        width: 80
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb2b1f4e990116670800000000000000
+      internalID: 8530117422373515963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_29
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 449
+        width: 86
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb9446cf89be2c4c0800000000000000
+      internalID: -4268590454491821636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_30
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 449
+        width: 87
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3848f5c3d1f049830800000000000000
+      internalID: 4076900180918502531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_31
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 447
+        width: 92
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7b4e1c9e9707250800000000000000
+      internalID: 5940381953389017062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_32
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 447
+        width: 102
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6467e8b362b2f0110800000000000000
+      internalID: 1229248666503378502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_33
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 453
+        width: 90
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 125e7e35411f49740800000000000000
+      internalID: 5158012542855406881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_34
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 445
+        width: 101
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e6d100d76c98a10800000000000000
+      internalID: 1912277756970626620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ALPHAwh_35
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 442
+        width: 90
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fff39f4e5fb97bd0800000000000000
+      internalID: -2631862095438413833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 93e8ed55217731a4b908c9c3a21bfd26
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
