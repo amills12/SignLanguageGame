@@ -16,6 +16,10 @@ namespace Leap.Unity {
 
   public class HandsyDetector : Detector {
 
+    /* Sign Hero Connection Variables */
+    ActivatorSphere activatorSphere;
+    public bool activated = false;
+    
     GameObject Numbers;
     NumberScript numberScript;
     GameObject Letters;
@@ -98,11 +102,9 @@ namespace Leap.Unity {
       if (Char.IsDigit(curChar)){
         Debug.Log(curChar);
         newCurentCharacter = numberScript.GetNumber(curChar);
-        Debug.Log("Number SET");
       } else if (Char.IsLetter(curChar)) {
         Debug.Log(curChar);
         newCurentCharacter = letterScript.GetLetter(curChar);
-        Debug.Log("Letter SET");
       } else{
         Debug.Log("Nullified");
         newCurentCharacter = null;
@@ -142,7 +144,9 @@ namespace Leap.Unity {
       letterScript = Letters.GetComponent<LetterScript>();
       letterScript.Awake();
 
-      SetCurrentCharacter('1');
+      //SetCurrentCharacter('1');
+      activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
+      
     }
   
     void OnEnable () {
@@ -265,25 +269,30 @@ namespace Leap.Unity {
 
     public void Update ()
     {
+      //What does this do?
       if (extendedFingerWatcherState && palmWatcherState){
         Activate();
+        activated = true;
       }else{
         Deactivate();
+        activated = false;
       }
-      foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
-      {
-        if (Input.GetKeyDown(kcode)){
-          if (kcode.ToString().Contains("Alpha")){
-            Debug.Log("Number");
-            SetCurrentCharacter(getNiceNumKey(kcode));
-          }else if(kcode.ToString().Length == 1){
-            Debug.Log("Letter");
-            Debug.Log(kcode.ToString().ToLower()[0]);
-            SetCurrentCharacter(kcode.ToString().ToLower()[0]);
-          }
-          Debug.Log(currentCharacter.id);
-        }
-      }
+      // foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+      // {
+      //   if (Input.GetKeyDown(kcode)){
+      //     if (kcode.ToString().Contains("Alpha")){
+      //       Debug.Log("Number");
+      //       SetCurrentCharacter(getNiceNumKey(kcode));
+      //     }else if(kcode.ToString().Length == 1){
+      //       Debug.Log("Letter");
+      //       Debug.Log(kcode.ToString().ToLower()[0]);
+      //       SetCurrentCharacter(kcode.ToString().ToLower()[0]);
+      //     }
+      //     Debug.Log(currentCharacter.id);
+      //   }
+      // }
+      Debug.Log("Character from ActivatorSphere: " + activatorSphere.key.ToCharArray()[0]);
+      SetCurrentCharacter(activatorSphere.key.ToCharArray()[0]);
     }
   }
 }
