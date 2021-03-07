@@ -30,7 +30,8 @@ namespace Leap.Unity
                 PointingState.NotExtended, 
                 PointingState.NotExtended,
                 PointingType.RelativeToHorizon,
-                Vector3.up
+                targetTransform,
+                Vector3.forward
             );
 
             // Number 1
