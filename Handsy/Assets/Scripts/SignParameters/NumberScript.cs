@@ -18,6 +18,8 @@ namespace Leap.Unity
         // Number data initialization 
         public void Awake(){
             allNumbers = new SortedDictionary<char, HandsyNumber>();
+            GameObject target = GameObject.FindGameObjectWithTag("LMC");
+            Transform targetTransform = target.GetComponent<Transform>();
 
             // Number 0 - FAKE 0
             allNumbers['0'] = new HandsyNumber(
@@ -28,7 +30,8 @@ namespace Leap.Unity
                 PointingState.NotExtended, 
                 PointingState.NotExtended,
                 PointingType.RelativeToHorizon,
-                Vector3.up
+                targetTransform,
+                Vector3.forward
             );
 
             // Number 1
@@ -40,7 +43,8 @@ namespace Leap.Unity
                 PointingState.NotExtended, 
                 PointingState.NotExtended,
                 PointingType.RelativeToHorizon,
-                Vector3.up
+                targetTransform,
+                Vector3.back
             );
 
             // Number 2
@@ -52,7 +56,8 @@ namespace Leap.Unity
                 PointingState.NotExtended, 
                 PointingState.NotExtended,
                 PointingType.RelativeToHorizon,
-                Vector3.up
+                targetTransform,
+                Vector3.back
             );
 
             // Number 3
@@ -64,7 +69,8 @@ namespace Leap.Unity
                 PointingState.NotExtended, 
                 PointingState.NotExtended,
                 PointingType.RelativeToHorizon,
-                Vector3.up
+                targetTransform,
+                Vector3.back
             );
 
             // Number 4
@@ -76,7 +82,8 @@ namespace Leap.Unity
                 PointingState.Extended, 
                 PointingState.Extended,
                 PointingType.RelativeToHorizon,
-                Vector3.up
+                targetTransform,
+                Vector3.back
             );
 
             // Number 5
@@ -88,7 +95,8 @@ namespace Leap.Unity
                 PointingState.Extended, 
                 PointingState.Extended,
                 PointingType.RelativeToHorizon,
-                Vector3.up
+                targetTransform,
+                Vector3.back
             );
 
             // Number 6
@@ -100,7 +108,8 @@ namespace Leap.Unity
                 PointingState.Extended, 
                 PointingState.NotExtended,
                 PointingType.RelativeToHorizon,
-                Vector3.down
+                targetTransform,
+                Vector3.forward
             );
             
             // Number 7
@@ -112,7 +121,8 @@ namespace Leap.Unity
                 PointingState.NotExtended, 
                 PointingState.Extended,
                 PointingType.RelativeToHorizon,
-                Vector3.down
+                targetTransform,
+                Vector3.forward
             );
 
             // Number 8
@@ -124,7 +134,8 @@ namespace Leap.Unity
                 PointingState.Extended, 
                 PointingState.Extended,
                 PointingType.RelativeToHorizon,
-                Vector3.down
+                targetTransform,
+                Vector3.forward
             );
 
             // Number 9
@@ -136,7 +147,8 @@ namespace Leap.Unity
                 PointingState.Extended, 
                 PointingState.Extended,
                 PointingType.RelativeToHorizon,
-                Vector3.down
+                targetTransform,
+                Vector3.forward
             );
         }
     }
