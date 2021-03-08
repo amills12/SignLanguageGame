@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
    {
       SceneManager.LoadScene(level);
    }
+
    public void QuitGame()
    {
       Debug.Log("Application has quit.");
