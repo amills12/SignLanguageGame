@@ -7,9 +7,9 @@ public class SpawnerStatic : MonoBehaviour
 {
     public Transform spawnLocation;
     public GameObject[] prefab;
-
-    public GameObject[] clonePrefab;
-    public Vector3 location;
+    public AudioSource pencil;
+    public GameObject[] clonePrefab; 
+    public Vector3 location; // for location of asset spawn
     public Animator animated; //for fade in animation
     public GameObject sprMask;
     //number of letters/numbers in the prefab array
@@ -24,6 +24,8 @@ public class SpawnerStatic : MonoBehaviour
         animated = sprMask.GetComponent<Animator>();
         StartCoroutine(waitToStart(0.1f));
         letIndex = Random.Range(0,size);
+        pencil = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -33,7 +35,7 @@ public class SpawnerStatic : MonoBehaviour
         generate a new random object from the array, then spawn it*/
         if(!clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
         {
-            score++;
+            score++; //increment the score
             Destroy(clonePrefab[letIndex]);
             prefab[letIndex].GetComponent<LetterSS>().isActivated = true;
             letIndex = Random.Range(0,size);
@@ -55,6 +57,8 @@ public class SpawnerStatic : MonoBehaviour
         yield return new WaitForSeconds(n);
         animated.Play("AnPractice");
         Spawn();
+        yield return new WaitForSeconds(0.5f);
+        pencil.Play();
 
     }
 
