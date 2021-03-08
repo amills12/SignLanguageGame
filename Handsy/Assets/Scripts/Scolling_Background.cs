@@ -17,7 +17,7 @@ public class Scolling_Background : MonoBehaviour
         //Get the textures offset values and change based on time and public variables
         offset = mat.mainTextureOffset;
         offset.x += Time.deltaTime / scrollTimeX;
-        offset.y += Time.deltaTime / scrollTimeY;
+        //offset.y += Time.deltaTime / scrollTimeY;
         //apply offset
         mat.mainTextureOffset = offset;
     }
