@@ -9,6 +9,17 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject gameUI;
+    public GameObject introMenu;
+
+
+    // On awake pause the game and turn on the intro screen
+    void Awake()
+    {
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -16,7 +27,7 @@ public class PauseMenu : MonoBehaviour
         // Run the pause menu off of escape button
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(GameIsPaused)
+            if(GameIsPaused && !introMenu.activeSelf)
             {
                 Resume();
             }
@@ -39,9 +50,17 @@ public class PauseMenu : MonoBehaviour
     }
 
     void Pause()
-    {
+    {   
+        // If the intro menu is active during a pause, we need to close it
+        if(introMenu.activeSelf)
+        {
+            introMenu.SetActive(false);
+            gameUI.SetActive(true);
+        }
+        
         // Turns on the pause menu
         pauseMenuUI.SetActive(true);
+
 
         // Stops the games by disabling time. (Pretty metal)
         Time.timeScale = 0f;
