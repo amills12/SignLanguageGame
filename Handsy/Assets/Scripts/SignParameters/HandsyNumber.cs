@@ -15,6 +15,7 @@ public class HandsyNumber : HandsyCharacter
         Leap.Unity.PointingState Ring, 
         Leap.Unity.PointingState Pinky,
         Leap.Unity.PointingType PointingType,
+        Transform TargetTransform,
         Vector3 PointingDirection)
     {
         this.id = id;
@@ -25,6 +26,7 @@ public class HandsyNumber : HandsyCharacter
         this.PinkyExtension = Pinky;
 
         this.PointingType = PointingType;
+        this.TargetTransform = TargetTransform;
         this.PointingDirection = PointingDirection;
     }
 }

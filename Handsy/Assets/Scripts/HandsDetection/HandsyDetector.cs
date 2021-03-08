@@ -16,49 +16,54 @@ namespace Leap.Unity {
 
   public class HandsyDetector : Detector {
 
+    /* Sign Hero Connection Variables */
+    ActivatorSphere activatorSphere;
+    public bool activated = false;
+    
     GameObject Numbers;
     NumberScript numberScript;
     GameObject Letters;
     LetterScript letterScript;
 
-    public HandsyCharacter currentCharacter;
+    private HandsyCharacter currentCharacter;
 
-    public bool extendedFingerWatcherState = false;
-    public bool palmWatcherState = false;
+    private bool extendedFingerWatcherState = false;
+    private bool palmWatcherState = false;
 
 
     [Tooltip("The interval in seconds at which to check this detector's conditions.")]
     [Units("seconds")]
     [MinValue(0)]
-    public float Period = .1f; //seconds
+    private float Period = .1f; //seconds
 
     [Tooltip("The hand model to watch. Set automatically if detector is on a hand.")]
     public HandModelBase HandModel = null;
   
     /** The extended finger states. */
-    public PointingState Thumb;
-    public PointingState Index;
-    public PointingState Middle;
-    public PointingState Ring;
-    public PointingState Pinky;
+    private PointingState Thumb;
+    private PointingState Index;
+    private PointingState Middle;
+    private PointingState Ring;
+    private PointingState Pinky;
 
     /** The palm direction state. */
     private PointingType PointingType;
+    private Transform TargetObject;
     private Vector3 PointingDirection;
 
 
-    public float OnAngle = 45; // degrees
-    public float OffAngle = 65; //degrees
+    private float OnAngle = 45; // degrees
+    private float OffAngle = 65; //degrees
 
-    public int MinimumExtendedCount = 0;
-    public int MaximumExtendedCount = 5;
+    private int MinimumExtendedCount = 0;
+    private int MaximumExtendedCount = 5;
     
     /** Whether to draw the detector's Gizmos for debugging. (Not every detector provides gizmos.)
      * @since 4.1.2 
      */
     [Header("")]
     [Tooltip("Draw this detector's Gizmos, if any. (Gizmos must be on in Unity edtor, too.)")]
-    public bool ShowGizmos = true;
+    private bool ShowGizmos = true;
 
     private IEnumerator watcherCoroutineExtendedFingerWatcher;
     private IEnumerator watcherCoroutinePalmWatcher;
@@ -97,11 +102,9 @@ namespace Leap.Unity {
       if (Char.IsDigit(curChar)){
         Debug.Log(curChar);
         newCurentCharacter = numberScript.GetNumber(curChar);
-        Debug.Log("Number SET");
       } else if (Char.IsLetter(curChar)) {
         Debug.Log(curChar);
         newCurentCharacter = letterScript.GetLetter(curChar);
-        Debug.Log("Letter SET");
       } else{
         Debug.Log("Nullified");
         newCurentCharacter = null;
@@ -115,6 +118,7 @@ namespace Leap.Unity {
       Pinky = newCurentCharacter.getPinkyExtension();
 
       PointingType = newCurentCharacter.getPointingType();
+      TargetObject = newCurentCharacter.getTargetTransform();
       PointingDirection = newCurentCharacter.getPointingDirection();
 
       currentCharacter = newCurentCharacter;
@@ -140,7 +144,9 @@ namespace Leap.Unity {
       letterScript = Letters.GetComponent<LetterScript>();
       letterScript.Awake();
 
-      SetCurrentCharacter('1');
+      //SetCurrentCharacter('1');
+      activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
+      
     }
   
     void OnEnable () {
@@ -228,6 +234,10 @@ namespace Leap.Unity {
           return Camera.main.transform.TransformDirection(PointingDirection);
         case PointingType.RelativeToWorld:
           return PointingDirection;
+        case PointingType.AtTarget:
+          if (TargetObject != null)
+            return TargetObject.position - tipPosition;
+          else return Vector3.zero;
         default:
           return PointingDirection;
       }
@@ -259,25 +269,30 @@ namespace Leap.Unity {
 
     public void Update ()
     {
+      //What does this do?
       if (extendedFingerWatcherState && palmWatcherState){
         Activate();
+        activated = true;
       }else{
         Deactivate();
+        activated = false;
       }
-      foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
-      {
-        if (Input.GetKeyDown(kcode)){
-          if (kcode.ToString().Contains("Alpha")){
-            Debug.Log("Number");
-            SetCurrentCharacter(getNiceNumKey(kcode));
-          }else if(kcode.ToString().Length == 1){
-            Debug.Log("Letter");
-            Debug.Log(kcode.ToString().ToLower()[0]);
-            SetCurrentCharacter(kcode.ToString().ToLower()[0]);
-          }
-          Debug.Log(currentCharacter.id);
-        }
-      }
+      // foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+      // {
+      //   if (Input.GetKeyDown(kcode)){
+      //     if (kcode.ToString().Contains("Alpha")){
+      //       Debug.Log("Number");
+      //       SetCurrentCharacter(getNiceNumKey(kcode));
+      //     }else if(kcode.ToString().Length == 1){
+      //       Debug.Log("Letter");
+      //       Debug.Log(kcode.ToString().ToLower()[0]);
+      //       SetCurrentCharacter(kcode.ToString().ToLower()[0]);
+      //     }
+      //     Debug.Log(currentCharacter.id);
+      //   }
+      // }
+      Debug.Log("Character from ActivatorSphere: " + activatorSphere.key.ToCharArray()[0]);
+      SetCurrentCharacter(activatorSphere.key.ToCharArray()[0]);
     }
   }
 }
