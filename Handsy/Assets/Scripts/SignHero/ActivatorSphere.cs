@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActivatorSphere : MonoBehaviour
 {
     GameObject hands;
-    Leap.Unity.HandsyDetector leftHand, rightHand;
+    Handsy_Distance_Detector1 leftHand, rightHand;
     MeshRenderer meshRenderer;
     public string key;
     Letter letter;
@@ -18,11 +18,10 @@ public class ActivatorSphere : MonoBehaviour
         hands = GameObject.FindGameObjectWithTag("Player");
 
         // Capture RigidRoundHand_L and RigidRoundHand_R
-        leftHand = hands.transform.GetChild(2).GetComponent<Leap.Unity.HandsyDetector>();
+        leftHand = hands.transform.GetChild(2).GetComponent<Handsy_Distance_Detector1>();
         Debug.Log(leftHand);
-        rightHand = hands.transform.GetChild(3).GetComponent<Leap.Unity.HandsyDetector>();
+        rightHand = hands.transform.GetChild(3).GetComponent<Handsy_Distance_Detector1>();
         Debug.Log(rightHand);
-        Debug.Log("End of Awake.");
     }
 
     // Start is called before the first frame update
