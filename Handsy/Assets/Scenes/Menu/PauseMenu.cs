@@ -49,6 +49,14 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
+    public void EndGame()
+    {
+        // Stops the games by disabling time. (Pretty metal)
+        Time.timeScale = 0f;
+
+        GameIsPaused = true;
+    }
+
     void Pause()
     {   
         // If the intro menu is active during a pause, we need to close it
