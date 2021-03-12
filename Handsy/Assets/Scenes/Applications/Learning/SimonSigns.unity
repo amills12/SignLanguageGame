@@ -2210,7 +2210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &386378122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8473,7 +8473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1388344356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9034,6 +9034,7 @@ MonoBehaviour:
   timeDone: 0
   letIndex: 0
   score: 0
+  endScreen: {fileID: 240342823}
 --- !u!4 &1482971808
 Transform:
   m_ObjectHideFlags: 0
@@ -9616,7 +9617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1523768151
 RectTransform:
   m_ObjectHideFlags: 0

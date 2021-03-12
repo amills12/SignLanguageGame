@@ -18,7 +18,7 @@ public class SpawnerStatic : MonoBehaviour
 
     //use for determining which letter will be spawned from the arrary
     public int letIndex, score = 0; 
-    
+    public GameObject endScreen;
     void Start()
     {
         //spawn the first randomized object
@@ -26,7 +26,6 @@ public class SpawnerStatic : MonoBehaviour
         StartCoroutine(waitToStart(0.1f));
         letIndex = Random.Range(0,size);
         pencil = GetComponent<AudioSource>();
-
     }
 
     void Update()
@@ -34,7 +33,12 @@ public class SpawnerStatic : MonoBehaviour
         /*if the current letter was signed correctly, it will be deactivated. 
         If deactivated, the game will destroy the current clone, reactivate the original object,
         generate a new random object from the array, then spawn it*/
-        if(timeDone && !clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
+        if(score == 5)
+        {
+            endScreen.GetComponent<PauseMenu>().EndGame();
+        }  
+
+        else if(timeDone && !clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
         {
             score++; //increment the score
             Destroy(clonePrefab[letIndex]);
@@ -42,7 +46,8 @@ public class SpawnerStatic : MonoBehaviour
             prefab[letIndex].GetComponent<LetterSS>().isActivated = true;
             letIndex = Random.Range(0,size);
             StartCoroutine(waitToStart(0.1f));
-        }  
+        }
+
     }
 
     void Spawn()
