@@ -73,5 +73,9 @@ public class SpawnerStatic : MonoBehaviour
 
     }
 
+    // void gameRestart(){
+    //     score = 0;
+    //     endScreenObject.SetActive(false);
+    // }
 
 }
