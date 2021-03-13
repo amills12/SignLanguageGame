@@ -7,7 +7,6 @@ public class PauseMenu : MonoBehaviour
 {    
     // Tells you if the game is paused, this is what you should import
     public static bool GameIsPaused = false;
-
     public GameObject pauseMenuUI;
     public GameObject gameUI;
     public GameObject introMenu;
@@ -54,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         // Stops the games by disabling time. (Pretty metal)
         Time.timeScale = 0f;
 
-        GameIsPaused = true;
+        GameIsPaused= true;
     }
 
     void Pause()
