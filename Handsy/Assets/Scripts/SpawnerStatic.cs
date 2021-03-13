@@ -19,6 +19,7 @@ public class SpawnerStatic : MonoBehaviour
     //use for determining which letter will be spawned from the arrary
     public int letIndex, score = 0; 
     public GameObject endScreen;
+    public GameObject endScreenObject;
     void Start()
     {
         //spawn the first randomized object
@@ -36,6 +37,7 @@ public class SpawnerStatic : MonoBehaviour
         if(score == 5)
         {
             endScreen.GetComponent<PauseMenu>().EndGame();
+            endScreenObject.SetActive(true);
         }  
 
         else if(timeDone && !clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
