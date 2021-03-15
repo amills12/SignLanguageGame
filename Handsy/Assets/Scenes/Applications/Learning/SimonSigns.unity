@@ -9047,6 +9047,7 @@ MonoBehaviour:
   score: 0
   endScreen: {fileID: 240342823}
   endScreenObject: {fileID: 1523768150}
+  intro: {fileID: 386378121}
 --- !u!4 &1482971808
 Transform:
   m_ObjectHideFlags: 0
