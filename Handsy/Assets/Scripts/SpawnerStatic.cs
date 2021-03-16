@@ -17,6 +17,8 @@ public class SpawnerStatic : MonoBehaviour
     public bool timeDone = false; //used for checking if animation complete
     public int letIndex, score = 0; //array index and score tracker
     public GameObject endScreen, endScreenObject, intro; //handles menu slides
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~ Game Logic ~~~~~~~~~~~~~~~~~~~~~~~~~//
     void Start()
     {
         //spawn the first randomized object
