@@ -5,20 +5,18 @@ using UnityEngine;
 
 public class SpawnerStatic : MonoBehaviour
 {
-    public Transform spawnLocation;
-    public GameObject[] prefab;
-    public AudioSource pencil;
-    public GameObject[] clonePrefab; 
-    public Vector3 location; // for location of asset spawn
+    //~~~~~~~~~~~~~~~~~~ Variables ~~~~~~~~~~~~~~~~~~//
+    public Transform spawnLocation; //empty object that just contains a location
+    public Vector3 location; // for holding xyz location of asset spawn
+    public GameObject[] prefab; //array that holds all the hand models
+    public GameObject[] clonePrefab; //used to retrieve models from prefab array and display them
+    public AudioSource pencil; //sound source for a pencil drawing sound
     public Animator animated; //for fade in animation
-    public GameObject sprMask;
-    //number of letters/numbers in the prefab array
-    public int size = 36;
-    public bool timeDone = false;
-
-    //use for determining which letter will be spawned from the arrary
-    public int letIndex, score = 0; 
-    public GameObject endScreen, endScreenObject, intro;
+    public GameObject sprMask; //object that contains animation
+    public int size = 36; //number of letters/numbers in the prefab array
+    public bool timeDone = false; //used for checking if animation complete
+    public int letIndex, score = 0; //array index and score tracker
+    public GameObject endScreen, endScreenObject, intro; //handles menu slides
     void Start()
     {
         //spawn the first randomized object
@@ -77,9 +75,9 @@ public class SpawnerStatic : MonoBehaviour
         clonePrefab[letIndex] = Instantiate(prefab[letIndex], location, Quaternion.Euler(0,0,0)) as GameObject;
     }
 
-    IEnumerator waitToStart(float n){
+    IEnumerator waitToStart(float time){
         //set a timer
-        yield return new WaitForSeconds(n);
+        yield return new WaitForSeconds(time);
         
         //start animation
         animated.Play("AnPractice");
