@@ -13,7 +13,15 @@ using Leap.Unity.Attributes;
     public bool activated = false;
     public float Period = .1f; //seconds
     private IEnumerator watcherCoroutine;
-    private bool distanceWatcherState = false;
+    private bool distanceWatcherState = false, palmWatcherState = false;
+
+    //Angle variables for palm direction checks
+    private float OnAngle = 45; // degrees
+    private float OffAngle = 65; //degrees
+    /** The palm direction state. */
+    private PointingType PointingType;
+    private Transform TargetObject;
+    private Vector3 PointingDirection;
 
     //Attach hand model to this
     public HandModelBase HandModel = null;
@@ -56,13 +64,15 @@ using Leap.Unity.Attributes;
       activated = false;
     }
 
+    /*  Return true/false depending on if the fingers are within the vector bounds from map */
     private bool matchFingerState(Finger finger, Hand hand, float min, float max){
-      Debug.Log("In matchFingerState: min = " + min + ", max = " + max);
+      //Debug.Log("In matchFingerState: min = " + min + ", max = " + max);
       float comparison = Vector3.Distance(finger.TipPosition.ToVector3(), hand.PalmPosition.ToVector3());
-      Debug.Log("Distance calculation: " + comparison);
+      //Debug.Log("Distance calculation: " + comparison);
       return (comparison >= min) && (comparison <= max);
     }
 
+    /*  Watcher function for detection of characters  */
     IEnumerator watcher(){
       Hand hand;
       while(true){
@@ -71,13 +81,12 @@ using Leap.Unity.Attributes;
         if(HandModel != null && HandModel.IsTracked){
           hand = HandModel.GetLeapHand();
           if(hand != null){
-            Debug.Log("Thumb Position - Palm: " + Vector3.Distance(hand.Fingers[0].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
-            Debug.Log("Index Position - Palm: " + Vector3.Distance(hand.Fingers[1].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
-            Debug.Log("Middel Position - Palm: " + Vector3.Distance(hand.Fingers[2].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
-            Debug.Log("Ring Position - Palm: " + Vector3.Distance(hand.Fingers[3].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
-            Debug.Log("Pinky Position - Palm: " + Vector3.Distance(hand.Fingers[4].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
+            // Debug.Log("Thumb Position - Palm: " + Vector3.Distance(hand.Fingers[0].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
+            // Debug.Log("Index Position - Palm: " + Vector3.Distance(hand.Fingers[1].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
+            // Debug.Log("Middel Position - Palm: " + Vector3.Distance(hand.Fingers[2].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
+            // Debug.Log("Ring Position - Palm: " + Vector3.Distance(hand.Fingers[3].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
+            // Debug.Log("Pinky Position - Palm: " + Vector3.Distance(hand.Fingers[4].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
             if(fingerDistances.Thumb != null){
-              Debug.Log("Going into matchFingerState");
               fingerState = matchFingerState(hand.Fingers[0], hand, fingerDistances.Thumb[(int)fing.min], fingerDistances.Thumb[(int)fing.max])
                 && matchFingerState(hand.Fingers[1], hand, fingerDistances.Index[(int)fing.min], fingerDistances.Index[(int)fing.max])
                 && matchFingerState(hand.Fingers[2], hand, fingerDistances.Middle[(int)fing.min], fingerDistances.Middle[(int)fing.max])
@@ -85,15 +94,14 @@ using Leap.Unity.Attributes;
                 && matchFingerState(hand.Fingers[4], hand, fingerDistances.Pinky[(int)fing.min], fingerDistances.Pinky[(int)fing.max]);
             }
           }
-          Debug.Log("fingerState = " + fingerState);
 
           if(HandModel.IsTracked && fingerState){
-            Debug.Log("Activating");
+            // Debug.Log("Activating");
             distanceWatcherState = true;
             Activate();
           }
           else if(!HandModel.IsTracked || !fingerState){
-            Debug.Log("Deactivating");
+            // Debug.Log("Deactivating");
             distanceWatcherState = false;
             Deactivate();
           }
@@ -104,17 +112,59 @@ using Leap.Unity.Attributes;
       }
     }
 
-    void SetCurrentCharacter(char curChar){
+    /*  Palm direction functions  */
+    private IEnumerator palmWatcher() {
+      Hand hand;
+      Vector3 normal;
+      while(true){
+        if(HandModel != null){
+          hand = HandModel.GetLeapHand();
+          if(hand != null){
+            normal = hand.PalmNormal.ToVector3();
+            float angleTo = Vector3.Angle(normal, selectedDirection(hand.PalmPosition.ToVector3()));
+            if(angleTo <= OnAngle){
+              palmWatcherState = true;
+            } else if(angleTo > OffAngle) {
+              palmWatcherState = false;
+            }
+          }
+        }
+        yield return new WaitForSeconds(Period);
+      }
+    }
+
+    private Vector3 selectedDirection (Vector3 tipPosition) {
+      switch (PointingType) {
+        case PointingType.RelativeToHorizon:
+          Quaternion cameraRot = Camera.main.transform.rotation;
+          float cameraYaw = cameraRot.eulerAngles.y;
+          Quaternion rotator = Quaternion.AngleAxis(cameraYaw, Vector3.up);
+          return rotator * PointingDirection;
+        case PointingType.RelativeToCamera:
+          return Camera.main.transform.TransformDirection(PointingDirection);
+        case PointingType.RelativeToWorld:
+          return PointingDirection;
+        case PointingType.AtTarget:
+          if (TargetObject != null)
+            return TargetObject.position - tipPosition;
+          else return Vector3.zero;
+        default:
+          return PointingDirection;
+      }
+    }
+
+    // Function for setting a new character, called in update
+    public void SetCurrentCharacter(char curChar){
       HandsyDistances newCurentCharacter;
 
       if (Char.IsDigit(curChar)){
-        Debug.Log(curChar);
+ //       Debug.Log(curChar);
         newCurentCharacter = distanceScript.GetCharacter(curChar);
       } else if (Char.IsLetter(curChar)) {
-        Debug.Log(curChar);
+ //       Debug.Log(curChar);
         newCurentCharacter = distanceScript.GetCharacter(curChar);
       } else{
-        Debug.Log("Nullified");
+ //       Debug.Log("Nullified");
         newCurentCharacter = null;
       }
       
@@ -123,10 +173,14 @@ using Leap.Unity.Attributes;
       fingerDistances.Middle = newCurentCharacter.getMiddleArray();
       fingerDistances.Ring = newCurentCharacter.getRingArray();
       fingerDistances.Pinky = newCurentCharacter.getPinkyArray();
+
+      PointingType = newCurentCharacter.getPointingType();
+      TargetObject = newCurentCharacter.getTargetTransform();
+      PointingDirection = newCurentCharacter.getPointingDirection();
     }
 
     public void Update(){
-      if(distanceWatcherState){
+      if(distanceWatcherState && palmWatcherState){
         activated = true;
       }else{
         activated = false;

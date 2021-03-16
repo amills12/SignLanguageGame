@@ -323,6 +323,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1730396606}
     m_Modifications:
+    - target: {fileID: 196280, guid: 23f2cce114628a448bfeaae171b4c0c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 403052, guid: 23f2cce114628a448bfeaae171b4c0c0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1216,7 +1220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346300519}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e546d9576bfce5949b7182db0ddc28c1, type: 3}
   m_Name: 
@@ -1312,7 +1316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &420585802
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -6114,6 +6118,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1730396606}
     m_Modifications:
+    - target: {fileID: 188576, guid: 39d18871c11b53c4082d8202e3db68a3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 464466, guid: 39d18871c11b53c4082d8202e3db68a3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6417,7 +6425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0a381acc1362549be341715539417d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &844652023
+--- !u!114 &844652022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6425,6 +6433,21 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844652019}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15292b70b1f943469d7360aafc25905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandModel: {fileID: 1090988086}
+  counter: 0
+  limit: 2500
+--- !u!114 &844652023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844652019}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e546d9576bfce5949b7182db0ddc28c1, type: 3}
   m_Name: 
@@ -6467,6 +6490,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1730396606}
     m_Modifications:
+    - target: {fileID: 166188, guid: c8515ebee271c0649b9db1321f3026a4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 403030, guid: c8515ebee271c0649b9db1321f3026a4, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -7419,7 +7446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1144348276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7645,7 +7672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1550356071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7776,7 +7803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &2072866559
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -12692,6 +12719,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActivatorSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 7037693939665203413, guid: 4a71d9d16a2b7cf40b935ee6ef6759f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7037693939665203413, guid: 4a71d9d16a2b7cf40b935ee6ef6759f7,
         type: 3}
