@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
-{    
+{
     // Tells you if the game is paused, this is what you should import
     public static bool GameIsPaused = false;
     public static bool GameIsRestarted = false;
@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     // On awake pause the game and turn on the intro screen
     void Awake()
     {
-        if(GameIsRestarted)
+        if (GameIsRestarted)
         {
             //If the game has ended and is being replayed, un-pause the game and disable intro menu
             Time.timeScale = 1f;
@@ -37,9 +37,9 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         // Run the pause menu off of escape button, This might need a logic rework depending on how many menus we have
-        if(Input.GetKeyDown(KeyCode.Escape) && !GameIsRestarted)
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameIsRestarted)
         {
-            if(GameIsPaused && !introMenu.activeSelf)
+            if (GameIsPaused && !introMenu.activeSelf)
             {
                 Resume();
             }
@@ -68,14 +68,14 @@ public class PauseMenu : MonoBehaviour
     }
 
     void Pause()
-    {   
+    {
         // If the intro menu is active during a pause, we need to close it
-        if(introMenu.activeSelf)
+        if (introMenu.activeSelf)
         {
             introMenu.SetActive(false);
             gameUI.SetActive(true);
         }
-        
+
         // Turns on the pause menu
         pauseMenuUI.SetActive(true);
 
@@ -92,15 +92,15 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(level);
     }
 
-public void gameRestart()
-{
-    //Set game is restarted to true
-    GameIsRestarted = true;
+    public void gameRestart()
+    {
+        //Set game is restarted to true
+        GameIsRestarted = true;
 
-    //Get current scene name
-    string scene = SceneManager.GetActiveScene().name;
-    
-    //Load it
-    SceneManager.LoadScene(scene, LoadSceneMode.Single);
-}
+        //Get current scene name
+        string scene = SceneManager.GetActiveScene().name;
+
+        //Load it
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+    }
 }

@@ -28,38 +28,38 @@ public class SpawnerStatic : MonoBehaviour
         StartCoroutine(waitToStart(0.1f));
 
         //get random index in the prefab array
-        letIndex = Random.Range(0,size);
+        letIndex = Random.Range(0, size);
 
-        //set the pencil drawin sound
+        //set the pencil drawing sound
         pencil = GetComponent<AudioSource>();
 
     }
 
     void Update()
     {
-        //end the game after 30 succesful signs
-        if(score == 5) //FIXME
+        //end the game after 30 successful signs
+        if (score == 30)
         {
             endScreen.GetComponent<PauseMenu>().EndGame();
             endScreenObject.SetActive(true);
-        }  
+        }
 
         /*if the current letter was signed correctly, it will be deactivated. 
         If deactivated, the game will destroy the current clone, reactivate the original object,
         generate a new random object from the array, then spawn it*/
-        else if(timeDone && !clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
+        else if (timeDone && !clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
         {
 
             Destroy(clonePrefab[letIndex]);
             //increment the score on successful sign
-            score++; 
+            score++;
             timeDone = false;
 
             //reactivate the letter for later use
             prefab[letIndex].GetComponent<LetterSS>().isActivated = true;
 
             //retrieve another random letter
-            letIndex = Random.Range(0,size);
+            letIndex = Random.Range(0, size);
 
             //wait for animation
             StartCoroutine(waitToStart(0.1f));
@@ -74,13 +74,14 @@ public class SpawnerStatic : MonoBehaviour
         location = spawnLocation.transform.position;
 
         //clone the desired prefab object to spawn at the desired location
-        clonePrefab[letIndex] = Instantiate(prefab[letIndex], location, Quaternion.Euler(0,0,0)) as GameObject;
+        clonePrefab[letIndex] = Instantiate(prefab[letIndex], location, Quaternion.Euler(0, 0, 0)) as GameObject;
     }
 
-    IEnumerator waitToStart(float time){
+    IEnumerator waitToStart(float time)
+    {
         //set a timer
         yield return new WaitForSeconds(time);
-        
+
         //start animation
         animated.Play("AnPractice");
         Spawn();
