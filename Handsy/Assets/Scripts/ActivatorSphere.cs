@@ -13,6 +13,9 @@ public class ActivatorSphere : MonoBehaviour
     Transform currentLetter;
     GameObject closestLetter;
 
+    public AudioSource audioSuccess;
+    public AudioSource audioFail;
+
     private void Awake() {
         meshRenderer = GetComponent<MeshRenderer>();
         hands = GameObject.FindGameObjectWithTag("Player");
@@ -108,11 +111,13 @@ public class ActivatorSphere : MonoBehaviour
         GameObject go = GameObject.FindGameObjectWithTag("SuccessExplosion");
         ParticleSystem exp = go.GetComponent<ParticleSystem>();
         exp.Play();
+        audioSuccess.Play();
     }
     void ExplodeMissed() {
         GameObject go = GameObject.FindGameObjectWithTag("MissedExplosion");
         ParticleSystem exp = go.GetComponent<ParticleSystem>();
         exp.Play();
+        audioFail.Play();
     }
 
     /*  This function will compare all of the targets distances to know which

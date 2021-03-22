@@ -10090,7 +10090,7 @@ GameObject:
   - component: {fileID: 1654659738}
   - component: {fileID: 1654659737}
   m_Layer: 5
-  m_Name: Simon Signs Instructions
+  m_Name: Repeat-After-Me Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10134,9 +10134,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome to Simon Signs! The objective of this learn mode is to use the
-    correct signs that correspond to the hands on the chalkboard. Once you've completed
-    the signs your progress will be saved.
+  m_text: Welcome to Repeat-After-Me! The objective of this learn mode is to use
+    the correct signs that correspond to the hands on the chalkboard. Once you've
+    completed the signs your progress will be saved.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -10225,7 +10225,7 @@ GameObject:
   - component: {fileID: 1662826091}
   - component: {fileID: 1662826090}
   m_Layer: 5
-  m_Name: Simon Signs Introduction
+  m_Name: Repeat-After-Me Introduction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10269,7 +10269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Simon Signs Introduction
+  m_text: Repeat-After-Me Introduction
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -10296,8 +10296,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 110
-  m_fontSizeBase: 110
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
