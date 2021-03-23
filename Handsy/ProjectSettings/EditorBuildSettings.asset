@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/MainMenu.unity
     guid: ce497f138bee2c843aca81797d193746
+  - enabled: 1
+    path: Assets/Scenes/Applications/Learning/Repeat-After-Me.unity
+    guid: 92359954c63e07f4e84529c346e9c0aa
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 74c180afe178c8d41b0b026fd77b731a,
       type: 2}
