@@ -16,6 +16,9 @@ public class ActivatorSphere : MonoBehaviour
     public AudioSource audioSuccess;
     public AudioSource audioFail;
 
+    int multiplier = 1, streak = 0;
+    public int streakVal = 2;
+
     private void Awake() {
         meshRenderer = GetComponent<MeshRenderer>();
         hands = GameObject.FindGameObjectWithTag("Player");
@@ -47,12 +50,11 @@ public class ActivatorSphere : MonoBehaviour
             if(letter.active){
                 letter.active = false;
                 Destroy(letter.gameObject);
+                AddStreak();
                 ExplodeSuccess();
                 IncScore();
-            }
-            else{
-            //If the letter was outside of the sphere, black color indicator for not within
-                StartCoroutine(Missed());
+            }else if(!letter.active){
+                ResetStreak();
             }
         }
         
@@ -61,6 +63,7 @@ public class ActivatorSphere : MonoBehaviour
             letter.active = false;
             Destroy(letter.gameObject);
             ExplodeMissed();
+            ResetStreak();
         }
     }
 
@@ -75,18 +78,33 @@ public class ActivatorSphere : MonoBehaviour
                
     }
 
-    // /*  This function handles changing a boolean when exiting the activators
-    //     trigger (rigidbody) */
-    // private void OnTriggerExit(Collider other) {
-    //     if(!active){
-    //         ExplodeMissed();
-    //         active = false;
-    //     }
-    // }
-
     //  This function will increment the score through the games UI
     void IncScore(){
-        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + 100);
+        PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Score") + (100 * multiplier));
+    }
+    
+    void ResetStreak(){
+        streak = 0;
+        multiplier = 1;
+        UpdateGUI();
+    }
+
+    void AddStreak(){
+        streak++;
+        if(streak >= streakVal*4)
+            multiplier = 4;
+        else if(streak >= streakVal*3)
+            multiplier = 3;
+        else if(streak >= streakVal*2)
+            multiplier = 2;
+        else
+            multiplier = 1;
+        UpdateGUI();
+    }
+
+    void UpdateGUI(){
+        PlayerPrefs.SetInt("Streak", streak);
+        PlayerPrefs.SetInt("Mult", multiplier);
     }
 
     /*  This function will change the color of the activator if it is pressed
@@ -96,13 +114,6 @@ public class ActivatorSphere : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         meshRenderer.material.color = old;
     }
-    /*  This function will change the color of the activator if it is pressed
-        with a character within its rigidbody */
-    // IEnumerator Success(){
-    //     meshRenderer.material.color = Color.yellow;
-    //     yield return new WaitForSeconds(0.05f);
-    //     meshRenderer.material.color = old;
-    // }
 
     /*  ExplodeSuccess and ExplodeMissed will be called when appropriate to indicate a miss or 
         successful capture of the letter, two particle systems with different tags will be accessed

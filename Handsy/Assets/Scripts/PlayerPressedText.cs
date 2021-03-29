@@ -10,6 +10,11 @@ public class PlayerPressedText : MonoBehaviour
 
     void Update()
     {
-        GetComponent<Text>().text = "Score: " + PlayerPrefs.GetInt(value) + "";
+        if(this.gameObject.name == "Score")
+            GetComponent<Text>().text = PlayerPrefs.GetInt(value) + "";
+        else if(this.gameObject.name == "Streak")
+            GetComponent<Text>().text = PlayerPrefs.GetInt(value) + "";
+        else if(this.gameObject.name == "Multiplier")
+            GetComponent<Text>().text = PlayerPrefs.GetInt(value) + "x";
     }
 }
