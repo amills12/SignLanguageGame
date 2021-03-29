@@ -50,10 +50,6 @@ public class ActivatorSphere : MonoBehaviour
                 ExplodeSuccess();
                 IncScore();
             }
-            else{
-            //If the letter was outside of the sphere, black color indicator for not within
-                StartCoroutine(Missed());
-            }
         }
         
         //If letter is within the sphere and hits the center, destroy for a missed character
