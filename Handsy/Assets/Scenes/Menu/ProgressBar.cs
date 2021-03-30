@@ -20,13 +20,13 @@ public class ProgressBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Temp function for adding progress
