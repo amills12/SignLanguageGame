@@ -135,19 +135,19 @@ public class sampling : MonoBehaviour
 
     void Print(){
         // Print to console the averages
-        Debug.Log("Thumb Position Average: " + (thumbVal[0]/(float)counter));
+        //Debug.Log("Thumb Position Average: " + (thumbVal[0]/(float)counter));
         Debug.Log("Thumb Position Minimum: " + thumbVal[1]);
         Debug.Log("Thumb Position Maximum: " + thumbVal[2]);
-        Debug.Log("Index Position Average: " + (indexVal[0]/(float)counter));
+        //Debug.Log("Index Position Average: " + (indexVal[0]/(float)counter));
         Debug.Log("Index Position Minimum: " + indexVal[1]);
         Debug.Log("Index Position Maximum: " + indexVal[2]);
-        Debug.Log("Middle Position Average: " + (middleVal[0]/(float)counter));
+        //Debug.Log("Middle Position Average: " + (middleVal[0]/(float)counter));
         Debug.Log("Middle Position Minimum: " + middleVal[1]);
         Debug.Log("Middle Position Maximum: " + middleVal[2]);
-        Debug.Log("Ring Position Average: " + (ringVal[0]/(float)counter));
+        //Debug.Log("Ring Position Average: " + (ringVal[0]/(float)counter));
         Debug.Log("Ring Position Minimum: " + ringVal[1]);
         Debug.Log("Ring Position Maximum: " + ringVal[2]);
-        Debug.Log("Pinky Position Average: " + (pinkyVal[0]/(float)counter));
+        //Debug.Log("Pinky Position Average: " + (pinkyVal[0]/(float)counter));
         Debug.Log("Pinky Position Minimum: " + pinkyVal[1]);
         Debug.Log("Pinky Position Maximum: " + pinkyVal[2]);
     }
