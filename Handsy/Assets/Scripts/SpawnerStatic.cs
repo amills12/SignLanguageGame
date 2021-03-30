@@ -16,7 +16,7 @@ public class SpawnerStatic : MonoBehaviour
     public int size = 36; //number of letters/numbers in the prefab array
     public bool timeDone = false; //used for checking if animation complete
     public int letIndex, score = 0; //array index and score tracker
-    public GameObject endScreen, endScreenObject, intro; //handles menu slides
+    public GameObject endScreen, endScreenObject; //handles menu slides
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~ Game Logic ~~~~~~~~~~~~~~~~~~~~~~~~~//
     void Start()
