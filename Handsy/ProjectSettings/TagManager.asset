@@ -12,7 +12,8 @@ TagManager:
   - Numbers
   - Letters
   - LMC
-  - Distances
+  - LeftDistances
+  - RightDistances
   layers:
   - Default
   - TransparentFX

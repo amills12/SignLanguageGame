@@ -5,7 +5,8 @@ using UnityEngine;
 public class ActivatorSphere : MonoBehaviour
 {
     GameObject hands;
-    Handsy_Distance_Detector1 leftHand, rightHand;
+    Handsy_Distance_Detector_Right rightHand;
+    Handsy_Distance_Detector_Left leftHand;
     MeshRenderer meshRenderer;
     public string key;
     Letter letter;
@@ -24,9 +25,9 @@ public class ActivatorSphere : MonoBehaviour
         hands = GameObject.FindGameObjectWithTag("Player");
 
         // Capture RigidRoundHand_L and RigidRoundHand_R
-        leftHand = hands.transform.GetChild(2).GetComponent<Handsy_Distance_Detector1>();
+        leftHand = hands.transform.GetChild(2).GetComponent<Handsy_Distance_Detector_Left>();
         Debug.Log(leftHand);
-        rightHand = hands.transform.GetChild(3).GetComponent<Handsy_Distance_Detector1>();
+        rightHand = hands.transform.GetChild(3).GetComponent<Handsy_Distance_Detector_Right>();
         Debug.Log(rightHand);
     }
 
@@ -52,8 +53,6 @@ public class ActivatorSphere : MonoBehaviour
                 AddStreak();
                 ExplodeSuccess();
                 IncScore();
-            }else if(!letter.active){
-                ResetStreak();
             }
         }
         

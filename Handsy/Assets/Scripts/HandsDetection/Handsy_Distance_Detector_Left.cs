@@ -6,13 +6,13 @@ using Leap;
 using Leap.Unity;
 using Leap.Unity.Attributes;
 
-  public class Handsy_Distance_Detector1 : Detector {
+  public class Handsy_Distance_Detector_Left : Detector {
 
     /* Sign Hero Connection Variables */
     ActivatorSphere activatorSphere;
     public bool activated = false;
     public float Period = .1f; //seconds
-    private IEnumerator watcherCoroutine;
+    private IEnumerator watcherCoroutine, watcherCoroutinePalmWatcher;
     private bool distanceWatcherState = false, palmWatcherState = false;
 
     //Angle variables for palm direction checks
@@ -41,13 +41,14 @@ using Leap.Unity.Attributes;
     //enums for min/max
     enum fing{ min, max }
 
-    DistanceScript distanceScript;
+    LeftDistanceScript leftDistanceScript;
 
     void Awake(){
       watcherCoroutine = watcher();
+      watcherCoroutinePalmWatcher = palmWatcher();
       //Find and awake the library
-      distanceScript = GameObject.FindGameObjectWithTag("Distances").GetComponent<DistanceScript>();
-      distanceScript.Awake();
+      leftDistanceScript = GameObject.FindGameObjectWithTag("LeftDistances").GetComponent<LeftDistanceScript>();
+      leftDistanceScript.Awake();
       //Find activator for object passing
       activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
   
@@ -56,10 +57,14 @@ using Leap.Unity.Attributes;
     void OnEnable () {
       StopCoroutine(watcherCoroutine);
       StartCoroutine(watcherCoroutine);
+      StopCoroutine(watcherCoroutinePalmWatcher);
+      StartCoroutine(watcherCoroutinePalmWatcher);
     }
 
     void OnDisable () {
       StopCoroutine(watcherCoroutine);
+      StopCoroutine(watcherCoroutinePalmWatcher);
+      palmWatcherState = false;
       distanceWatcherState = false;
       activated = false;
     }
@@ -134,23 +139,23 @@ using Leap.Unity.Attributes;
     }
 
     private Vector3 selectedDirection (Vector3 tipPosition) {
-      switch (PointingType) {
-        case PointingType.RelativeToHorizon:
-          Quaternion cameraRot = Camera.main.transform.rotation;
-          float cameraYaw = cameraRot.eulerAngles.y;
-          Quaternion rotator = Quaternion.AngleAxis(cameraYaw, Vector3.up);
-          return rotator * PointingDirection;
-        case PointingType.RelativeToCamera:
-          return Camera.main.transform.TransformDirection(PointingDirection);
-        case PointingType.RelativeToWorld:
-          return PointingDirection;
-        case PointingType.AtTarget:
-          if (TargetObject != null)
-            return TargetObject.position - tipPosition;
-          else return Vector3.zero;
-        default:
-          return PointingDirection;
-      }
+        switch (PointingType) {
+            case PointingType.RelativeToHorizon:
+                Quaternion cameraRot = Camera.main.transform.rotation;
+                float cameraYaw = cameraRot.eulerAngles.y;
+                Quaternion rotator = Quaternion.AngleAxis(cameraYaw, Vector3.up);
+                return rotator * PointingDirection;
+            case PointingType.RelativeToCamera:
+                return Camera.main.transform.TransformDirection(PointingDirection);
+            case PointingType.RelativeToWorld:
+                return PointingDirection;
+            case PointingType.AtTarget:
+                if (TargetObject != null)
+                    return TargetObject.position - tipPosition;
+                else return Vector3.zero;
+            default:
+                return PointingDirection;
+        }
     }
 
     // Function for setting a new character, called in update
@@ -159,10 +164,10 @@ using Leap.Unity.Attributes;
 
       if (Char.IsDigit(curChar)){
  //       Debug.Log(curChar);
-        newCurentCharacter = distanceScript.GetCharacter(curChar);
+        newCurentCharacter = leftDistanceScript.GetCharacter(curChar);
       } else if (Char.IsLetter(curChar)) {
  //       Debug.Log(curChar);
-        newCurentCharacter = distanceScript.GetCharacter(curChar);
+        newCurentCharacter = leftDistanceScript.GetCharacter(curChar);
       } else{
  //       Debug.Log("Nullified");
         newCurentCharacter = null;
