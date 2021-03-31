@@ -1404,8 +1404,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 617.7, y: -482.5}
-  m_SizeDelta: {x: 684.6001, y: 115.00305}
+  m_AnchoredPosition: {x: 444.9, y: -482.5}
+  m_SizeDelta: {x: 1030.2472, y: 115.00305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &275131771
 PrefabInstance:
@@ -3916,7 +3916,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 839.2, y: -472}
+  m_AnchoredPosition: {x: 71, y: -387.74}
   m_SizeDelta: {x: 241.60278, y: 74.51053}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &825646399
@@ -9510,12 +9510,13 @@ MonoBehaviour:
   timeDone: 0
   letIndex: 0
   score: 0
-  amtMastered: 0
-  progress: 0
+  amtMasteredAlpha: 0
+  amtMasteredNum: 0
+  progressAlpha: 0
+  progressNum: 0
   progressStr: 
   endScreen: {fileID: 240342823}
   endScreenObject: {fileID: 1523768150}
-  intro: {fileID: 386378121}
   tempProgress: {fileID: 270636508}
 --- !u!4 &1482971808
 Transform:

@@ -96,7 +96,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActivated: 1
+  isLetter: 0
   key: 50
+  mastery: 2
+  numMastered: 0
+  numNumMastered: 0
+  masteryLevel: 2
 --- !u!1 &8273806516926920855
 GameObject:
   m_ObjectHideFlags: 0
