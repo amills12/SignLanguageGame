@@ -25,7 +25,7 @@ public class HandsyDistances
 
         this.PointingType = Leap.Unity.PointingType.RelativeToHorizon;
         this.TargetTransform = null;
-        this.PointingDirection = Vector3.forward;
+        this.PointingDirection = PointingDirection;
     }
 
     // Protected Variables

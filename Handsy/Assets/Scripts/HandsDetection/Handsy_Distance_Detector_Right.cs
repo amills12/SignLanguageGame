@@ -11,7 +11,7 @@ using Leap.Unity.Attributes;
     /* Sign Hero Connection Variables */
     ActivatorSphere activatorSphere;
     public bool activated = false;
-    public float Period = .1f; //seconds
+    public float Period = .001f; //seconds
     private IEnumerator watcherCoroutine, watcherCoroutinePalmWatcher;
     private bool distanceWatcherState = false, palmWatcherState = false;
 
@@ -183,6 +183,7 @@ using Leap.Unity.Attributes;
       PointingType = newCurentCharacter.getPointingType();
       TargetObject = newCurentCharacter.getTargetTransform();
       PointingDirection = newCurentCharacter.getPointingDirection();
+      Debug.Log("Pointing Direction is " + PointingDirection);
     }
 
     public void Update(){
