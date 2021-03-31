@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActivatorSphere : MonoBehaviour
 {
@@ -20,6 +22,16 @@ public class ActivatorSphere : MonoBehaviour
     int multiplier = 1, streak = 0;
     public int streakVal = 2;
 
+    // Timer Objects
+    public Text timeCounter; //counter text display
+    private bool timerRunning = false; //determines whether or not timer is running
+    private float currentTime = 60f; //starts at 2 minutes
+
+    //Menu Objects
+    public GameObject endScreen, endScreenObject; //handles menu slides
+
+
+
     private void Awake() {
         meshRenderer = GetComponent<MeshRenderer>();
         hands = GameObject.FindGameObjectWithTag("Player");
@@ -36,12 +48,34 @@ public class ActivatorSphere : MonoBehaviour
     {
         //Set the scores integer value to 000 as default
         PlayerPrefs.SetInt("Score", 000);
-        old = meshRenderer.material.color;   
+        old = meshRenderer.material.color;
+        
+        //start timer at 3:00 to begin the countdown
+        timerRunning = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // display the countdown
+        if (timerRunning)
+        {
+            if(currentTime > 0)
+            {
+                currentTime -= 1 * Time.deltaTime;
+                DisplayTime(currentTime);
+            }
+
+            else //stop timer and end the game
+            {
+                currentTime = 0f;
+                timeCounter.text = ("00:00");
+                timerRunning = false;
+                endScreen.GetComponent<PauseMenu>().EndGame();
+                endScreenObject.SetActive(true);
+            }
+        }
+
         //Capture the key of the next character
         DetermineKey();
         //Check if pressed
@@ -165,5 +199,13 @@ public class ActivatorSphere : MonoBehaviour
         currentLetter = GetClosestLetter();
         letter = currentLetter.GetComponent<Letter>();
         key = currentLetter.name[7].ToString().ToLower();
+    }
+
+    void DisplayTime(float timeToDisplay)
+    {
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        timeCounter.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
