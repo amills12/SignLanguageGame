@@ -16,7 +16,12 @@ public class SpawnerStatic : MonoBehaviour
     public int size = 36; //number of letters/numbers in the prefab array
     public bool timeDone = false; //used for checking if animation complete
     public int letIndex, score = 0; //array index and score tracker
+    public int amtMastered;
+    public float progress;
+    public string progressStr;
     public GameObject endScreen, endScreenObject, intro; //handles menu slides
+
+    public Text tempProgress; //remember to delete later.
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~ Game Logic ~~~~~~~~~~~~~~~~~~~~~~~~~//
     void Start()
@@ -32,7 +37,6 @@ public class SpawnerStatic : MonoBehaviour
 
         //set the pencil drawing sound
         pencil = GetComponent<AudioSource>();
-
     }
 
     void Update()
@@ -49,6 +53,12 @@ public class SpawnerStatic : MonoBehaviour
         generate a new random object from the array, then spawn it*/
         else if (timeDone && !clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
         {
+            amtMastered = clonePrefab[letIndex].GetComponent<LetterSS>().numMastered;
+            if (amtMastered > 0)
+                progress = (((float)amtMastered/size)*100f);
+            progressStr = "Progress: ";
+            progressStr +=  progress.ToString("0") + "%";  
+            tempProgress.text = progressStr;
 
             Destroy(clonePrefab[letIndex]);
             //increment the score on successful sign
@@ -93,6 +103,11 @@ public class SpawnerStatic : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         pencil.Play();
 
+    }
+
+    public void reset()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
 }
