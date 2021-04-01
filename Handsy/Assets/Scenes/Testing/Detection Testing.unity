@@ -1257,6 +1257,63 @@ MonoBehaviour:
   activated: 0
   Period: 0.1
   HandModel: {fileID: 346300517}
+--- !u!114 &346300523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346300519}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15292b70b1f943469d7360aafc25905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandModel: {fileID: 346300517}
+  counter: 0
+  limit: 2500
+--- !u!114 &346300524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346300519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb27fbe6aea7a034e93bf0b0d5bbb7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 346300520}
+        m_MethodName: PrintActivateMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeactivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 346300520}
+        m_MethodName: PrintDeactivateMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  activated: 0
+  HandModel: {fileID: 346300517}
 --- !u!1 &353122420
 GameObject:
   m_ObjectHideFlags: 0
@@ -6454,6 +6511,9 @@ MonoBehaviour:
   audioSuccess: {fileID: 0}
   audioFail: {fileID: 0}
   streakVal: 2
+  timeCounter: {fileID: 0}
+  endScreen: {fileID: 0}
+  endScreenObject: {fileID: 0}
 --- !u!1 &844652019 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 166188, guid: c8515ebee271c0649b9db1321f3026a4,
@@ -6472,6 +6532,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0a381acc1362549be341715539417d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &844652022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844652019}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15292b70b1f943469d7360aafc25905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandModel: {fileID: 1090988086}
+  counter: 0
+  limit: 2500
 --- !u!114 &844652023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6514,6 +6589,48 @@ MonoBehaviour:
         m_CallState: 2
   activated: 0
   Period: 0.1
+  HandModel: {fileID: 1090988086}
+--- !u!114 &844652024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844652019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb27fbe6aea7a034e93bf0b0d5bbb7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 844652021}
+        m_MethodName: PrintActivateMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeactivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 844652021}
+        m_MethodName: PrintDeactivateMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  activated: 0
   HandModel: {fileID: 1090988086}
 --- !u!1001 &1090988085
 PrefabInstance:
@@ -7492,7 +7609,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab:
-  - {fileID: 144860, guid: 373071c1d864d8e4bba0b9cb98e5c9db, type: 3}
+  - {fileID: 147976, guid: e97fc4fead59afc43a55df4d262c39bc, type: 3}
+  - {fileID: 108216, guid: 657625a13edac984eb434f09da1b9d64, type: 3}
   repeatTime: 2
   spawn_distance: 20
 --- !u!4 &1144348277

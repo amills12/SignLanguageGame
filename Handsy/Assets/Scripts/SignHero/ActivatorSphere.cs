@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ActivatorSphere : MonoBehaviour
 {
     GameObject hands;
+
+    Leap.Unity.HandsyDetector leftHand_nums, rightHand_nums;
     Handsy_Distance_Detector_Right rightHand;
     Handsy_Distance_Detector_Left leftHand;
     MeshRenderer meshRenderer;
@@ -36,11 +38,13 @@ public class ActivatorSphere : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         hands = GameObject.FindGameObjectWithTag("Player");
 
-        // Capture RigidRoundHand_L and RigidRoundHand_R
+        // Capture RigidRoundHand_L and RigidRoundHand_R for alphabet
         leftHand = hands.transform.GetChild(2).GetComponent<Handsy_Distance_Detector_Left>();
-        Debug.Log(leftHand);
         rightHand = hands.transform.GetChild(3).GetComponent<Handsy_Distance_Detector_Right>();
-        Debug.Log(rightHand);
+
+        // Capture RigidRoundHand_L and RigidRoundHand_R for numbers
+        leftHand_nums = hands.transform.GetChild(2).GetComponent<Leap.Unity.HandsyDetector>();
+        rightHand_nums = hands.transform.GetChild(3).GetComponent<Leap.Unity.HandsyDetector>();
     }
 
     // Start is called before the first frame update
@@ -58,28 +62,28 @@ public class ActivatorSphere : MonoBehaviour
     void Update()
     {
         // display the countdown
-        if (timerRunning)
-        {
-            if(currentTime > 0)
-            {
-                currentTime -= 1 * Time.deltaTime;
-                DisplayTime(currentTime);
-            }
+        // if (timerRunning)
+        // {
+        //     if(currentTime > 0)
+        //     {
+        //         currentTime -= 1 * Time.deltaTime;
+        //         DisplayTime(currentTime);
+        //     }
 
-            else //stop timer and end the game
-            {
-                currentTime = 0f;
-                timeCounter.text = ("00:00");
-                timerRunning = false;
-                endScreen.GetComponent<PauseMenu>().EndGame();
-                endScreenObject.SetActive(true);
-            }
-        }
+        //     else //stop timer and end the game
+        //     {
+        //         currentTime = 0f;
+        //         timeCounter.text = ("00:00");
+        //         timerRunning = false;
+        //         endScreen.GetComponent<PauseMenu>().EndGame();
+        //         endScreenObject.SetActive(true);
+        //     }
+        // }
 
         //Capture the key of the next character
         DetermineKey();
         //Check if pressed
-        if(Input.GetKeyDown(key) || leftHand.activated || rightHand.activated){
+        if(Input.GetKeyDown(key) || leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated){
             //If the letter was pressed within the sphere, success, destroy. increment score
             if(letter.active){
                 letter.active = false;
