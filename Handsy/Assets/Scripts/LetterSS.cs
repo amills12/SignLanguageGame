@@ -9,14 +9,14 @@ public class LetterSS : MonoBehaviour
     public bool isActivated = true;//bool to determine if the letter is activated
     public bool isLetter; //use to separate digits and numbers
     public KeyCode key; //assign keycode to specific letter
+    private string signID;
     public int mastery, numMastered, numNumMastered, masteryLevel; 
-    private string mapKey;
     private bool mastered = false;
     void Start(){
-        mapKey = key.ToString(); //convert the key pressed to a string for mapping
 
         //initialize specs for sign mastery
-        mastery = PlayerPrefs.GetInt(mapKey);
+        signID = this.name;
+        mastery = PlayerPrefs.GetInt(signID);
         numMastered = PlayerPrefs.GetInt("NumMastered"); 
         numNumMastered = PlayerPrefs.GetInt("NumNumMastered");
     }
@@ -34,7 +34,7 @@ public class LetterSS : MonoBehaviour
                 addToProgress();
             }
 
-            PlayerPrefs.SetInt(mapKey, mastery); //set the mastery level within the local database for the specific letter
+            PlayerPrefs.SetInt(signID, mastery); //set the mastery level within the local database for the specific letter
         }
     }
 

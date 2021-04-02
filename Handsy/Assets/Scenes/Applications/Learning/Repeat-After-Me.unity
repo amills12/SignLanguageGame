@@ -9507,6 +9507,8 @@ MonoBehaviour:
   animated: {fileID: 679592134}
   sprMask: {fileID: 679592132}
   size: 36
+  sizeAlpha: 26
+  sizeNum: 10
   timeDone: 0
   letIndex: 0
   score: 0

@@ -110,15 +110,23 @@ public class SpawnerStatic : MonoBehaviour
     {
             amtMasteredAlpha = clonePrefab[letIndex].GetComponent<LetterSS>().numMastered;
             amtMasteredNum = clonePrefab[letIndex].GetComponent<LetterSS>().numNumMastered;
+
             if (amtMasteredAlpha > 0)
+            {
                 progressAlpha = (((float)amtMasteredAlpha/sizeAlpha)*100f);
+                PlayerPrefs.SetFloat("ProgressPercentAlpha", progressAlpha);
+            }
+
             if (amtMasteredNum > 0)
+            {
                 progressNum = (((float)amtMasteredNum/sizeNum)*100f);
-            progressStr = "Letters: ";
-            progressStr +=  progressAlpha.ToString("0") + "%";
-            progressStr += "--- Numbers: ";
-            progressStr +=  progressNum.ToString("0") + "%";   
-            tempProgress.text = progressStr;
+                PlayerPrefs.SetFloat("ProgressPercentNum", progressNum);
+            }
+
+            progressStr =  progressAlpha.ToString("0") + "%";
+            PlayerPrefs.SetString("PercentDisplayAlpha", progressStr);
+            progressStr =  progressNum.ToString("0") + "%";
+            PlayerPrefs.SetString("PercentDisplayNum", progressStr);   
     }
 
     public void reset()

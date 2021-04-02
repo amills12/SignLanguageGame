@@ -98,6 +98,7 @@ MonoBehaviour:
   isActivated: 1
   isLetter: 1
   key: 101
+  signID: F
   mastery: 2
   numMastered: 0
   numNumMastered: 0

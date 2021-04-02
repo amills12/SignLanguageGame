@@ -185,6 +185,7 @@ MonoBehaviour:
   isActivated: 1
   isLetter: 1
   key: 100
+  signID: D
   mastery: 2
   numMastered: 0
   numNumMastered: 0
