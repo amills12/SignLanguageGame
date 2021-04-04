@@ -37,12 +37,12 @@ public class HighScoreTable : MonoBehaviour
         {
             highscores = new Highscores{};
             highscores.scoreEntryList = new List<ScoreEntry>() {
-                new ScoreEntry{ score = 11000, name = "PBJ"},
-                new ScoreEntry{ score = 10000, name = "ACM"},
-                new ScoreEntry{ score = 9000, name = "TOC"},
-                new ScoreEntry{ score = 8000, name = "MEC"},
-                new ScoreEntry{ score = 7000, name = "JAM"},
-                new ScoreEntry{ score = 6000, name = "DAH"},
+                new ScoreEntry{ score = 5000, name = "PBJ"},
+                new ScoreEntry{ score = 4000, name = "ACM"},
+                new ScoreEntry{ score = 3000, name = "TOC"},
+                new ScoreEntry{ score = 2000, name = "MEC"},
+                new ScoreEntry{ score = 1000, name = "JAM"},
+                new ScoreEntry{ score = 750, name = "DAH"},
                 new ScoreEntry{ score = 500, name = "DAL"},
             };
             
@@ -86,7 +86,7 @@ public class HighScoreTable : MonoBehaviour
         transformList.Add(scoreTransform);
     }
 
-    private void addScoreEntry(int score, string name){
+    public void addScoreEntry(int score, string name){
         
         // Pull up the current highscore list
         string jsonString = PlayerPrefs.GetString("highscoreTable");
@@ -133,6 +133,15 @@ public class HighScoreTable : MonoBehaviour
         }
         
         SetupDisplayHighscoreTable();
+    }
+
+    public bool checkIfHighscore(int score)
+    {
+        // Pull up the current highscore list
+        string jsonString = PlayerPrefs.GetString("highscoreTable");
+        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+
+        return score > highscores.scoreEntryList[MAX_TABLE_SIZE-1].score;
     }
 
     private class Highscores {
