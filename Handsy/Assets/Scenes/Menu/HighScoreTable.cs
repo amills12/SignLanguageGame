@@ -7,6 +7,7 @@ using TMPro;
 public class HighScoreTable : MonoBehaviour
 {
     public bool hasTable;
+    private const int MAX_TABLE_SIZE = 7;
     private Transform scoreContainer;
     private Transform scoreTemplate;
     private List<Transform> scoreEntryTransformList;
@@ -51,18 +52,6 @@ public class HighScoreTable : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        // Simple bubble sort on data
-        for (int i = 0; i < highscores.scoreEntryList.Count; i++) {
-            for (int j = i + 1; j < highscores.scoreEntryList.Count; j++) {
-                if (highscores.scoreEntryList[j].score > highscores.scoreEntryList[i].score) {
-                    // Preform a swap
-                    ScoreEntry temp = highscores.scoreEntryList[i];
-                    highscores.scoreEntryList[i] = highscores.scoreEntryList[j];
-                    highscores.scoreEntryList[j] = temp;
-                }
-            }
-        }
-
         //Set up score table
         scoreEntryTransformList = new List<Transform>();
         foreach (ScoreEntry scoreEntry in highscores.scoreEntryList)
@@ -98,15 +87,35 @@ public class HighScoreTable : MonoBehaviour
     }
 
     private void addScoreEntry(int score, string name){
-        // Create a new entry
-        ScoreEntry scoreEntry = new ScoreEntry{ score = score, name = name};
-
+        
         // Pull up the current highscore list
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
 
-        // Add the entry to the highscore list
-        highscores.scoreEntryList.Add(scoreEntry);
+        // If the incoming score is greater than the last score in the list
+        if (score > highscores.scoreEntryList[MAX_TABLE_SIZE-1].score)
+        {
+            // Create a new entry
+            ScoreEntry scoreEntry = new ScoreEntry{ score = score, name = name};
+
+            // Add the entry to the highscore list
+            highscores.scoreEntryList.Add(scoreEntry);
+
+            // Sort the array
+            for (int i = 0; i < highscores.scoreEntryList.Count; i++) {
+                for (int j = i + 1; j < highscores.scoreEntryList.Count; j++) {
+                    if (highscores.scoreEntryList[j].score > highscores.scoreEntryList[i].score) {
+                        // Preform a swap
+                        ScoreEntry temp = highscores.scoreEntryList[i];
+                        highscores.scoreEntryList[i] = highscores.scoreEntryList[j];
+                        highscores.scoreEntryList[j] = temp;
+                    }
+                }
+            }
+
+            // Remove the last item
+            highscores.scoreEntryList.RemoveAt(MAX_TABLE_SIZE);
+        }
 
         // Save updated highscore list
         string json = JsonUtility.ToJson(highscores);
@@ -117,6 +126,13 @@ public class HighScoreTable : MonoBehaviour
     public void resetHighscores()
     {
         PlayerPrefs.DeleteKey("highscoreTable");
+
+        for(int i = 0; i < scoreEntryTransformList.Count; i++)
+        {
+            Destroy(scoreEntryTransformList[i].gameObject);
+        }
+        
+        SetupDisplayHighscoreTable();
     }
 
     private class Highscores {
