@@ -6,28 +6,50 @@ using TMPro;
 // This code was made with the help of https://www.youtube.com/watch?v=iAbaqGYdnyI&ab_channel=CodeMonkey
 public class HighScoreTable : MonoBehaviour
 {
+    public bool hasTable;
     private Transform scoreContainer;
     private Transform scoreTemplate;
     private List<Transform> scoreEntryTransformList;
 
     private void Awake(){
+        // This enables the table control, this is used if you want to automate the highscore table.
+        if(hasTable)
+        {
+            SetupDisplayHighscoreTable();
+        }
+    }
+
+    // This function sets up the display table and organizes the score
+    private void SetupDisplayHighscoreTable()
+    {
+        // This enables the table control, this is used if you want to automate the highscore table.
         scoreContainer = transform.Find("ScoreContainer");
         scoreTemplate = scoreContainer.Find("ScoreTemplate");
 
         scoreTemplate.gameObject.SetActive(false);
 
-        // scoreEntryList = new List<ScoreEntry>() {
-        //     new ScoreEntry{ score = 11, name = "AAA"},
-        //     new ScoreEntry{ score = 22, name = "BBB"},
-        //     new ScoreEntry{ score = 33, name = "CCC"},
-        //     new ScoreEntry{ score = 44, name = "DDD"},
-        //     new ScoreEntry{ score = 55, name = "EEE"},
-        //     new ScoreEntry{ score = 66, name = "FFF"},
-        //     new ScoreEntry{ score = 77, name = "GGG"},
-        // };
-
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+
+        // If the highscores return null, then table is empty or got deleted
+        if(highscores == null)
+        {
+            highscores = new Highscores{};
+            highscores.scoreEntryList = new List<ScoreEntry>() {
+                new ScoreEntry{ score = 11000, name = "PBJ"},
+                new ScoreEntry{ score = 10000, name = "ACM"},
+                new ScoreEntry{ score = 9000, name = "TOC"},
+                new ScoreEntry{ score = 8000, name = "MEC"},
+                new ScoreEntry{ score = 7000, name = "JAM"},
+                new ScoreEntry{ score = 6000, name = "DAH"},
+                new ScoreEntry{ score = 500, name = "DAL"},
+            };
+            
+            //Store this new table
+            string json = JsonUtility.ToJson(highscores);
+            PlayerPrefs.SetString("highscoreTable", json);
+            PlayerPrefs.Save();
+        }
 
         // Simple bubble sort on data
         for (int i = 0; i < highscores.scoreEntryList.Count; i++) {
@@ -41,15 +63,15 @@ public class HighScoreTable : MonoBehaviour
             }
         }
 
+        //Set up score table
         scoreEntryTransformList = new List<Transform>();
         foreach (ScoreEntry scoreEntry in highscores.scoreEntryList)
         {
             CreateScoreEntryTransform(scoreEntry, scoreContainer, scoreEntryTransformList);
         }
     }
-        
 
-    // This function adds a highscore to the table
+    // This function adds a highscore to the display table
     private void CreateScoreEntryTransform(ScoreEntry scoreEntry, Transform container, List<Transform> transformList) {
         float templateHeight = 50f;
 
@@ -90,6 +112,11 @@ public class HighScoreTable : MonoBehaviour
         string json = JsonUtility.ToJson(highscores);
         PlayerPrefs.SetString("highscoreTable", json);
         PlayerPrefs.Save();
+    }
+
+    public void resetHighscores()
+    {
+        PlayerPrefs.DeleteKey("highscoreTable");
     }
 
     private class Highscores {
