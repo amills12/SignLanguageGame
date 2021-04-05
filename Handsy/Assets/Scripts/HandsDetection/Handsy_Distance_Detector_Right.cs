@@ -18,7 +18,7 @@ using Leap.Unity.Attributes;
     //Angle variables for palm direction checks
     private float OnAngle = 45; // degrees
     private float OffAngle = 65; //degrees
-    /** The palm direction state. */
+    /* The palm direction state. */
     private PointingType PointingType;
     private Transform TargetObject;
     private Vector3 PointingDirection;
@@ -198,3 +198,4 @@ using Leap.Unity.Attributes;
       SetCurrentCharacter(activatorSphere.key.ToCharArray()[0]);
     }
   }
+  

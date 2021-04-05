@@ -193,3 +193,4 @@ using Leap.Unity.Attributes;
       SetCurrentCharacter(activatorSphere.key.ToCharArray()[0]);
     }
   }
+  
