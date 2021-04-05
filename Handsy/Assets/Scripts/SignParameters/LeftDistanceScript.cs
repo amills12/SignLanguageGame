@@ -151,7 +151,7 @@ public class LeftDistanceScript : MonoBehaviour
             // new float[2] {0.03720642f, 0.04454974f},
             new float[2] {0.05066939f, 0.06055487f}, 
             new float[2] {0.09455667f, 0.2f},
-            new float[2] {0.08793048f, 0.2f},
+            new float[2] {0.04793048f, 0.2f},
             new float[2] {0.0f, 0.05013521f},
             new float[2] {0.0f, 0.04454974f},
             Leap.Unity.PointingType.RelativeToHorizon,
@@ -231,7 +231,7 @@ public class LeftDistanceScript : MonoBehaviour
             new float[2] {0.0f, 0.04441945f},
             Leap.Unity.PointingType.RelativeToHorizon,
             targetTransform,
-            Vector3.right
+            Vector3.down
         );
         leftLetters['q'] = new HandsyDistances(
             'q',
