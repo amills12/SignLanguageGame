@@ -9221,12 +9221,19 @@ MonoBehaviour:
   animated: {fileID: 679592134}
   sprMask: {fileID: 679592132}
   size: 36
+  sizeAlpha: 26
+  sizeNum: 10
   timeDone: 0
   letIndex: 0
   score: 0
+  amtMasteredAlpha: 0
+  amtMasteredNum: 0
+  progressAlpha: 0
+  progressNum: 0
+  progressStr: 
   endScreen: {fileID: 240342823}
   endScreenObject: {fileID: 1523768150}
-  intro: {fileID: 386378121}
+  tempProgress: {fileID: 0}
 --- !u!4 &1482971808
 Transform:
   m_ObjectHideFlags: 0

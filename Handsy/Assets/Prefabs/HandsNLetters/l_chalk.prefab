@@ -183,4 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActivated: 1
+  isLetter: 1
   key: 108
+  mastery: 2
+  numMastered: 0
+  numNumMastered: 0
+  masteryLevel: 2
