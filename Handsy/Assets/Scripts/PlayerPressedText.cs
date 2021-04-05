@@ -8,6 +8,11 @@ public class PlayerPressedText : MonoBehaviour
 
     public string value;
 
+    void Awake()
+    {
+        //Reset the score when entering scene
+        PlayerPrefs.SetInt(value, 0);
+    }
     void Update()
     {
         if(this.gameObject.name == "Score")

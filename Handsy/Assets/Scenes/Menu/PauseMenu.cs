@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour
             GameIsPaused = false;
             GameIsRestarted = false;
             introMenu.SetActive(false);
+            gameUI.SetActive(true);
         }
         else
         {
