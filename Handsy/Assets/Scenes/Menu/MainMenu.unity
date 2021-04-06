@@ -1319,6 +1319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 280462073}
   - component: {fileID: 280462074}
+  - component: {fileID: 280462075}
   m_Layer: 5
   m_Name: Numbers PBar
   m_TagString: Untagged
@@ -1387,7 +1388,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1458920779}
   m_HandleRect: {fileID: 0}
@@ -1399,6 +1400,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &280462075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280462072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9da6355e451014e8f0e7e69cdd396c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentVal: {fileID: 395616691}
+  alphaOrNumStr: PercentDisplayNum
+  alphaOrNumFl: ProgressPercentNum
 --- !u!1001 &289225370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15035,6 +15051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1727911729}
   - component: {fileID: 1727911730}
+  - component: {fileID: 1727911731}
   m_Layer: 5
   m_Name: Letters PBar
   m_TagString: Untagged
@@ -15103,7 +15120,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1920890941}
   m_HandleRect: {fileID: 0}
@@ -15115,6 +15132,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1727911731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727911728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9da6355e451014e8f0e7e69cdd396c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentVal: {fileID: 653859041}
+  alphaOrNumStr: PercentDisplayAlpha
+  alphaOrNumFl: ProgressPercentAlpha
 --- !u!1 &1728148246
 GameObject:
   m_ObjectHideFlags: 0

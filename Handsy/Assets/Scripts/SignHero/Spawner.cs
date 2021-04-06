@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
 
     void Spawn(){
         //Generate a random character
-        prefab_num = Random.Range(0,9);
+        prefab_num = Random.Range(0,prefab.Length);
         //Get a random radius and rotation for the spawn location
         spawn_location = RandomRadius(center, spawn_distance);
         rotation = Quaternion.FromToRotation(Vector3.up, center-spawn_location);

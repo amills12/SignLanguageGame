@@ -13,10 +13,15 @@ public class SpawnerStatic : MonoBehaviour
     public AudioSource pencil; //sound source for a pencil drawing sound
     public Animator animated; //for fade in animation
     public GameObject sprMask; //object that contains animation
-    public int size = 36; //number of letters/numbers in the prefab array
+    public int size, sizeAlpha, sizeNum; //number of letters/numbers
     public bool timeDone = false; //used for checking if animation complete
     public int letIndex, score = 0; //array index and score tracker
+    public int amtMasteredAlpha, amtMasteredNum;
+    public float  progressAlpha, progressNum;
+    public string progressStr;
     public GameObject endScreen, endScreenObject; //handles menu slides
+
+    public Text tempProgress; //remember to delete later.
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~ Game Logic ~~~~~~~~~~~~~~~~~~~~~~~~~//
     void Start()
@@ -32,7 +37,6 @@ public class SpawnerStatic : MonoBehaviour
 
         //set the pencil drawing sound
         pencil = GetComponent<AudioSource>();
-
     }
 
     void Update()
@@ -49,7 +53,8 @@ public class SpawnerStatic : MonoBehaviour
         generate a new random object from the array, then spawn it*/
         else if (timeDone && !clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
         {
-
+            
+            getProgressPct();
             Destroy(clonePrefab[letIndex]);
             //increment the score on successful sign
             score++;
@@ -93,6 +98,40 @@ public class SpawnerStatic : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         pencil.Play();
 
+    }
+   
+    /*
+    This function gets the percentage of progress between all the numbers 
+    and letters succesfully mastered. 
+    To find the percentage, it finds the public numMastered variable from the LetterSS object,
+    then divides
+    */
+    public void getProgressPct()
+    {
+            amtMasteredAlpha = clonePrefab[letIndex].GetComponent<LetterSS>().numMastered;
+            amtMasteredNum = clonePrefab[letIndex].GetComponent<LetterSS>().numNumMastered;
+
+            if (amtMasteredAlpha > 0)
+            {
+                progressAlpha = (((float)amtMasteredAlpha/sizeAlpha)*100f);
+                PlayerPrefs.SetFloat("ProgressPercentAlpha", progressAlpha);
+            }
+
+            if (amtMasteredNum > 0)
+            {
+                progressNum = (((float)amtMasteredNum/sizeNum)*100f);
+                PlayerPrefs.SetFloat("ProgressPercentNum", progressNum);
+            }
+
+            progressStr =  progressAlpha.ToString("0") + "%";
+            PlayerPrefs.SetString("PercentDisplayAlpha", progressStr);
+            progressStr =  progressNum.ToString("0") + "%";
+            PlayerPrefs.SetString("PercentDisplayNum", progressStr);   
+    }
+
+    public void reset()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
 }
