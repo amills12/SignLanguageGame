@@ -59,7 +59,7 @@ public class Letter : MonoBehaviour
         }
 
         //check if the distance between the letter and activator is approximately equal
-        if(Vector3.Distance(transform.position, target_vector) == 0){
+        if(Vector3.Distance(transform.position, target_vector) <= 0.1f){
             //swap the position to stay centered.
             hit = true;
             target_vector *= -1.0f;

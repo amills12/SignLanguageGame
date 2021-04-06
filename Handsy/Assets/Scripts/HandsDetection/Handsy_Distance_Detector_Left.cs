@@ -10,10 +10,12 @@ using Leap.Unity.Attributes;
 
     /* Sign Hero Connection Variables */
     ActivatorSphere activatorSphere;
+    char currentCharacter;
+
     public bool activated = false;
-    public float Period = .001f; //seconds
-    private IEnumerator watcherCoroutine, watcherCoroutinePalmWatcher;
-    private bool distanceWatcherState = false, palmWatcherState = false;
+    public float Period = .05f; //seconds
+    private IEnumerator watcherCoroutine, watcherCoroutinePalmWatcher, watcherCoroutineVelocity;
+    private bool distanceWatcherState = false, palmWatcherState = false, velocityWatcherState = false;
 
     //Angle variables for palm direction checks
     private float OnAngle = 45; // degrees
@@ -28,11 +30,11 @@ using Leap.Unity.Attributes;
 
     //structure for finger distance comparisons
     struct FingerDistances{
-      public float[] Thumb;
-      public float[] Index;
-      public float[] Middle;
-      public float[] Ring;
-      public float[] Pinky;
+        public float[] Thumb;
+        public float[] Index;
+        public float[] Middle;
+        public float[] Ring;
+        public float[] Pinky;
     }
     
     //fingerDistances.Thumb[(int)fing.min] = 1;
@@ -44,29 +46,33 @@ using Leap.Unity.Attributes;
     LeftDistanceScript leftDistanceScript;
 
     void Awake(){
-      watcherCoroutine = watcher();
-      watcherCoroutinePalmWatcher = palmWatcher();
-      //Find and awake the library
-      leftDistanceScript = GameObject.FindGameObjectWithTag("LeftDistances").GetComponent<LeftDistanceScript>();
-      leftDistanceScript.Awake();
-      //Find activator for object passing
-      activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
-  
+        watcherCoroutine = watcher();
+        watcherCoroutinePalmWatcher = palmWatcher();
+        watcherCoroutineVelocity = velocityWatcher();
+        //Find and awake the library
+        leftDistanceScript = GameObject.FindGameObjectWithTag("LeftDistances").GetComponent<LeftDistanceScript>();
+        leftDistanceScript.Awake();
+        //Find activator for object passing
+        activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
     }
 
     void OnEnable () {
-      StopCoroutine(watcherCoroutine);
-      StartCoroutine(watcherCoroutine);
-      StopCoroutine(watcherCoroutinePalmWatcher);
-      StartCoroutine(watcherCoroutinePalmWatcher);
+        StopCoroutine(watcherCoroutine);
+        StartCoroutine(watcherCoroutine);
+        StopCoroutine(watcherCoroutinePalmWatcher);
+        StartCoroutine(watcherCoroutinePalmWatcher);
+        StopCoroutine(watcherCoroutineVelocity);
+        StartCoroutine(watcherCoroutineVelocity);
     }
 
     void OnDisable () {
-      StopCoroutine(watcherCoroutine);
-      StopCoroutine(watcherCoroutinePalmWatcher);
-      palmWatcherState = false;
-      distanceWatcherState = false;
-      activated = false;
+        StopCoroutine(watcherCoroutine);
+        StopCoroutine(watcherCoroutinePalmWatcher);
+        StopCoroutine(watcherCoroutineVelocity);
+        palmWatcherState = false;
+        distanceWatcherState = false;
+        velocityWatcherState = false;
+        activated = false;
     }
 
     /*  Return true/false depending on if the fingers are within the vector bounds from map */
@@ -158,6 +164,86 @@ using Leap.Unity.Attributes;
         }
     }
 
+    private IEnumerator velocityWatcher(){
+        Hand hand;
+        while(true){
+            if(HandModel != null){
+                hand = HandModel.GetLeapHand();
+                if(hand != null){
+                    velocityWatcherState = false;
+                    if(currentCharacter == 'z'){
+                        float timer = 0f;
+                        Vector vel = hand.PalmVelocity;
+                        WaitForSeconds wait = new WaitForSeconds(0.001f);
+                        while(vel.x < 0.50){
+                            // Debug.Log("Z Checkpoint 1");
+                            // Debug.Log("x velocity: " + vel.x);
+                            vel = hand.PalmVelocity;
+                            yield return wait;
+                            timer = timer + Time.deltaTime;
+                            if(timer >= 1.4f)
+                              break;
+                        }
+                        yield return wait;
+                        vel = hand.PalmVelocity;
+                        while((vel.y > -0.40) && (vel.x > -0.40)){
+                            // Debug.Log("Z Checkpoint 2");
+                            // Debug.Log("x velocity: " + vel.x);
+                            // Debug.Log("y velocity: " + vel.y);
+                            vel = hand.PalmVelocity;
+                            yield return wait;
+                            timer = timer + Time.deltaTime;
+                            if(timer >= 1.4f)
+                              break;
+                        }
+                        yield return wait;
+                        vel = hand.PalmVelocity;
+                        while(vel.x < 0.50){
+                            // Debug.Log("Z Checkpoint 3");
+                            // Debug.Log("x velocity: " + vel.x);
+                            vel = hand.PalmVelocity;
+                            yield return wait;
+                            timer = timer + Time.deltaTime;
+                            if(timer >= 1.4f)
+                              break;
+                        }
+                        if(timer < 1.4f)
+                          velocityWatcherState = true;
+                    }else if (currentCharacter == 'j'){
+                        float timer = 0f;
+                        Vector vel = hand.PalmVelocity;
+                        WaitForSeconds wait = new WaitForSeconds(0.001f);
+                        while(vel.y > -0.50){
+                            // Debug.Log("J Checkpoint 1");
+                            // Debug.Log("y velocity: " + vel.y);
+                            vel = hand.PalmVelocity;
+                            yield return wait;
+                            timer = timer + Time.deltaTime;
+                            if(timer >= 1.4f)
+                              break;
+                        }
+                        yield return wait;
+                        vel = hand.PalmVelocity;
+                        while(vel.x < 0.50){
+                            // Debug.Log("J Checkpoint 2");
+                            // Debug.Log("x velocity: " + vel.x);
+                            vel = hand.PalmVelocity;
+                            yield return wait;
+                            timer = timer + Time.deltaTime;
+                            if(timer >= 1.4f)
+                              break;
+                        }
+                        if(timer < 1.4f)
+                          velocityWatcherState = true;                    
+                    }else{
+                        velocityWatcherState = true;
+                    }
+                }
+            }
+            yield return new WaitForSeconds(Period);
+        }
+    }
+
     // Function for setting a new character, called in update
     public void SetCurrentCharacter(char curChar){
       HandsyDistances newCurentCharacter;
@@ -185,12 +271,15 @@ using Leap.Unity.Attributes;
     }
 
     public void Update(){
-      if(distanceWatcherState && palmWatcherState){
+      currentCharacter = activatorSphere.key.ToCharArray()[0];
+
+      if(distanceWatcherState && palmWatcherState && velocityWatcherState){
         activated = true;
       }else{
         activated = false;
       }
-      SetCurrentCharacter(activatorSphere.key.ToCharArray()[0]);
+
+      SetCurrentCharacter(currentCharacter);
     }
   }
   
