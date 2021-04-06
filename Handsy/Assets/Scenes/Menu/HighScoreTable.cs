@@ -35,21 +35,7 @@ public class HighScoreTable : MonoBehaviour
         // If the highscores return null, then table is empty or got deleted
         if(highscores == null)
         {
-            highscores = new Highscores{};
-            highscores.scoreEntryList = new List<ScoreEntry>() {
-                new ScoreEntry{ score = 5000, name = "PBJ"},
-                new ScoreEntry{ score = 4000, name = "ACM"},
-                new ScoreEntry{ score = 3000, name = "TOC"},
-                new ScoreEntry{ score = 2000, name = "MEC"},
-                new ScoreEntry{ score = 1000, name = "JAM"},
-                new ScoreEntry{ score = 750, name = "DAH"},
-                new ScoreEntry{ score = 500, name = "DAL"},
-            };
-            
-            //Store this new table
-            string json = JsonUtility.ToJson(highscores);
-            PlayerPrefs.SetString("highscoreTable", json);
-            PlayerPrefs.Save();
+            generateDefaultTable(highscores);
         }
 
         //Set up score table
@@ -141,7 +127,31 @@ public class HighScoreTable : MonoBehaviour
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
 
+        if(highscores == null)
+        {
+            generateDefaultTable(highscores);
+        }
+
         return score > highscores.scoreEntryList[MAX_TABLE_SIZE-1].score;
+    }
+    
+    private void generateDefaultTable(Highscores highscores)
+    {
+        highscores = new Highscores{};
+        highscores.scoreEntryList = new List<ScoreEntry>() {
+            new ScoreEntry{ score = 5000, name = "PBJ"},
+            new ScoreEntry{ score = 4000, name = "ACM"},
+            new ScoreEntry{ score = 3000, name = "TOC"},
+            new ScoreEntry{ score = 2000, name = "MEC"},
+            new ScoreEntry{ score = 1000, name = "JAM"},
+            new ScoreEntry{ score = 750, name = "DAH"},
+            new ScoreEntry{ score = 500, name = "DAL"},
+        };
+        
+        //Store this new table
+        string json = JsonUtility.ToJson(highscores);
+        PlayerPrefs.SetString("highscoreTable", json);
+        PlayerPrefs.Save();
     }
 
     private class Highscores {
