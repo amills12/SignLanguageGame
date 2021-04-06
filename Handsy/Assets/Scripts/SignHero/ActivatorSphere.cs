@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class ActivatorSphere : MonoBehaviour
 {
     GameObject hands;
-    Leap.Unity.HandsyDetector leftHand, rightHand;
+
+    Leap.Unity.HandsyDetector leftHand_nums, rightHand_nums;
+    Handsy_Distance_Detector_Right rightHand;
+    Handsy_Distance_Detector_Left leftHand;
     MeshRenderer meshRenderer;
     public string key;
     Letter letter;
@@ -35,13 +38,13 @@ public class ActivatorSphere : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         hands = GameObject.FindGameObjectWithTag("Player");
 
-        // Capture RigidRoundHand_L and RigidRoundHand_R
-        leftHand = hands.transform.GetChild(2).GetComponent<Leap.Unity.HandsyDetector>();
-        Debug.Log(leftHand);
-        rightHand = hands.transform.GetChild(3).GetComponent<Leap.Unity.HandsyDetector>();
-        Debug.Log(rightHand);
-        Debug.Log("End of Awake.");
+        // Capture RigidRoundHand_L and RigidRoundHand_R for alphabet
+        leftHand = hands.transform.GetChild(2).GetComponent<Handsy_Distance_Detector_Left>();
+        rightHand = hands.transform.GetChild(3).GetComponent<Handsy_Distance_Detector_Right>();
 
+        // Capture RigidRoundHand_L and RigidRoundHand_R for numbers
+        leftHand_nums = hands.transform.GetChild(2).GetComponent<Leap.Unity.HandsyDetector>();
+        rightHand_nums = hands.transform.GetChild(3).GetComponent<Leap.Unity.HandsyDetector>();
     }
 
     // Start is called before the first frame update
@@ -80,7 +83,7 @@ public class ActivatorSphere : MonoBehaviour
         //Capture the key of the next character
         DetermineKey();
         //Check if pressed
-        if(Input.GetKeyDown(key) || leftHand.activated || rightHand.activated){
+        if(Input.GetKeyDown(key) || leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated){
             //If the letter was pressed within the sphere, success, destroy. increment score
             if(letter.active){
                 letter.active = false;
@@ -88,8 +91,6 @@ public class ActivatorSphere : MonoBehaviour
                 AddStreak();
                 ExplodeSuccess();
                 IncScore();
-            }else if(!letter.active){
-                ResetStreak();
             }
         }
         

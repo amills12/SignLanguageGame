@@ -11,6 +11,9 @@ TagManager:
   - CharacterObjects
   - Numbers
   - Letters
+  - LMC
+  - LeftDistances
+  - RightDistances
   layers:
   - Default
   - TransparentFX
