@@ -34,7 +34,7 @@ namespace Leap.Unity {
     [Tooltip("The interval in seconds at which to check this detector's conditions.")]
     [Units("seconds")]
     [MinValue(0)]
-    private float Period = .1f; //seconds
+    private float Period = .05f; //seconds
 
     [Tooltip("The hand model to watch. Set automatically if detector is on a hand.")]
     public HandModelBase HandModel = null;
@@ -100,13 +100,10 @@ namespace Leap.Unity {
       HandsyCharacter newCurentCharacter;
 
       if (Char.IsDigit(curChar)){
-        Debug.Log(curChar);
         newCurentCharacter = numberScript.GetNumber(curChar);
       } else if (Char.IsLetter(curChar)) {
-        Debug.Log(curChar);
         newCurentCharacter = letterScript.GetLetter(curChar);
       } else{
-        Debug.Log("Nullified");
         newCurentCharacter = null;
       }
       
@@ -291,7 +288,7 @@ namespace Leap.Unity {
       //     Debug.Log(currentCharacter.id);
       //   }
       // }
-      Debug.Log("Character from ActivatorSphere: " + activatorSphere.key.ToCharArray()[0]);
+      // Debug.Log("Character from ActivatorSphere: " + activatorSphere.key.ToCharArray()[0]);
       SetCurrentCharacter(activatorSphere.key.ToCharArray()[0]);
     }
   }
