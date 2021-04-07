@@ -68,8 +68,8 @@ public class SpawnerStatic : MonoBehaviour
             //retrieve another random letter
             letIndex = Random.Range(0, size);
 
-            //wait for animation
-            StartCoroutine(waitToStart(0.1f));
+            //wait for animation - changed this to avoid repetitive accepts
+            StartCoroutine(waitToStart(2.0f));
         }
 
         //feed character to recognition
