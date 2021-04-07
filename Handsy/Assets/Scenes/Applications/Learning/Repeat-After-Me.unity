@@ -5071,7 +5071,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  scene: 
   activated: 0
   Period: 0.1
   HandModel: {fileID: 836184323}
@@ -11589,7 +11588,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  scene: 
   activated: 0
   Period: 0.1
   HandModel: {fileID: 1459986179}
@@ -11648,7 +11646,7 @@ GameObject:
   - component: {fileID: 1482971809}
   m_Layer: 0
   m_Name: Spawner
-  m_TagString: Untagged
+  m_TagString: RAMSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11758,6 +11756,7 @@ MonoBehaviour:
   endScreen: {fileID: 240342823}
   endScreenObject: {fileID: 1523768150}
   tempProgress: {fileID: 0}
+  characterKey: 0
 --- !u!4 &1482971808
 Transform:
   m_ObjectHideFlags: 0
