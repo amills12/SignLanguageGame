@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2863308111330196836}
   m_Layer: 0
   m_Name: b_chalk
-  m_TagString: Untagged
+  m_TagString: Letters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,6 @@ MonoBehaviour:
   isActivated: 1
   isLetter: 1
   key: 98
-  signID: B
   mastery: 2
   numMastered: 0
   numNumMastered: 0

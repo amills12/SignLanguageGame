@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/MainMenu.unity
     guid: ce497f138bee2c843aca81797d193746
   - enabled: 1
+    path: Assets/Scenes/Applications/Gaming/SignHero.unity
+    guid: b7ff476b2322a0f438a72e1341c6d8a2
+  - enabled: 1
     path: Assets/Scenes/Applications/Learning/Repeat-After-Me.unity
     guid: 92359954c63e07f4e84529c346e9c0aa
   m_configObjects:

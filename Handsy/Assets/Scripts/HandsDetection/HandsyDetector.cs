@@ -102,24 +102,28 @@ namespace Leap.Unity {
       if (Char.IsDigit(curChar)){
         Debug.Log(curChar);
         newCurentCharacter = numberScript.GetNumber(curChar);
-      } else if (Char.IsLetter(curChar)) {
-        Debug.Log(curChar);
-        newCurentCharacter = letterScript.GetLetter(curChar);
-      } else{
+
+        Thumb = newCurentCharacter.getThumbExtension();
+        Index = newCurentCharacter.getIndexExtension();
+        Middle = newCurentCharacter.getMiddleExtension();
+        Ring = newCurentCharacter.getRingExtension();
+        Pinky = newCurentCharacter.getPinkyExtension();
+
+        PointingType = newCurentCharacter.getPointingType();
+        TargetObject = newCurentCharacter.getTargetTransform();
+        PointingDirection = newCurentCharacter.getPointingDirection();
+      } 
+      // else if (Char.IsLetter(curChar)) {
+      //   Debug.Log(curChar);
+      //   newCurentCharacter = letterScript.GetLetter(curChar);
+      // } 
+      else{
         Debug.Log("Nullified");
         newCurentCharacter = null;
       }
       
 
-      Thumb = newCurentCharacter.getThumbExtension();
-      Index = newCurentCharacter.getIndexExtension();
-      Middle = newCurentCharacter.getMiddleExtension();
-      Ring = newCurentCharacter.getRingExtension();
-      Pinky = newCurentCharacter.getPinkyExtension();
-
-      PointingType = newCurentCharacter.getPointingType();
-      TargetObject = newCurentCharacter.getTargetTransform();
-      PointingDirection = newCurentCharacter.getPointingDirection();
+      
 
       currentCharacter = newCurentCharacter;
     }
@@ -291,8 +295,11 @@ namespace Leap.Unity {
       //     Debug.Log(currentCharacter.id);
       //   }
       // }
-      Debug.Log("Character from ActivatorSphere: " + activatorSphere.key.ToCharArray()[0]);
-      SetCurrentCharacter(activatorSphere.key.ToCharArray()[0]);
+      if (activatorSphere != null){
+        Debug.Log("Character from ActivatorSphere: " + activatorSphere.key.ToCharArray()[0]);
+        SetCurrentCharacter(activatorSphere.key.ToCharArray()[0]);
+      }
+      
     }
   }
 }
