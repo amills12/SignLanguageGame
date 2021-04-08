@@ -69,11 +69,12 @@ public class SpawnerStatic : MonoBehaviour
             letIndex = Random.Range(0, size);
 
             //wait for animation - changed this to avoid repetitive accepts
-            StartCoroutine(waitToStart(1.5f));
+            StartCoroutine(waitToStart(2.0f));
         }
 
         //feed character to recognition
         characterKey = clonePrefab[letIndex].name.ToCharArray()[0];
+        Debug.Log("characterKey: " + characterKey);
     }
 
     void Spawn()
