@@ -15,11 +15,10 @@ using UnityEngine.SceneManagement;
     char currentCharacter;
     string scene;
 
-
     public bool activated = false;
-    public float Period = .05f; //seconds
-    private IEnumerator watcherCoroutine, watcherCoroutinePalmWatcher, watcherCoroutineVelocity;
-    private bool distanceWatcherState = false, palmWatcherState = false, velocityWatcherState = false;
+    public float Period = .001f; //seconds
+    private IEnumerator watcherCoroutine, watcherCoroutinePalmWatcher;
+    private bool distanceWatcherState = false, palmWatcherState = false;
 
     //Angle variables for palm direction checks
     private float OnAngle = 45; // degrees
@@ -34,11 +33,11 @@ using UnityEngine.SceneManagement;
 
     //structure for finger distance comparisons
     struct FingerDistances{
-        public float[] Thumb;
-        public float[] Index;
-        public float[] Middle;
-        public float[] Ring;
-        public float[] Pinky;
+      public float[] Thumb;
+      public float[] Index;
+      public float[] Middle;
+      public float[] Ring;
+      public float[] Pinky;
     }
     
     FingerDistances fingerDistances = new FingerDistances();
@@ -49,39 +48,39 @@ using UnityEngine.SceneManagement;
     LeftDistanceScript leftDistanceScript;
 
     void Awake(){
-        //Capture scene name
-        scene = SceneManager.GetActiveScene().name;
+       //Capture scene name
+      scene = SceneManager.GetActiveScene().name;
 
-        watcherCoroutine = watcher();
-        watcherCoroutinePalmWatcher = palmWatcher();
-        watcherCoroutineVelocity = velocityWatcher();
-        //Find and awake the library
-        leftDistanceScript = GameObject.FindGameObjectWithTag("LeftDistances").GetComponent<LeftDistanceScript>();
-        leftDistanceScript.Awake();
-        //Find activator for object passing
-        if(scene == "SignHero")
+      watcherCoroutine = watcher();
+      watcherCoroutinePalmWatcher = palmWatcher();
+      watcherCoroutineVelocity = velocityWatcher();
+      //Find and awake the library
+      leftDistanceScript = GameObject.FindGameObjectWithTag("LeftDistances").GetComponent<LeftDistanceScript>();
+      leftDistanceScript.Awake();
+      //Find activator for object passing
+      if(scene == "SignHero")
           activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
         else if (scene == "Repeat-After-Me")
-          spawnerRAM = GameObject.FindGameObjectWithTag("RAMSpawner").GetComponent<SpawnerStatic>();
-    }
+          spawnerRAM = GameObject.FindGameObjectWithTag("RAMSpawner").GetComponent<SpawnerStatic>(); 
+    } 
 
     void OnEnable () {
-        StopCoroutine(watcherCoroutine);
-        StartCoroutine(watcherCoroutine);
-        StopCoroutine(watcherCoroutinePalmWatcher);
-        StartCoroutine(watcherCoroutinePalmWatcher);
-        StopCoroutine(watcherCoroutineVelocity);
-        StartCoroutine(watcherCoroutineVelocity);
+      StopCoroutine(watcherCoroutine);
+      StartCoroutine(watcherCoroutine);
+      StopCoroutine(watcherCoroutinePalmWatcher);
+      StartCoroutine(watcherCoroutinePalmWatcher);
+      StopCoroutine(watcherCoroutineVelocity);
+      StartCoroutine(watcherCoroutineVelocity);
     }
 
     void OnDisable () {
-        StopCoroutine(watcherCoroutine);
-        StopCoroutine(watcherCoroutinePalmWatcher);
-        StopCoroutine(watcherCoroutineVelocity);
-        palmWatcherState = false;
-        distanceWatcherState = false;
-        velocityWatcherState = false;
-        activated = false;
+      StopCoroutine(watcherCoroutine);
+      StopCoroutine(watcherCoroutinePalmWatcher);
+      StopCoroutine(watcherCoroutineVelocity);
+      palmWatcherState = false;
+      distanceWatcherState = false;
+      velocityWatcherState = false;
+      activated = false;
     }
 
     /*  Return true/false depending on if the fingers are within the vector bounds from map */
@@ -94,7 +93,6 @@ using UnityEngine.SceneManagement;
     IEnumerator watcher(){
       Hand hand;
       while(true){
-          //Your logic to compute or check the current watchedValue goes here
         bool fingerState = false;
         if(HandModel != null && HandModel.IsTracked){
           hand = HandModel.GetLeapHand();
@@ -224,7 +222,7 @@ using UnityEngine.SceneManagement;
                         }
                         yield return wait;
                         vel = hand.PalmVelocity;
-                        while(vel.x < 0.50){
+                        while(vel.x > -0.50){
                             // Debug.Log("J Checkpoint 2");
                             // Debug.Log("x velocity: " + vel.x);
                             vel = hand.PalmVelocity;
@@ -245,13 +243,15 @@ using UnityEngine.SceneManagement;
     }
 
     // Function for setting a new character, called in update
-    public void SetCurrentCharacter(char curChar){
+   public void SetCurrentCharacter(char curChar){
       HandsyDistances newCurentCharacter;
 
-      if (Char.IsLetter(curChar) || (curChar == '0')){
-        newCurentCharacter = leftDistanceScript.GetCharacter(curChar);
-      } else {
-        newCurentCharacter = null;
+      if (Char.IsDigit(curChar)){
+          newCurentCharacter = leftDistanceScript.GetCharacter(curChar);
+      } else if (Char.IsLetter(curChar)) {
+          newCurentCharacter = leftDistanceScript.GetCharacter(curChar);
+      } else{
+          newCurentCharacter = null;
       }
       
       fingerDistances.Thumb = newCurentCharacter.getThumbArray();
@@ -274,11 +274,11 @@ using UnityEngine.SceneManagement;
 
       if(distanceWatcherState && palmWatcherState && velocityWatcherState){
         activated = true;
+        velocityWatcherState = false;
       }else{
         activated = false;
       }
-
+    
       SetCurrentCharacter(currentCharacter);
     }
   }
-  

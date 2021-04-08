@@ -32,8 +32,6 @@ public class ActivatorSphere : MonoBehaviour
     //Menu Objects
     public GameObject endScreen, endScreenObject; //handles menu slides
 
-
-
     private void Awake() {
         meshRenderer = GetComponent<MeshRenderer>();
         hands = GameObject.FindGameObjectWithTag("Player");
@@ -61,29 +59,11 @@ public class ActivatorSphere : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // display the countdown
-        if (timerRunning)
-        {
-            if(currentTime > 0)
-            {
-                currentTime -= 1 * Time.deltaTime;
-                DisplayTime(currentTime);
-            }
-
-            else //stop timer and end the game
-            {
-                currentTime = 0f;
-                timeCounter.text = ("00:00");
-                timerRunning = false;
-                endScreen.GetComponent<PauseMenu>().EndGame();
-                endScreenObject.SetActive(true);
-            }
-        }
-
         //Capture the key of the next character
         DetermineKey();
         //Check if pressed
-        if(Input.GetKeyDown(key) || leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated){
+        if(leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated){
+        //if(Input.GetKeyDown(key) || leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated){
             //If the letter was pressed within the sphere, success, destroy. increment score
             if(letter.active){
                 letter.active = false;
@@ -91,6 +71,10 @@ public class ActivatorSphere : MonoBehaviour
                 AddStreak();
                 ExplodeSuccess();
                 IncScore();
+                leftHand.activated = false; 
+                rightHand.activated = false;
+                leftHand_nums.activated = false;
+                rightHand_nums.activated = false;
             }
         }
         
@@ -101,6 +85,25 @@ public class ActivatorSphere : MonoBehaviour
             ExplodeMissed();
             ResetStreak();
         }
+    
+        // display the countdown
+        // if (timerRunning)
+        // {
+        //     if(currentTime > 0)
+        //     {
+        //         currentTime -= 1 * Time.deltaTime;
+        //         DisplayTime(currentTime);
+        //     }
+
+        //     else //stop timer and end the game
+        //     {
+        //         currentTime = 0f;
+        //         timeCounter.text = ("00:00");
+        //         timerRunning = false;
+        //         endScreen.GetComponent<PauseMenu>().EndGame();
+        //         endScreenObject.SetActive(true);
+        //     }
+        // }
     }
 
     /*  This function handles changing a boolean when entering the activators

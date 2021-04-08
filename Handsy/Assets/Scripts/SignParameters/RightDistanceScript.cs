@@ -31,10 +31,10 @@ public class RightDistanceScript : MonoBehaviour
         rightLetters['b'] = new HandsyDistances(
             'b',
             new float[2] {0.03577588f, 0.05016045f}, 
-            new float[2] {0.08093867f, 0.1048017f},
-            new float[2] {0.09416926f, 0.1149734f},
-            new float[2] {0.09147123f, 0.1067778f},
-            new float[2] {0.06724428f, 0.08601554f},
+            new float[2] {0.08093867f, 0.1348017f},
+            new float[2] {0.09416926f, 0.1349734f},
+            new float[2] {0.09147123f, 0.1367778f},
+            new float[2] {0.06724428f, 0.12601554f},
             Leap.Unity.PointingType.RelativeToHorizon,
             targetTransform,
             Vector3.forward
@@ -133,14 +133,19 @@ public class RightDistanceScript : MonoBehaviour
         );
         rightLetters['j'] = new HandsyDistances(
             'j',
-            new float[2] {0.03823614f, 0.07968663f}, 
+            // new float[2] {0.03823614f, 0.07968663f}, 
+            // new float[2] {0.03426574f, 0.08320998f},
+            // new float[2] {0.03114417f, 0.05244818f},
+            // new float[2] {0.03176742f, 0.04548024f},
+            // new float[2] {0.04263401f, 0.08512638f},
+            new float[2] {0.03823614f, 0.08279707f}, 
             new float[2] {0.03426574f, 0.08320998f},
-            new float[2] {0.03114417f, 0.05244818f},
-            new float[2] {0.03176742f, 0.04548024f},
-            new float[2] {0.04263401f, 0.08512638f},
+            new float[2] {0.03114417f, 0.08880927f},
+            new float[2] {0.03176742f, 0.12748179f},
+            new float[2] {0.04263401f, 0.18512638f},
             Leap.Unity.PointingType.RelativeToHorizon,
             targetTransform,
-            Vector3.forward
+            Vector3.back
         );
         rightLetters['k'] = new HandsyDistances(
             'k',
