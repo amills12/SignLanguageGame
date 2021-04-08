@@ -263,7 +263,6 @@ using UnityEngine.SceneManagement;
       PointingType = newCurentCharacter.getPointingType();
       TargetObject = newCurentCharacter.getTargetTransform();
       PointingDirection = newCurentCharacter.getPointingDirection();
-      //Debug.Log("Pointing Direction is " + PointingDirection);
     }
 
     public void Update(){

@@ -17,8 +17,8 @@ using UnityEngine.SceneManagement;
 
     public bool activated = false;
     public float Period = .001f; //seconds
-    private IEnumerator watcherCoroutine, watcherCoroutinePalmWatcher;
-    private bool distanceWatcherState = false, palmWatcherState = false;
+    private IEnumerator watcherCoroutine, watcherCoroutinePalmWatcher, watcherCoroutineVelocity;
+    private bool distanceWatcherState = false, palmWatcherState = false, velocityWatcherState = false;
 
     //Angle variables for palm direction checks
     private float OnAngle = 45; // degrees
