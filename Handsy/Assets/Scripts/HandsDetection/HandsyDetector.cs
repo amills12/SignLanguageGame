@@ -106,22 +106,20 @@ namespace Leap.Unity {
 
       if (Char.IsDigit(curChar)){
         newCurentCharacter = numberScript.GetNumber(curChar);
+        Thumb = newCurentCharacter.getThumbExtension();
+        Index = newCurentCharacter.getIndexExtension();
+        Middle = newCurentCharacter.getMiddleExtension();
+        Ring = newCurentCharacter.getRingExtension();
+        Pinky = newCurentCharacter.getPinkyExtension();
+
+        PointingType = newCurentCharacter.getPointingType();
+        TargetObject = newCurentCharacter.getTargetTransform();
+        PointingDirection = newCurentCharacter.getPointingDirection();
+
+        currentCharacter = newCurentCharacter;
       } else{
         newCurentCharacter = null;
       }
-      
-
-      Thumb = newCurentCharacter.getThumbExtension();
-      Index = newCurentCharacter.getIndexExtension();
-      Middle = newCurentCharacter.getMiddleExtension();
-      Ring = newCurentCharacter.getRingExtension();
-      Pinky = newCurentCharacter.getPinkyExtension();
-
-      PointingType = newCurentCharacter.getPointingType();
-      TargetObject = newCurentCharacter.getTargetTransform();
-      PointingDirection = newCurentCharacter.getPointingDirection();
-
-      currentCharacter = newCurentCharacter;
     }
 
     char getNiceNumKey(KeyCode keycode){

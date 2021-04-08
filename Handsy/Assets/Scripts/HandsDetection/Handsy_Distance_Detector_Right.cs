@@ -246,23 +246,20 @@ using UnityEngine.SceneManagement;
     public void SetCurrentCharacter(char curChar){
       HandsyDistances newCurentCharacter;
 
-      if (Char.IsDigit(curChar)){
+      if (Char.IsLetter(curChar) || (curChar == '0')){
           newCurentCharacter = rightDistanceScript.GetCharacter(curChar);
-      } else if (Char.IsLetter(curChar)) {
-          newCurentCharacter = rightDistanceScript.GetCharacter(curChar);
+          fingerDistances.Thumb = newCurentCharacter.getThumbArray();
+          fingerDistances.Index = newCurentCharacter.getIndexArray();
+          fingerDistances.Middle = newCurentCharacter.getMiddleArray();
+          fingerDistances.Ring = newCurentCharacter.getRingArray();
+          fingerDistances.Pinky = newCurentCharacter.getPinkyArray();
+
+          PointingType = newCurentCharacter.getPointingType();
+          TargetObject = newCurentCharacter.getTargetTransform();
+          PointingDirection = newCurentCharacter.getPointingDirection();
       } else{
           newCurentCharacter = null;
       }
-      
-      fingerDistances.Thumb = newCurentCharacter.getThumbArray();
-      fingerDistances.Index = newCurentCharacter.getIndexArray();
-      fingerDistances.Middle = newCurentCharacter.getMiddleArray();
-      fingerDistances.Ring = newCurentCharacter.getRingArray();
-      fingerDistances.Pinky = newCurentCharacter.getPinkyArray();
-
-      PointingType = newCurentCharacter.getPointingType();
-      TargetObject = newCurentCharacter.getTargetTransform();
-      PointingDirection = newCurentCharacter.getPointingDirection();
     }
 
     public void Update(){
