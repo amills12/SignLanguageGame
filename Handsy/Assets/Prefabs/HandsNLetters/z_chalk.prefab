@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4301354245349813133}
   m_Layer: 0
   m_Name: z_chalk
-  m_TagString: Untagged
+  m_TagString: Letters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

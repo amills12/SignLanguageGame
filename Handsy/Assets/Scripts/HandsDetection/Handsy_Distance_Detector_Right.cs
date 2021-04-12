@@ -5,12 +5,15 @@ using System;
 using Leap;
 using Leap.Unity;
 using Leap.Unity.Attributes;
+using UnityEngine.SceneManagement;
 
   public class Handsy_Distance_Detector_Right : Detector {
 
     /* Sign Hero Connection Variables */
     ActivatorSphere activatorSphere;
+    SpawnerStatic spawnerRAM;
     char currentCharacter;
+    string scene;
 
     public bool activated = false;
     public float Period = .05f; //seconds
@@ -37,7 +40,6 @@ using Leap.Unity.Attributes;
         public float[] Pinky;
     }
     
-    //fingerDistances.Thumb[(int)fing.min] = 1;
     FingerDistances fingerDistances = new FingerDistances();
 
     //enums for min/max
@@ -46,6 +48,9 @@ using Leap.Unity.Attributes;
     RightDistanceScript rightDistanceScript;
 
     void Awake(){
+        //Capture scene name
+        scene = SceneManager.GetActiveScene().name;
+
         watcherCoroutine = watcher();
         watcherCoroutinePalmWatcher = palmWatcher();
         watcherCoroutineVelocity = velocityWatcher();
@@ -53,7 +58,10 @@ using Leap.Unity.Attributes;
         rightDistanceScript = GameObject.FindGameObjectWithTag("RightDistances").GetComponent<RightDistanceScript>();
         rightDistanceScript.Awake();
         //Find activator for object passing
-        activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();  
+        if(scene == "SignHero")
+          activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
+        else if (scene == "Repeat-After-Me")
+          spawnerRAM = GameObject.FindGameObjectWithTag("RAMSpawner").GetComponent<SpawnerStatic>(); 
     }
 
     void OnEnable () {
@@ -238,28 +246,28 @@ using Leap.Unity.Attributes;
     public void SetCurrentCharacter(char curChar){
       HandsyDistances newCurentCharacter;
 
-      if (Char.IsDigit(curChar)){
+      if (Char.IsLetter(curChar) || (curChar == '0')){
           newCurentCharacter = rightDistanceScript.GetCharacter(curChar);
-      } else if (Char.IsLetter(curChar)) {
-          newCurentCharacter = rightDistanceScript.GetCharacter(curChar);
+          fingerDistances.Thumb = newCurentCharacter.getThumbArray();
+          fingerDistances.Index = newCurentCharacter.getIndexArray();
+          fingerDistances.Middle = newCurentCharacter.getMiddleArray();
+          fingerDistances.Ring = newCurentCharacter.getRingArray();
+          fingerDistances.Pinky = newCurentCharacter.getPinkyArray();
+
+          PointingType = newCurentCharacter.getPointingType();
+          TargetObject = newCurentCharacter.getTargetTransform();
+          PointingDirection = newCurentCharacter.getPointingDirection();
       } else{
           newCurentCharacter = null;
       }
-      
-      fingerDistances.Thumb = newCurentCharacter.getThumbArray();
-      fingerDistances.Index = newCurentCharacter.getIndexArray();
-      fingerDistances.Middle = newCurentCharacter.getMiddleArray();
-      fingerDistances.Ring = newCurentCharacter.getRingArray();
-      fingerDistances.Pinky = newCurentCharacter.getPinkyArray();
-
-      PointingType = newCurentCharacter.getPointingType();
-      TargetObject = newCurentCharacter.getTargetTransform();
-      PointingDirection = newCurentCharacter.getPointingDirection();
-      //Debug.Log("Pointing Direction is " + PointingDirection);
     }
 
     public void Update(){
-      currentCharacter = activatorSphere.key.ToCharArray()[0];
+      //Get current scene name
+      if(scene == "SignHero")
+        currentCharacter = activatorSphere.key.ToCharArray()[0];
+      else if (scene == "Repeat-After-Me")
+        currentCharacter = spawnerRAM.characterKey;
 
       if(distanceWatcherState && palmWatcherState && velocityWatcherState){
         activated = true;

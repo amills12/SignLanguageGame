@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using Leap.Unity.Attributes;
+using UnityEngine.SceneManagement;
 
 namespace Leap.Unity {
 
@@ -18,7 +19,9 @@ namespace Leap.Unity {
 
     /* Sign Hero Connection Variables */
     ActivatorSphere activatorSphere;
+    SpawnerStatic spawnerRAM;
     public bool activated = false;
+    char currCharacter;
     
     GameObject Numbers;
     NumberScript numberScript;
@@ -68,6 +71,8 @@ namespace Leap.Unity {
     private IEnumerator watcherCoroutineExtendedFingerWatcher;
     private IEnumerator watcherCoroutinePalmWatcher;
 
+    string scene;
+
     void OnValidate() {
 
       // Extended Finger
@@ -101,24 +106,20 @@ namespace Leap.Unity {
 
       if (Char.IsDigit(curChar)){
         newCurentCharacter = numberScript.GetNumber(curChar);
-      } else if (Char.IsLetter(curChar)) {
-        newCurentCharacter = letterScript.GetLetter(curChar);
+        Thumb = newCurentCharacter.getThumbExtension();
+        Index = newCurentCharacter.getIndexExtension();
+        Middle = newCurentCharacter.getMiddleExtension();
+        Ring = newCurentCharacter.getRingExtension();
+        Pinky = newCurentCharacter.getPinkyExtension();
+
+        PointingType = newCurentCharacter.getPointingType();
+        TargetObject = newCurentCharacter.getTargetTransform();
+        PointingDirection = newCurentCharacter.getPointingDirection();
+
+        currentCharacter = newCurentCharacter;
       } else{
         newCurentCharacter = null;
       }
-      
-
-      Thumb = newCurentCharacter.getThumbExtension();
-      Index = newCurentCharacter.getIndexExtension();
-      Middle = newCurentCharacter.getMiddleExtension();
-      Ring = newCurentCharacter.getRingExtension();
-      Pinky = newCurentCharacter.getPinkyExtension();
-
-      PointingType = newCurentCharacter.getPointingType();
-      TargetObject = newCurentCharacter.getTargetTransform();
-      PointingDirection = newCurentCharacter.getPointingDirection();
-
-      currentCharacter = newCurentCharacter;
     }
 
     char getNiceNumKey(KeyCode keycode){
@@ -130,6 +131,9 @@ namespace Leap.Unity {
     }
 
     void Awake () {
+      //Capture scene name
+      scene = SceneManager.GetActiveScene().name;
+      
       watcherCoroutineExtendedFingerWatcher = extendedFingerWatcher();
       watcherCoroutinePalmWatcher = palmWatcher();
 
@@ -142,8 +146,11 @@ namespace Leap.Unity {
       letterScript.Awake();
 
       //SetCurrentCharacter('1');
-      activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
       
+      if(scene == "SignHero")
+        activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
+      else if (scene == "Repeat-After-Me")
+        spawnerRAM = GameObject.FindGameObjectWithTag("RAMSpawner").GetComponent<SpawnerStatic>();
     }
   
     void OnEnable () {
@@ -266,6 +273,12 @@ namespace Leap.Unity {
 
     public void Update ()
     {
+      //Get current scene name
+      if(scene == "SignHero")
+        currCharacter = activatorSphere.key.ToCharArray()[0];
+      else if (scene == "Repeat-After-Me")
+        currCharacter = spawnerRAM.characterKey;
+
       //What does this do?
       if (extendedFingerWatcherState && palmWatcherState){
         Activate();
@@ -289,7 +302,7 @@ namespace Leap.Unity {
       //   }
       // }
       // Debug.Log("Character from ActivatorSphere: " + activatorSphere.key.ToCharArray()[0]);
-      SetCurrentCharacter(activatorSphere.key.ToCharArray()[0]);
+      SetCurrentCharacter(currCharacter);
     }
   }
 }

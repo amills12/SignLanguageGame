@@ -23,6 +23,8 @@ public class SpawnerStatic : MonoBehaviour
 
     public Text tempProgress; //remember to delete later.
 
+    public char characterKey;
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~ Game Logic ~~~~~~~~~~~~~~~~~~~~~~~~~//
     void Start()
     {
@@ -66,10 +68,13 @@ public class SpawnerStatic : MonoBehaviour
             //retrieve another random letter
             letIndex = Random.Range(0, size);
 
-            //wait for animation
-            StartCoroutine(waitToStart(0.1f));
+            //wait for animation - changed this to avoid repetitive accepts
+            StartCoroutine(waitToStart(2.0f));
         }
 
+        //feed character to recognition
+        characterKey = clonePrefab[letIndex].name.ToCharArray()[0];
+        Debug.Log("characterKey: " + characterKey);
     }
 
     void Spawn()

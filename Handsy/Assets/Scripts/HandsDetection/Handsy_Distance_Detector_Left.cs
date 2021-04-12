@@ -5,15 +5,18 @@ using System;
 using Leap;
 using Leap.Unity;
 using Leap.Unity.Attributes;
+using UnityEngine.SceneManagement;
 
   public class Handsy_Distance_Detector_Left : Detector {
 
     /* Sign Hero Connection Variables */
     ActivatorSphere activatorSphere;
+    SpawnerStatic spawnerRAM;
     char currentCharacter;
+    string scene;
 
     public bool activated = false;
-    public float Period = .05f; //seconds
+    public float Period = .001f; //seconds
     private IEnumerator watcherCoroutine, watcherCoroutinePalmWatcher, watcherCoroutineVelocity;
     private bool distanceWatcherState = false, palmWatcherState = false, velocityWatcherState = false;
 
@@ -30,14 +33,13 @@ using Leap.Unity.Attributes;
 
     //structure for finger distance comparisons
     struct FingerDistances{
-        public float[] Thumb;
-        public float[] Index;
-        public float[] Middle;
-        public float[] Ring;
-        public float[] Pinky;
+      public float[] Thumb;
+      public float[] Index;
+      public float[] Middle;
+      public float[] Ring;
+      public float[] Pinky;
     }
     
-    //fingerDistances.Thumb[(int)fing.min] = 1;
     FingerDistances fingerDistances = new FingerDistances();
 
     //enums for min/max
@@ -46,40 +48,44 @@ using Leap.Unity.Attributes;
     LeftDistanceScript leftDistanceScript;
 
     void Awake(){
-        watcherCoroutine = watcher();
-        watcherCoroutinePalmWatcher = palmWatcher();
-        watcherCoroutineVelocity = velocityWatcher();
-        //Find and awake the library
-        leftDistanceScript = GameObject.FindGameObjectWithTag("LeftDistances").GetComponent<LeftDistanceScript>();
-        leftDistanceScript.Awake();
-        //Find activator for object passing
-        activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
-    }
+       //Capture scene name
+      scene = SceneManager.GetActiveScene().name;
+
+      watcherCoroutine = watcher();
+      watcherCoroutinePalmWatcher = palmWatcher();
+      watcherCoroutineVelocity = velocityWatcher();
+      //Find and awake the library
+      leftDistanceScript = GameObject.FindGameObjectWithTag("LeftDistances").GetComponent<LeftDistanceScript>();
+      leftDistanceScript.Awake();
+      //Find activator for object passing
+      if(scene == "SignHero")
+          activatorSphere = GameObject.FindGameObjectWithTag("Activator").GetComponent<ActivatorSphere>();
+        else if (scene == "Repeat-After-Me")
+          spawnerRAM = GameObject.FindGameObjectWithTag("RAMSpawner").GetComponent<SpawnerStatic>(); 
+    } 
 
     void OnEnable () {
-        StopCoroutine(watcherCoroutine);
-        StartCoroutine(watcherCoroutine);
-        StopCoroutine(watcherCoroutinePalmWatcher);
-        StartCoroutine(watcherCoroutinePalmWatcher);
-        StopCoroutine(watcherCoroutineVelocity);
-        StartCoroutine(watcherCoroutineVelocity);
+      StopCoroutine(watcherCoroutine);
+      StartCoroutine(watcherCoroutine);
+      StopCoroutine(watcherCoroutinePalmWatcher);
+      StartCoroutine(watcherCoroutinePalmWatcher);
+      StopCoroutine(watcherCoroutineVelocity);
+      StartCoroutine(watcherCoroutineVelocity);
     }
 
     void OnDisable () {
-        StopCoroutine(watcherCoroutine);
-        StopCoroutine(watcherCoroutinePalmWatcher);
-        StopCoroutine(watcherCoroutineVelocity);
-        palmWatcherState = false;
-        distanceWatcherState = false;
-        velocityWatcherState = false;
-        activated = false;
+      StopCoroutine(watcherCoroutine);
+      StopCoroutine(watcherCoroutinePalmWatcher);
+      StopCoroutine(watcherCoroutineVelocity);
+      palmWatcherState = false;
+      distanceWatcherState = false;
+      velocityWatcherState = false;
+      activated = false;
     }
 
     /*  Return true/false depending on if the fingers are within the vector bounds from map */
     private bool matchFingerState(Finger finger, Hand hand, float min, float max){
-      //Debug.Log("In matchFingerState: min = " + min + ", max = " + max);
       float comparison = Vector3.Distance(finger.TipPosition.ToVector3(), hand.PalmPosition.ToVector3());
-      //Debug.Log("Distance calculation: " + comparison);
       return (comparison >= min) && (comparison <= max);
     }
 
@@ -87,16 +93,10 @@ using Leap.Unity.Attributes;
     IEnumerator watcher(){
       Hand hand;
       while(true){
-          //Your logic to compute or check the current watchedValue goes here
         bool fingerState = false;
         if(HandModel != null && HandModel.IsTracked){
           hand = HandModel.GetLeapHand();
           if(hand != null){
-            // Debug.Log("Thumb Position - Palm: " + Vector3.Distance(hand.Fingers[0].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
-            // Debug.Log("Index Position - Palm: " + Vector3.Distance(hand.Fingers[1].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
-            // Debug.Log("Middel Position - Palm: " + Vector3.Distance(hand.Fingers[2].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
-            // Debug.Log("Ring Position - Palm: " + Vector3.Distance(hand.Fingers[3].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
-            // Debug.Log("Pinky Position - Palm: " + Vector3.Distance(hand.Fingers[4].TipPosition.ToVector3(), hand.PalmPosition.ToVector3()));
             if(fingerDistances.Thumb != null){
               fingerState = matchFingerState(hand.Fingers[0], hand, fingerDistances.Thumb[(int)fing.min], fingerDistances.Thumb[(int)fing.max])
                 && matchFingerState(hand.Fingers[1], hand, fingerDistances.Index[(int)fing.min], fingerDistances.Index[(int)fing.max])
@@ -107,12 +107,10 @@ using Leap.Unity.Attributes;
           }
 
           if(HandModel.IsTracked && fingerState){
-            // Debug.Log("Activating");
             distanceWatcherState = true;
             Activate();
           }
           else if(!HandModel.IsTracked || !fingerState){
-            // Debug.Log("Deactivating");
             distanceWatcherState = false;
             Deactivate();
           }
@@ -224,7 +222,7 @@ using Leap.Unity.Attributes;
                         }
                         yield return wait;
                         vel = hand.PalmVelocity;
-                        while(vel.x < 0.50){
+                        while(vel.x > -0.50){
                             // Debug.Log("J Checkpoint 2");
                             // Debug.Log("x velocity: " + vel.x);
                             vel = hand.PalmVelocity;
@@ -245,41 +243,39 @@ using Leap.Unity.Attributes;
     }
 
     // Function for setting a new character, called in update
-    public void SetCurrentCharacter(char curChar){
+   public void SetCurrentCharacter(char curChar){
       HandsyDistances newCurentCharacter;
 
-      if (Char.IsDigit(curChar)){
- //       Debug.Log(curChar);
-        newCurentCharacter = leftDistanceScript.GetCharacter(curChar);
-      } else if (Char.IsLetter(curChar)) {
- //       Debug.Log(curChar);
-        newCurentCharacter = leftDistanceScript.GetCharacter(curChar);
-      } else{
- //       Debug.Log("Nullified");
-        newCurentCharacter = null;
-      }
-      
-      fingerDistances.Thumb = newCurentCharacter.getThumbArray();
-      fingerDistances.Index = newCurentCharacter.getIndexArray();
-      fingerDistances.Middle = newCurentCharacter.getMiddleArray();
-      fingerDistances.Ring = newCurentCharacter.getRingArray();
-      fingerDistances.Pinky = newCurentCharacter.getPinkyArray();
+      if (Char.IsLetter(curChar) || (curChar == '0')){
+          newCurentCharacter = leftDistanceScript.GetCharacter(curChar);
+          fingerDistances.Thumb = newCurentCharacter.getThumbArray();
+          fingerDistances.Index = newCurentCharacter.getIndexArray();
+          fingerDistances.Middle = newCurentCharacter.getMiddleArray();
+          fingerDistances.Ring = newCurentCharacter.getRingArray();
+          fingerDistances.Pinky = newCurentCharacter.getPinkyArray();
 
-      PointingType = newCurentCharacter.getPointingType();
-      TargetObject = newCurentCharacter.getTargetTransform();
-      PointingDirection = newCurentCharacter.getPointingDirection();
+          PointingType = newCurentCharacter.getPointingType();
+          TargetObject = newCurentCharacter.getTargetTransform();
+          PointingDirection = newCurentCharacter.getPointingDirection();
+      } else{
+          newCurentCharacter = null;
+      }
     }
 
     public void Update(){
-      currentCharacter = activatorSphere.key.ToCharArray()[0];
+      //Get current scene name
+      if(scene == "SignHero")
+        currentCharacter = activatorSphere.key.ToCharArray()[0];
+      else if (scene == "Repeat-After-Me")
+        currentCharacter = spawnerRAM.characterKey;
 
       if(distanceWatcherState && palmWatcherState && velocityWatcherState){
         activated = true;
+        velocityWatcherState = false;
       }else{
         activated = false;
       }
-
+    
       SetCurrentCharacter(currentCharacter);
     }
   }
-  
