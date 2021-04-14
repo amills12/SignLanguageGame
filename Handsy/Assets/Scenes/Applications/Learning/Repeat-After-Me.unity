@@ -952,6 +952,10 @@ PrefabInstance:
       value: Leap Motion Controller
       objectReference: {fileID: 0}
     - target: {fileID: 166326, guid: b9c7aaf0d314cb847a3b2a20e893f1b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 166326, guid: b9c7aaf0d314cb847a3b2a20e893f1b6, type: 3}
       propertyPath: m_TagString
       value: LMC
       objectReference: {fileID: 0}
@@ -9631,7 +9635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 825, y: -159}
+  m_AnchoredPosition: {x: 744.9, y: -159}
   m_SizeDelta: {x: 389.49182, y: 79.33885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1249425529
@@ -9666,7 +9670,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0/30
+  m_Text: 'Progress: 0/30'
 --- !u!222 &1249425530
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11739,6 +11743,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  correctPrefab:
+  - {fileID: 1562259662580625795, guid: 8263c007782767f4e970ab88790fca82, type: 3}
+  - {fileID: 1205137637107902643, guid: 054cb8a2aff657d439a421daf88d9a1d, type: 3}
+  - {fileID: 1736443338001042663, guid: 4dbc8b0c78a56db498d748807d4844e1, type: 3}
   pencil: {fileID: 0}
   animated: {fileID: 679592134}
   sprMask: {fileID: 679592132}

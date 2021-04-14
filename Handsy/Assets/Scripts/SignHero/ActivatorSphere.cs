@@ -87,23 +87,23 @@ public class ActivatorSphere : MonoBehaviour
         }
     
         // display the countdown
-        // if (timerRunning)
-        // {
-        //     if(currentTime > 0)
-        //     {
-        //         currentTime -= 1 * Time.deltaTime;
-        //         DisplayTime(currentTime);
-        //     }
+        if (timerRunning)
+        {
+            if(currentTime > 0)
+            {
+                currentTime -= 1 * Time.deltaTime;
+                DisplayTime(currentTime);
+            }
 
-        //     else //stop timer and end the game
-        //     {
-        //         currentTime = 0f;
-        //         timeCounter.text = ("00:00");
-        //         timerRunning = false;
-        //         endScreen.GetComponent<PauseMenu>().EndGame();
-        //         endScreenObject.SetActive(true);
-        //     }
-        // }
+            else //stop timer and end the game
+            {
+                currentTime = 0f;
+                timeCounter.text = ("00:00");
+                timerRunning = false;
+                endScreen.GetComponent<PauseMenu>().EndGame();
+                endScreenObject.SetActive(true);
+            }
+        }
     }
 
     /*  This function handles changing a boolean when entering the activators

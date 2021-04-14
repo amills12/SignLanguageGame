@@ -10,6 +10,7 @@ public class SpawnerStatic : MonoBehaviour
     public Vector3 location; // for holding xyz location of asset spawn
     public GameObject[] prefab; //array that holds all the hand models
     public GameObject[] clonePrefab; //used to retrieve models from prefab array and display them
+    public GameObject[] correctPrefab; //array that holds all the correct messages
     public AudioSource pencil; //sound source for a pencil drawing sound
     public Animator animated; //for fade in animation
     public GameObject sprMask; //object that contains animation
@@ -55,12 +56,15 @@ public class SpawnerStatic : MonoBehaviour
         generate a new random object from the array, then spawn it*/
         else if (timeDone && !clonePrefab[letIndex].GetComponent<LetterSS>().isActivated)
         {
-            
             getProgressPct();
             Destroy(clonePrefab[letIndex]);
+            timeDone = false;
+
+            //spawn a correct message
+            StartCoroutine(correctMessageDisplay(0.5f));
+
             //increment the score on successful sign
             score++;
-            timeDone = false;
 
             //reactivate the letter for later use
             prefab[letIndex].GetComponent<LetterSS>().isActivated = true;
@@ -79,12 +83,42 @@ public class SpawnerStatic : MonoBehaviour
 
     void Spawn()
     {
-
         //get the location of the desired letter spawn   
         location = spawnLocation.transform.position;
 
         //clone the desired prefab object to spawn at the desired location
         clonePrefab[letIndex] = Instantiate(prefab[letIndex], location, Quaternion.Euler(0, 0, 0)) as GameObject;
+    }
+
+    GameObject CorrectMessage(){
+        //get the location of the desired letter spawn   
+        int index = Random.Range(0,3);
+
+        location = spawnLocation.transform.position;
+
+        Transform[] children = correctPrefab[index].GetComponentsInChildren<Transform>();
+        location.x = location.x - ((children.Length / 3.0f ) * 0.1f); //correctPrefab[index].transform.GetChild(children.Length/2);
+
+        //clone the desired prefab object to spawn at the desired location
+        GameObject go = Instantiate(correctPrefab[index], location, Quaternion.Euler(0, 0, 0)) as GameObject;
+        return go;
+    }
+
+    IEnumerator correctMessageDisplay(float time)
+    {
+        //set a timer
+        yield return new WaitForSeconds(time);
+
+        //start animation - THIS ANIMATION DOES NOT WORK
+        animated.Play("AnPractice");
+        GameObject correctMessage = CorrectMessage();
+
+        //set a short timer for the drawing sound to play in conjunction with the animation
+        yield return new WaitForSeconds(0.5f);
+        pencil.Play();
+        
+        yield return new WaitForSeconds(1.5f);
+        Destroy(correctMessage);
     }
 
     IEnumerator waitToStart(float time)
@@ -96,13 +130,14 @@ public class SpawnerStatic : MonoBehaviour
         animated.Play("AnPractice");
         Spawn();
 
-        //ensure the time has finished before spawning the next letter
-        timeDone = true;
-
         //set a short timer for the drawing sound to play in conjunction with the animation
         yield return new WaitForSeconds(0.5f);
         pencil.Play();
+        
+        yield return new WaitForSeconds(1.0f);
 
+        //ensure the time has finished before spawning the next letter
+        timeDone = true;
     }
    
     /*
