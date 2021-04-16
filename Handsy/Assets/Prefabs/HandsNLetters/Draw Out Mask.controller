@@ -32,7 +32,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Sprite Mask
+  m_Name: Draw Out Mask
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -81,7 +81,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 2976318550783192459}
-    m_Position: {x: 290, y: 140, z: 0}
+    m_Position: {x: 280, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7158206519668467855}
     m_Position: {x: 540, y: 80, z: 0}
@@ -108,7 +108,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AnPractice
+  m_Name: DrawOut
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -122,7 +122,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 586f63a15287a6d41a22894774c88cda, type: 2}
+  m_Motion: {fileID: 7400000, guid: 22d5cb4b25fd8ca4a91ee88bca7b64a6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

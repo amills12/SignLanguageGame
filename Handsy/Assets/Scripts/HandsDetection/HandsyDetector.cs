@@ -106,20 +106,21 @@ namespace Leap.Unity {
 
       if (Char.IsDigit(curChar)){
         newCurentCharacter = numberScript.GetNumber(curChar);
-        Thumb = newCurentCharacter.getThumbExtension();
-        Index = newCurentCharacter.getIndexExtension();
-        Middle = newCurentCharacter.getMiddleExtension();
-        Ring = newCurentCharacter.getRingExtension();
-        Pinky = newCurentCharacter.getPinkyExtension();
-
-        PointingType = newCurentCharacter.getPointingType();
-        TargetObject = newCurentCharacter.getTargetTransform();
-        PointingDirection = newCurentCharacter.getPointingDirection();
 
         currentCharacter = newCurentCharacter;
       } else{
         newCurentCharacter = null;
+        currentCharacter = null;
       }
+
+      Thumb = newCurentCharacter.getThumbExtension();
+      Index = newCurentCharacter.getIndexExtension();
+      Middle = newCurentCharacter.getMiddleExtension();
+      Ring = newCurentCharacter.getRingExtension();
+      Pinky = newCurentCharacter.getPinkyExtension();
+      PointingType = newCurentCharacter.getPointingType();
+      TargetObject = newCurentCharacter.getTargetTransform();
+      PointingDirection = newCurentCharacter.getPointingDirection();
     }
 
     char getNiceNumKey(KeyCode keycode){
@@ -280,28 +281,13 @@ namespace Leap.Unity {
         currCharacter = spawnerRAM.characterKey;
 
       //What does this do?
-      if (extendedFingerWatcherState && palmWatcherState){
+      if (extendedFingerWatcherState && palmWatcherState && currentCharacter != null){
         Activate();
         activated = true;
       }else{
         Deactivate();
         activated = false;
       }
-      // foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
-      // {
-      //   if (Input.GetKeyDown(kcode)){
-      //     if (kcode.ToString().Contains("Alpha")){
-      //       Debug.Log("Number");
-      //       SetCurrentCharacter(getNiceNumKey(kcode));
-      //     }else if(kcode.ToString().Length == 1){
-      //       Debug.Log("Letter");
-      //       Debug.Log(kcode.ToString().ToLower()[0]);
-      //       SetCurrentCharacter(kcode.ToString().ToLower()[0]);
-      //     }
-      //     Debug.Log(currentCharacter.id);
-      //   }
-      // }
-      // Debug.Log("Character from ActivatorSphere: " + activatorSphere.key.ToCharArray()[0]);
       SetCurrentCharacter(currCharacter);
     }
   }

@@ -44,13 +44,12 @@ public class LetterSS : MonoBehaviour
     }
     void Update()
     {
-        cleanKey(key);
+        //cleanKey(key);
         if(ss.timeDone && (Input.GetKeyDown(key)  || leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated)
             && ((leftHand != null) || (rightHand != null) || (leftHand_nums != null) || (rightHand_nums != null)) )
         {
-            GetComponentInChildren<SpriteRenderer>().enabled = false; //remove font visibility
-            GetComponent<SpriteRenderer>().enabled = false; //remove hand model visibility
             isActivated = false; //deactivate letter
+            ss.correctlySigned = true;
 
             mastery++;//if successfully signed, mastery increases one level
             if(mastery == masteryLevel) //if mastery reaches set level, then add to progress
