@@ -34,6 +34,10 @@ public class ActivatorSphere : MonoBehaviour
     //Menu Objects
     public GameObject endScreen, endScreenObject; //handles menu slides
 
+    //hand objects
+    public GameObject[] prefab;
+    GameObject fadeGO;
+
     private void Awake() {
         meshRenderer = GetComponent<MeshRenderer>();
         hands = GameObject.FindGameObjectWithTag("Player");
@@ -57,6 +61,8 @@ public class ActivatorSphere : MonoBehaviour
 
         //Set the scores integer value to 000 as default
         PlayerPrefs.SetInt("Score", 000);
+        PlayerPrefs.SetInt("Streak", streak);
+        PlayerPrefs.SetInt("Mult", multiplier);
         old = meshRenderer.material.color;
         
         //start timer at 3:00 to begin the countdown
@@ -89,6 +95,7 @@ public class ActivatorSphere : MonoBehaviour
         if(letter.hit && letter.active){
             letter.active = false;
             Destroy(letter.gameObject);
+            //findSpriteForMiss();
             ExplodeMissed();
             ResetStreak();
         }
@@ -218,6 +225,42 @@ public class ActivatorSphere : MonoBehaviour
         currentLetter = GetClosestLetter();
         letter = currentLetter.GetComponent<Letter>();
         key = currentLetter.name[7].ToString().ToLower();
+    }
+
+    void findSpriteForMiss(){
+        //Find the sprite to display for a miss
+        Debug.Log("Letter to find is: " + key);
+        foreach(GameObject go in prefab){
+            if(go.name.ToLower() == key){
+                Debug.Log("Sprite name is: " + go.name.ToLower());
+                Vector3 pos = this.transform.position;
+                pos.y = pos.y + 2.5f;
+                Instantiate(go, pos, Quaternion.Euler(0,0,0));
+                StartCoroutine(fade(go, 1.4f));
+            }
+        }
+    }
+
+    IEnumerator fade(GameObject go, float duration)
+    {
+        float counter = 0;
+        //Get current color
+        SpriteRenderer sr = go.GetComponent<SpriteRenderer>(); 
+        Color spriteColor = sr.color;
+
+        while (counter < duration)
+        {
+            counter += Time.deltaTime;
+            //Fade from 1 to 0
+            float alpha = Mathf.Lerp(1, 0, counter / duration);
+            Debug.Log(alpha);
+
+            //Change alpha only
+            sr.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
+
+            //Wait for a frame
+            yield return null;
+        }
     }
 
     void DisplayTime(float timeToDisplay)
