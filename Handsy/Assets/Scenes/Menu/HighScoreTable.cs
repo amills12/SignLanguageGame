@@ -36,6 +36,10 @@ public class HighScoreTable : MonoBehaviour
         if(highscores == null)
         {
             generateDefaultTable(highscores);
+
+            // Reload Table
+            jsonString = PlayerPrefs.GetString("highscoreTable");
+            highscores = JsonUtility.FromJson<Highscores>(jsonString);
         }
 
         //Set up score table
