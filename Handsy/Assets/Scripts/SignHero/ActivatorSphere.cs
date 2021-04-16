@@ -24,6 +24,8 @@ public class ActivatorSphere : MonoBehaviour
     int multiplier = 1, streak = 0;
     public int streakVal = 2;
 
+    float standardRadius;
+
     // Timer Objects
     public Text timeCounter; //counter text display
     private bool timerRunning = false; //determines whether or not timer is running
@@ -48,6 +50,11 @@ public class ActivatorSphere : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject go = GameObject.FindGameObjectWithTag("SuccessExplosion");
+        ParticleSystem exp = go.GetComponent<ParticleSystem>();
+        ParticleSystem.ShapeModule shapeModule = exp.shape;
+        standardRadius = shapeModule.radius;
+
         //Set the scores integer value to 000 as default
         PlayerPrefs.SetInt("Score", 000);
         old = meshRenderer.material.color;
@@ -160,6 +167,11 @@ public class ActivatorSphere : MonoBehaviour
     void ExplodeSuccess() {
         GameObject go = GameObject.FindGameObjectWithTag("SuccessExplosion");
         ParticleSystem exp = go.GetComponent<ParticleSystem>();
+        ParticleSystem.ShapeModule shapeModule = exp.shape;
+        if(multiplier == 1)
+            shapeModule.radius = standardRadius;
+        else
+            shapeModule.radius = standardRadius * multiplier;
         exp.Play();
         audioSuccess.Play();
     }
