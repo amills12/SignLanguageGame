@@ -53,6 +53,7 @@ public class LetterSS : MonoBehaviour
             }
 
             PlayerPrefs.SetInt(signID, mastery); //set the mastery level within the local database for the specific letter
+            Debug.Log(signID);
         }
     }
 
