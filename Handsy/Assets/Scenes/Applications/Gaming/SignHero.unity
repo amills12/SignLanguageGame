@@ -592,7 +592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &81470545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2988,7 +2988,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3679,7 +3679,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 50
+        scalar: 200
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -10302,6 +10302,43 @@ MonoBehaviour:
   timeCounter: {fileID: 1839607296}
   endScreen: {fileID: 653253392}
   endScreenObject: {fileID: 869538841}
+  prefab:
+  - {fileID: 738352055021880808, guid: 8a27e0b6e5b769744a3144a1bdd077c6, type: 3}
+  - {fileID: 4694082691340320958, guid: 1a74a996137d64c4a99b54df298fec7e, type: 3}
+  - {fileID: 8690854993069740112, guid: 2e54398a5ae15c74caea308992c7f562, type: 3}
+  - {fileID: 6063730856358457388, guid: b7d0e60d1a802694c933ba68aa056507, type: 3}
+  - {fileID: 740785928646747296, guid: 74169987784a05d4b829d44586979d9e, type: 3}
+  - {fileID: 8070912474503343395, guid: 99c1030b0a515c040afe2659d6620ef8, type: 3}
+  - {fileID: 2107497551491923482, guid: 832ac85a39cb81f4eb268467984a5e7a, type: 3}
+  - {fileID: 461123195780471873, guid: 7fc13d4ed39f33e4aa563c3cecc73130, type: 3}
+  - {fileID: 2725618999361862829, guid: d23218cbcd93e73488941581b710f164, type: 3}
+  - {fileID: 7716767724256804627, guid: 5d39e881a1be2764ab291ec6d7cf529f, type: 3}
+  - {fileID: 1384137142783474272, guid: 6f2210321ffa4e34f83e355d66c73395, type: 3}
+  - {fileID: 6828306748598761812, guid: 277675ca02ec1d446a72281dad8d7a92, type: 3}
+  - {fileID: 7332884340037161122, guid: 4db39d8c4e5b8e644bcc5277416a2544, type: 3}
+  - {fileID: 5345536172164137997, guid: f91ab049c0fd34640bae6b582883b1bc, type: 3}
+  - {fileID: 6012244804347619126, guid: 4f296b947b4a17a4da01c7fa526a7224, type: 3}
+  - {fileID: 3398582029707148636, guid: 5b15d43e6c75eb143ad46e21fe0d1fc9, type: 3}
+  - {fileID: 6820150483376656408, guid: 7c9cad403d2778645920e8c11576c57c, type: 3}
+  - {fileID: 8106922081530540326, guid: 8e75213f4ba471847b10c6828ade9321, type: 3}
+  - {fileID: 1510454135337061941, guid: 5cf168613dac3d0408f1743b08f984fc, type: 3}
+  - {fileID: 3779719606849018617, guid: 3583bf57fcbe369419e1c327415ee743, type: 3}
+  - {fileID: 3673092210129597613, guid: 14b6bfdbf70d4aa4492741724070a034, type: 3}
+  - {fileID: 4704636497974191425, guid: f30fa1d176295454c95aedbe38375d12, type: 3}
+  - {fileID: 8651188020572261809, guid: d551c3524ceab1d45a234bea27d4ae11, type: 3}
+  - {fileID: 2297212510059813628, guid: 2b9d7fd94eaa0684ea607be0e845a3bf, type: 3}
+  - {fileID: 8755895911308131602, guid: be024fa908bc3f44c84a3fbcb48707a2, type: 3}
+  - {fileID: 6291566384330523214, guid: 922d4f72d79a5604696dd4d24a7c4b17, type: 3}
+  - {fileID: 357006496877478129, guid: aa20925f076bcae4cb79e344ee229b87, type: 3}
+  - {fileID: 6765045324838724869, guid: 91640627b10de994a892eb4647e0ff13, type: 3}
+  - {fileID: 2946606130376429489, guid: 490887d54f1dfa94094ee66234c6a65b, type: 3}
+  - {fileID: 6814007788512885014, guid: 37dfd360eee1bce4780de4d3c4a6a22b, type: 3}
+  - {fileID: 3286632565752907380, guid: 4b7ef6c3c10e2a54abc93c73944c18c9, type: 3}
+  - {fileID: 4936820849577833122, guid: 91bc6490f5240204f96910122eefa152, type: 3}
+  - {fileID: 4683269053184680498, guid: 2555a30b07532c84ea23df7055a9e27f, type: 3}
+  - {fileID: 6080787930435002734, guid: abb9ded6198e9614c89fac1064370faf, type: 3}
+  - {fileID: 8982829605479528816, guid: 7f67169d7fdcdf14bb5927d3c2ac85e0, type: 3}
+  - {fileID: 1310838608377819561, guid: de58a0aab157ecf4cad59a408e1207ec, type: 3}
 --- !u!4 &773113267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1153157417417484979, guid: 4a71d9d16a2b7cf40b935ee6ef6759f7,
@@ -15835,7 +15872,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -16526,7 +16563,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 50
+        scalar: 100
         minScalar: 30
         maxCurve:
           serializedVersion: 2

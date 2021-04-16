@@ -13,6 +13,6 @@ public class Scoring : MonoBehaviour
     void Update()
     {
         myStatus = getStatus.GetComponent<SpawnerStatic>().score;
-        scoreText.text = myStatus + "/30";
+        scoreText.text = "Progress: " + myStatus + "/30";
     }
 }
