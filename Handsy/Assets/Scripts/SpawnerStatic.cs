@@ -134,9 +134,5 @@ public class SpawnerStatic : MonoBehaviour
             PlayerPrefs.SetString("PercentDisplayNum", progressStr);   
     }
 
-    public void reset()
-    {
-        PlayerPrefs.DeleteAll();
-    }
 
 }

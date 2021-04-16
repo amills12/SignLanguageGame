@@ -12,6 +12,7 @@ public class ProgressBar : MonoBehaviour
     public string alphaOrNumStr, alphaOrNumFl;
     // Hold the value of the progress
     private float targetProgress = 0;
+    
 
     // Grab the slider instance
     private void Awake()
@@ -28,6 +29,7 @@ public class ProgressBar : MonoBehaviour
             slider.value = targetProgress/100f;
             percentVal.text = PlayerPrefs.GetString(alphaOrNumStr);
         }
+
         else
         {
             slider.value = 0;
@@ -46,5 +48,13 @@ public class ProgressBar : MonoBehaviour
     public void IncrementProgress(float newProgress)
     {
         targetProgress += newProgress;
+    }
+
+        // Start is called before the first frame update
+    public void resetProgress()
+    {
+        slider.value = 0;
+        percentVal.text = "0%";
+        PlayerPrefs.DeleteAll();
     }
 }
