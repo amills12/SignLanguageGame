@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: aff60eff68ac55148824ea81eda4c4da,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1943,6 +1944,7 @@ GameObject:
   - component: {fileID: 342209058}
   - component: {fileID: 342209059}
   - component: {fileID: 342209060}
+  - component: {fileID: 342209061}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2111,6 +2113,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &342209061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342209054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16c175f8c45bf74fa793f679cf3f0d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scores: {fileID: 1228524589}
 --- !u!1 &343680288
 GameObject:
   m_ObjectHideFlags: 0
