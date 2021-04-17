@@ -45,8 +45,7 @@ public class LetterSS : MonoBehaviour
     void Update()
     {
         //cleanKey(key);
-        if(ss.timeDone && (Input.GetKeyDown(key)  || leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated)
-            && ((leftHand != null) || (rightHand != null) || (leftHand_nums != null) || (rightHand_nums != null)) )
+        if(ss.timeDone && (Input.GetKeyDown(key)  || ((leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated))))
         {
             isActivated = false; //deactivate letter
             ss.correctlySigned = true;
