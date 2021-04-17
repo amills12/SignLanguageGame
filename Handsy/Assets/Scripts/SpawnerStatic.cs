@@ -68,7 +68,7 @@ public class SpawnerStatic : MonoBehaviour
         /*if the current letter was signed correctly, it will be deactivated. 
         If deactivated, the game will destroy the current clone, reactivate the original object,
         generate a new random object from the array, then spawn it*/
-        else if (timeDone && /*!clonePrefab[letIndex].GetComponent<LetterSS>().isActivated &&*/ hand && correctlySigned)
+        else if (timeDone && /*!clonePrefab[letIndex].GetComponent<LetterSS>().isActivated && hand &&*/ correctlySigned)
         {
             correctlySigned = false;
             getProgressPct();
