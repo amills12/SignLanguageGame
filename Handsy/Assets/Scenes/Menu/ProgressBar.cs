@@ -28,6 +28,14 @@ public class ProgressBar : MonoBehaviour
     void Start()
     {
         resetPressed = resetScore.GetComponent<reset>().isReset;
+        targetProgress = PlayerPrefs.GetFloat(alphaOrNumFl);
+        percentVal.text = PlayerPrefs.GetString(alphaOrNumStr);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        resetPressed = resetScore.GetComponent<reset>().isReset;
         if(PlayerPrefs.GetFloat(alphaOrNumFl) > 0)
         {
             targetProgress = PlayerPrefs.GetFloat(alphaOrNumFl);
@@ -40,13 +48,7 @@ public class ProgressBar : MonoBehaviour
             slider.value = 0;
             percentVal.text = "0%";
         }
-    
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        resetPressed = resetScore.GetComponent<reset>().isReset;
+        
         if(resetPressed)
         {
             slider.value = 0;
