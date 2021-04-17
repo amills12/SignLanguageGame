@@ -75,8 +75,8 @@ public class ActivatorSphere : MonoBehaviour
         //Capture the key of the next character
         DetermineKey();
         //Check if pressed
-        if(leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated){
-        //if(Input.GetKeyDown(key) || leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated){
+        //if(leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated){
+        if(Input.GetKeyDown(key) || leftHand.activated || rightHand.activated || leftHand_nums.activated || rightHand_nums.activated){
             //If the letter was pressed within the sphere, success, destroy. increment score
             if(letter.active){
                 letter.active = false;
