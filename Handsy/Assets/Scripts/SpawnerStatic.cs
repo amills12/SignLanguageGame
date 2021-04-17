@@ -189,7 +189,8 @@ public class SpawnerStatic : MonoBehaviour
             progressStr =  progressAlpha.ToString("0") + "%";
             PlayerPrefs.SetString("PercentDisplayAlpha", progressStr);
             progressStr =  progressNum.ToString("0") + "%";
-            PlayerPrefs.SetString("PercentDisplayNum", progressStr);   
+            PlayerPrefs.SetString("PercentDisplayNum", progressStr);
+
     }
 
 
