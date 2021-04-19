@@ -16,6 +16,17 @@ public class reset : MonoBehaviour
         isReset = true;
         for(int i = 0; i < keys.Length; i++)
             PlayerPrefs.DeleteKey(keys[i]);
+        for(int i = 0; i < 36; i++)
+        {
+            string s = keys[i] + "_chalk";
+            PlayerPrefs.DeleteKey(s);
+            s = keys[i] + "_chalk(Clone)";
+            PlayerPrefs.DeleteKey(s);
+        }
+
     }
+
+
+
 
 }

@@ -38,9 +38,21 @@ public class LetterSS : MonoBehaviour
 
         //initialize specs for sign mastery
         signID = this.name;
+        Debug.Log("name: " + signID);
         mastery = PlayerPrefs.GetInt(signID);
+        // reset r = GameObject.Find("Reset").GetComponent<reset>();
+        // //reset r = GameObject.FindGameObjectWithTag("Reset").GetComponent<reset>();
+        // if(r.isReset){
+        //     mastery = 0;
+        //     PlayerPrefs.SetInt(signID, mastery);
+        // }
         numMastered = PlayerPrefs.GetInt("NumMastered"); 
         numNumMastered = PlayerPrefs.GetInt("NumNumMastered");
+        Debug.Log("masterd: " + mastered);
+        Debug.Log("mastery: " + mastery);
+        Debug.Log("masteryLevel: " + masteryLevel);
+        Debug.Log("numMastered: " + numMastered);
+        Debug.Log("numNumMastered: " + numNumMastered);
     }
     void Update()
     {
