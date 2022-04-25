@@ -1,5 +1,6 @@
 # Handsy
 # Description
+American Sign Language learning game that utilizes Unity and C Sharp to teach american sign language using two main methods: educational and competitive. The hand motions are captured using the LEAP Motion Controller.
 # File Structure
 ## Assets
 This is the main unity folder that contains all the files used in the unity project.
