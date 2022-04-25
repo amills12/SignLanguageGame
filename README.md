@@ -1,4 +1,6 @@
 # Handsy
+![Screenshot 2021-04-19 204021](https://user-images.githubusercontent.com/54698333/165190416-37a632a8-b627-4a40-9229-6bb9d089a5fa.jpeg)
+![SS 2021-04-20 at 12 55 56 AM](https://user-images.githubusercontent.com/54698333/165190469-7bbb3e0a-aedf-461f-90b8-7064c6ccf1bd.jpeg)
 ## Description
 American Sign Language learning game that utilizes Unity and C Sharp to teach american sign language using two main methods: educational and competitive. The hand motions are captured using the LEAP Motion Controller.
 ## File Structure
